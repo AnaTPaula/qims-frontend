@@ -1,1 +1,28 @@
-<p>funcionario-list works!</p>
+<div class="container">
+    <div class="card list-category">
+      <h5 class="card-header">Lista de funcionários</h5>
+      <div class="card-body">
+        <button type="button" class="btn btn-primary" *ngIf="situacao === 'APROVADO'" routerLink="create">Criar Funcionário</button>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Tipo de Acesso</th>
+              <th scope="col">Data de criação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let entity of funcionarios">
+              <td><a routerLink="update/{{entity.id}}">{{entity.nomeUsuario}}</a></td>
+              <td>{{convertAcesso(entity.acesso)}}</td>
+              <td>{{convertDate(entity.dataCadastro)}}</td>
+              <td>
+                <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteFuncionario(entity)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
