@@ -1,1 +1,35 @@
-<p>funcionario-form works!</p>
+<div class="container">
+    <form #form="ngForm">
+
+        <div class="row">
+            <label for="nomeUsuario" class="form-label">Nome do Funcionario: </label>
+            <input [(ngModel)]="funcionario.nomeUsuario" type="text" class="form-control" id="nomeUsuario"
+                name="nomeUsuario" placeholder="Nome do funcionario" #nomeUsuario="ngModel" required
+                [maxlength]="50" uniqueFuncionario [funcionarioId]="funcionario.id" [empresaId]="empresaId">
+            <div *ngIf="nomeUsuario.invalid && (nomeUsuario.dirty || nomeUsuario.touched)" class="text-danger">
+                <div *ngIf="nomeUsuario.errors?.['required']">Nome é obrigatório.</div>
+                <div *ngIf="nomeUsuario.errors?.['uniqueFuncionario']">Nome já existe.</div>
+            </div>
+        </div>
+        <div class="row">
+            <label for="senha" class="form-label">Senha: </label>
+            <input [(ngModel)]="funcionario.senha" type="password" class="form-control" id="senha" name="senha"
+                placeholder="senha" #senha="ngModel" required="{{funcionario.id? 'false': 'true'}}" [maxlength]="50">
+            <div *ngIf="senha.invalid && (senha.dirty || senha.touched)" class="text-danger">
+                <div *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
+            </div>
+        </div>
+        <div class="row">
+            <label for="Acesso" class="form-label">Escolha o tipo de acesso: </label>
+            <select [(ngModel)]="funcionario.acesso" class="form-select form-select-sm" id="acesso" name="acesso">
+                <option value="total" selected>Permissão Total</option>
+                <option value="modificar">Permissão Alteração/Leitura</option>
+                <option value="leitura">Permissão apenas Leitura</option>
+            </select>
+        </div>
+        <div class="row">
+            <input type="submit" value="Salvar" (click)="save()" [disabled]="!form.valid || form.pending">
+            <button routerLink="/empresa/{{empresaId}}/funcionario">Voltar</button>
+        </div>
+    </form>
+</div>

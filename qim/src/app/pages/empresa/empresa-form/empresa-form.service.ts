@@ -1,14 +1,13 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { Empresa } from '../model';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class EmpresaListService {
+export class EmpresaFormService {
 
   url = 'http://localhost:8000/v1/empresa'
 
@@ -16,23 +15,32 @@ export class EmpresaListService {
     private httpClient: HttpClient,
     private cookieService: CookieService) { }
 
-  getEmpresas(): Observable<Empresa[]> {
-    return this.httpClient.get<Empresa[]>(this.url, { headers: { 'token': this.cookieService.get('token') } })
+  getEmpresa(empresaId: number): Observable<Empresa> {
+    return this.httpClient.get<Empresa>(this.url + '/' + empresaId, { headers: { 'token': this.cookieService.get('token') } })
       .pipe(
         retry(2),
         catchError(this.handleError)
+      );
+  }
+
+  getEmpresasByNome(nome: string): Observable<Empresa[]> {
+    let params = new HttpParams().set('nome', nome);
+    return this.httpClient.get<Empresa[]>(this.url, { headers: { 'token': this.cookieService.get('token') }, params: params })
+      .pipe(
+        retry(2),
+        catchError(this.handleError),
       )
   }
 
-  deleteEmpresa(empresa: Empresa): Observable<Empresa> {
-    return this.httpClient.delete<Empresa>(this.url + '/' + empresa.id, this.getOptions(this.cookieService.get('token')))
+  createEmpresa(empresa: Empresa): Observable<Empresa> {
+    return this.httpClient.post<Empresa>(this.url, JSON.stringify(empresa), this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),
         catchError(this.handleError)
-      )
+      );
   }
 
-  updateSituacaoEmpresa(empresa: Empresa): Observable<Empresa> {
+  updateEmpresa(empresa: Empresa): Observable<Empresa> {
     return this.httpClient.put<Empresa>(this.url + '/' + empresa.id, JSON.stringify(empresa), this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),

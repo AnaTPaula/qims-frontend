@@ -1,5 +1,5 @@
 export interface Empresa {
-    id: number;
+    id?: number;
     nomeUsuario: string;
     senha?: string;
     dataCadastro: number;

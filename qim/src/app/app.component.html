@@ -1,1 +1,15 @@
+<ul class="nav" *ngIf="getLogado()">
+  <li class="nav-item" *ngIf="getTipo() === 'administrador'">
+    <a class="nav-link active" routerLink="/admin/empresa">Página Inicial</a>
+  </li>
+  <li class="nav-item" *ngIf="getTipo() === 'empresa'">
+    <a class="nav-link active" routerLink="/empresa/{{getEmpresaId()}}/funcionario">Página Inicial</a>
+  </li>
+  <li class="nav-item" *ngIf="getTipo() === 'funcionario'">
+    <a class="nav-link active" routerLink="/empresa/{{getEmpresaId()}}/almoxarifado">Página Inicial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" (click)="sair()" routerLink="#">Sair</a>
+  </li>
+</ul>
 <router-outlet></router-outlet>

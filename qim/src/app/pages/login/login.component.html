@@ -1,0 +1,41 @@
+<div class="container">
+    <form #form="ngForm">
+        <div class="row">
+            <select [(ngModel)]="usuario.tipo" class="form-select form-select-sm" name="tipo">
+                <option value="empresa">Empresa</option>
+                <option value="funcionario">Funcionario</option>
+                <option value="administrador">Administrador</option>
+            </select>
+        </div>
+        <div class="row" *ngIf="usuario.tipo === 'funcionario'">
+            <label for="nomeEmpresa" class="form-label">Nome da empresa: </label>
+            <input [(ngModel)]="usuario.nomeEmpresa" type="text" class="form-control" id="nomeUsuario"
+                name="nomeEmpresa" placeholder="Nome da empresa" #nomeEmpresa="ngModel" required>
+            <div *ngIf="nomeEmpresa.invalid && (nomeEmpresa.dirty || nomeEmpresa.touched)" class="text-danger">
+                <div *ngIf="nomeEmpresa.errors?.['required']">Nome da empresa é obrigatório.</div>
+            </div>
+        </div>
+        <div class="row">
+            <label for="nomeUsuario" class="form-label">Nome do usuário: </label>
+            <input [(ngModel)]="usuario.nomeUsuario" type="text" class="form-control" id="nomeUsuario"
+                name="nomeUsuario" placeholder="Nome do usuário" #nomeUsuario="ngModel" required>
+            <div *ngIf="nomeUsuario.invalid && (nomeUsuario.dirty || nomeUsuario.touched)" class="text-danger">
+                <div *ngIf="nomeUsuario.errors?.['required']">Nome do usuário é obrigatório.</div>
+            </div>
+        </div>
+        <div class="row">
+            <label for="senha" class="form-label">Senha: </label>
+            <input [(ngModel)]="usuario.senha" type="password" class="form-control" id="senha" name="senha"
+                placeholder="senha" #senha="ngModel" required>
+            <div *ngIf="senha.invalid && (senha.dirty || senha.touched)" class="text-danger">
+                <div *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
+            </div>
+        </div>
+        <div class="row">
+            <input type="submit" value="Entrar" (click)="login()" [disabled]="!form.valid || form.pending">
+        </div>
+    </form>
+    <div class="alert alert-danger" role="alert" *ngIf="msgError">
+        {{msgError}}
+    </div>
+</div>

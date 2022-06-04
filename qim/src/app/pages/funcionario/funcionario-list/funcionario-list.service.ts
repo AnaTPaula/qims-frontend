@@ -2,42 +2,33 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, Observable, retry, throwError } from 'rxjs';
-import { Empresa } from '../model';
-
+import { Funcionario } from '../model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmpresaListService {
+export class FuncionarioListService {
 
-  url = 'http://localhost:8000/v1/empresa'
+  url = 'http://localhost:8000/v1/empresa/'
 
   constructor(
     private httpClient: HttpClient,
     private cookieService: CookieService) { }
 
-  getEmpresas(): Observable<Empresa[]> {
-    return this.httpClient.get<Empresa[]>(this.url, { headers: { 'token': this.cookieService.get('token') } })
+  getFuncionarios(empresaId: number): Observable<Funcionario[]> {
+    return this.httpClient.get<Funcionario[]>(this.url + empresaId + '/funcionario', { headers: { 'token': this.cookieService.get('token') } })
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  deleteEmpresa(empresa: Empresa): Observable<Empresa> {
-    return this.httpClient.delete<Empresa>(this.url + '/' + empresa.id, this.getOptions(this.cookieService.get('token')))
+  deleteFuncionario(funcionario: Funcionario): Observable<Funcionario> {
+    return this.httpClient.delete<Funcionario>(this.url + funcionario.empresaId + '/funcionario/' + funcionario.id, this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
-  }
-
-  updateSituacaoEmpresa(empresa: Empresa): Observable<Empresa> {
-    return this.httpClient.put<Empresa>(this.url + '/' + empresa.id, JSON.stringify(empresa), this.getOptions(this.cookieService.get('token')))
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      );
   }
 
   getOptions(token: string) {
@@ -59,4 +50,5 @@ export class EmpresaListService {
     console.log(errorMessage);
     return throwError(() => errorMessage);
   };
+
 }
