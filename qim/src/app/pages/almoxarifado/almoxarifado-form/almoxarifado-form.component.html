@@ -1,1 +1,25 @@
-<p>almoxarifado-form works!</p>
+<div class="container">
+    <form #form="ngForm">
+        <div class="row">
+            <label for="nomeAlmoxarifado" class="form-label">Nome do Almoxarifado: </label>
+            <input [(ngModel)]="almoxarifado.nome" type="text" class="form-control" id="nomeAlmoxarifado"
+                name="nomeAlmoxarifado" placeholder="Nome do almoxarifado" #nome="ngModel"
+                disabled="{{acesso === 'leitura'? true: false}}" uniqueAlmoxarifado [almoxarifadoId]="almoxarifado.id"
+                [empresaId]="empresaId" required [maxlength]="50">
+            <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="text-danger">
+                <div *ngIf="nome.errors?.['required']">Nome é obrigatório.</div>
+                <div *ngIf="nome.errors?.['uniqueAlmoxarifado']">Nome já existe.</div>
+            </div>
+        </div>
+        <div class="row">
+            <label for="descricao" class="form-label">Descrição: </label>
+            <textarea [(ngModel)]="almoxarifado.descricao" type="text" class="form-control" id="descricao"
+                name="descricao" placeholder="Descrição" rows="3" [maxlength]="255" disabled="{{acesso === 'leitura'? true: false}}"></textarea>
+        </div>
+        <div class="row">
+            <input type="submit" value="Salvar" (click)="save()"
+                [disabled]="!form.valid || form.pending || acesso === 'leitura'">
+            <button routerLink="/empresa/{{empresaId}}/almoxarifado">Voltar</button>
+        </div>
+    </form>
+</div>
