@@ -1,28 +1,40 @@
 <div class="container">
-    <div class="card list-category">
-      <h5 class="card-header">Lista de empresas</h5>
-      <div class="card-body">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Situação</th>
-                <th scope="col">Tipo de Armazenagem</th>
-                <th scope="col">Termos de uso</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let empresa of empresas">
-                <td>{{empresa.nomeUsuario}}</td>
-                <td>{{empresa.situacaoConta}}</td>
-                <td>{{empresa.tipoArmazenagem}}</td>
-                <td>{{empresa.aceiteTermosUso}}</td>
-                <!--<td>
-                  <button type="button" class="btn btn-warning btn-sm" (click)="editEmpresa(empresa)">Editar</button>
-                  <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteEmpresa(empresa)">Deletar</button>
-                </td>-->
-              </tr>
-            </tbody>
-          </table>
-      </div>
+  <div class="card list-category">
+    <h5 class="card-header">Lista de empresas</h5>
+    <div class="card-body">
+      <button type="button" class="btn btn-primary" routerLink="create">Criar Empresa</button>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Situação</th>
+            <th scope="col">Tipo de Armazenagem</th>
+            <th scope="col">Termos de uso</th>
+            <th scope="col">Data de criação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let empresa of empresas">
+            <td><a routerLink="/admin/empresa/update/{{empresa.id}}">{{empresa.nomeUsuario}}</a></td>
+            <td>{{empresa.situacaoConta}}</td>
+            <td>{{empresa.tipoArmazenagem}}</td>
+            <td>{{empresa.aceiteTermosUso? "Aceitos": "Não Aceitos"}}</td>
+            <td>{{convertDate(empresa.dataCadastro)}}</td>
+            <td>
+              <button type="button" class="btn btn-success btn-sm ml-1" *ngIf="empresa.situacaoConta === 'EM_ANALISE'"
+                (click)="aprovarEmpresa(empresa)">
+                <i class="fa fa-check-circle-o"></i>
+              </button>
+              <button type="button" class="btn btn-warning btn-sm ml-1" *ngIf="empresa.situacaoConta === 'EM_ANALISE'"
+                (click)="reprovarEmpresa(empresa)">
+                <i class="fa fa-times-circle-o"></i>
+              </button>
+              <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteEmpresa(empresa)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
