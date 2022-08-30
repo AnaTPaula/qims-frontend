@@ -1,41 +1,97 @@
-<div class="container">
-    <form #form="ngForm">
-        <div class="row">
-            <select [(ngModel)]="usuario.tipo" class="form-select form-select-sm" name="tipo">
-                <option value="empresa">Empresa</option>
-                <option value="funcionario">Funcionario</option>
-                <option value="administrador">Administrador</option>
-            </select>
-        </div>
-        <div class="row" *ngIf="usuario.tipo === 'funcionario'">
-            <label for="nomeEmpresa" class="form-label">Nome da empresa: </label>
-            <input [(ngModel)]="usuario.nomeEmpresa" type="text" class="form-control" id="nomeUsuario"
-                name="nomeEmpresa" placeholder="Nome da empresa" #nomeEmpresa="ngModel" required>
-            <div *ngIf="nomeEmpresa.invalid && (nomeEmpresa.dirty || nomeEmpresa.touched)" class="text-danger">
-                <div *ngIf="nomeEmpresa.errors?.['required']">Nome da empresa é obrigatório.</div>
-            </div>
-        </div>
-        <div class="row">
-            <label for="nomeUsuario" class="form-label">Nome do usuário: </label>
-            <input [(ngModel)]="usuario.nomeUsuario" type="text" class="form-control" id="nomeUsuario"
-                name="nomeUsuario" placeholder="Nome do usuário" #nomeUsuario="ngModel" required>
-            <div *ngIf="nomeUsuario.invalid && (nomeUsuario.dirty || nomeUsuario.touched)" class="text-danger">
-                <div *ngIf="nomeUsuario.errors?.['required']">Nome do usuário é obrigatório.</div>
-            </div>
-        </div>
-        <div class="row">
-            <label for="senha" class="form-label">Senha: </label>
-            <input [(ngModel)]="usuario.senha" type="password" class="form-control" id="senha" name="senha"
-                placeholder="senha" #senha="ngModel" required>
-            <div *ngIf="senha.invalid && (senha.dirty || senha.touched)" class="text-danger">
-                <div *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
-            </div>
-        </div>
-        <div class="row">
-            <input type="submit" value="Entrar" (click)="login()" [disabled]="!form.valid || form.pending">
-        </div>
-    </form>
-    <div class="alert alert-danger" role="alert" *ngIf="msgError">
-        {{msgError}}
+<div class="header bg-gradient-danger py-7 py-lg-8">
+    <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+            <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
     </div>
 </div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+            <div class="card bg-secondary shadow border-0">
+
+                <div class="card-body px-lg-5 py-lg-5">
+                    <div class="text-center text-muted mb-4">
+                        <small>Faça o Login</small>
+                    </div>
+
+                    <form role="form" #form="ngForm">
+
+                        <div class="form-group mb-3">
+                            <div class="input-group input-group-alternative">
+
+
+                                <select [(ngModel)]="usuario.tipo" class="form-control" name="tipo">
+                                    <option value="empresa">Empresa</option>
+                                    <option value="funcionario">Funcionario</option>
+                                    <option value="administrador">Administrador</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group mb-3" *ngIf="usuario.tipo === 'funcionario'">
+                            <div class="input-group input-group-alternative">
+
+                                <input [(ngModel)]="usuario.nomeEmpresa" type="text" class="form-control"
+                                    id="nomeUsuario" name="nomeEmpresa" placeholder="Nome da empresa"
+                                    #nomeEmpresa="ngModel" required>
+
+                            </div>
+                            <div *ngIf="nomeEmpresa.invalid && (nomeEmpresa.dirty || nomeEmpresa.touched)"
+                                class="text-danger">
+                                <div *ngIf="nomeEmpresa.errors?.['required']">Nome da empresa é obrigatório.</div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                </div>
+                                <input [(ngModel)]="usuario.nomeUsuario" type="text" class="form-control"
+                                    id="nomeUsuario" name="nomeUsuario" placeholder="Nome do usuário"
+                                    #nomeUsuario="ngModel" required>
+                            </div>
+                            <div *ngIf="nomeUsuario.invalid && (nomeUsuario.dirty || nomeUsuario.touched)"
+                                class="text-danger">
+                                <div *ngIf="nomeUsuario.errors?.['required']">Nome do usuário é obrigatório.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                </div>
+                                <input [(ngModel)]="usuario.senha" type="password" class="form-control" id="senha"
+                                    name="senha" placeholder="senha" #senha="ngModel" required>
+                            </div>
+                            <div *ngIf="senha.invalid && (senha.dirty || senha.touched)" class="text-danger">
+                                <div *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <input type="submit" value="Entrar" class="btn btn-primary my-4" (click)="login()"
+                                [disabled]="!form.valid || form.pending">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="alert alert-danger" role="alert" *ngIf="msgError">
+                {{msgError}}
+            </div>
+            <div class="row mt-3">
+                <div class="col-11 text-right">
+                    <a href="/" class="text-light"><small>Home</small></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
