@@ -7,9 +7,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuardService } from './guards/auth-guard.service';
-import { AlmoxarifadoFormComponent } from './pages/almoxarifado/almoxarifado-form/almoxarifado-form.component';
-import { UniqueAlmoxarifadoDirective } from './pages/almoxarifado/almoxarifado-form/unique-almoxarifado.directive';
-import { AlmoxarifadoListComponent } from './pages/almoxarifado/almoxarifado-list/almoxarifado-list.component';
+import { EstoqueFormComponent } from './pages/estoque/estoque-form/estoque-form.component';
+import { UniqueEstoqueDirective } from './pages/estoque/estoque-form/unique-estoque.directive';
+import { EstoqueListComponent } from './pages/estoque/estoque-list/estoque-list.component';
 import { EmpresaFormComponent } from './pages/empresa/empresa-form/empresa-form.component';
 import { UniqueEmpresaDirective } from './pages/empresa/empresa-form/unique-empresa.directive';
 import { EmpresaListComponent } from './pages/empresa/empresa-list/empresa-list.component';
@@ -19,6 +19,7 @@ import { FuncionarioListComponent } from './pages/funcionario/funcionario-list/f
 import { LoginComponent } from './pages/login/login.component';
 import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
 import { HomeComponent } from './pages/home/home/home.component';
+import { ComponentsModule } from './components/components.module';
 
 
 @NgModule({
@@ -28,11 +29,11 @@ import { HomeComponent } from './pages/home/home/home.component';
     EmpresaListComponent,
     FuncionarioListComponent,
     FuncionarioFormComponent,
-    AlmoxarifadoListComponent,
-    AlmoxarifadoFormComponent,
+    EstoqueListComponent,
+    EstoqueFormComponent,
     LoginComponent,
     ConfirmModalComponent,
-    UniqueAlmoxarifadoDirective,
+    UniqueEstoqueDirective,
     UniqueFuncionarioDirective,
     UniqueEmpresaDirective,
     HomeComponent
@@ -42,6 +43,7 @@ import { HomeComponent } from './pages/home/home/home.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ComponentsModule,
     ModalModule.forRoot()
   ],
   providers: [

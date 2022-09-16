@@ -30,10 +30,10 @@ export class AuthGuardService implements CanActivate {
           return false
         }
       } else if (tipo === 'funcionario') {
-        if (state.url.includes('almoxarifado')) {
+        if (state.url.includes('estoque')) {
           return true;
         } else {
-          this.router.navigate(['empresa/'+ this.cookieService.get('empresa') +'/almoxarifado']);
+          this.router.navigate(['empresa/'+ this.cookieService.get('empresa') +'/estoque']);
           return false
         }
       }

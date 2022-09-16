@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './guards/auth-guard.service';
-import { AlmoxarifadoFormComponent } from './pages/almoxarifado/almoxarifado-form/almoxarifado-form.component';
-import { AlmoxarifadoListComponent } from './pages/almoxarifado/almoxarifado-list/almoxarifado-list.component';
+import { EstoqueFormComponent } from './pages/estoque/estoque-form/estoque-form.component';
+import { EstoqueListComponent } from './pages/estoque/estoque-list/estoque-list.component';
 import { EmpresaFormComponent } from './pages/empresa/empresa-form/empresa-form.component';
 import { EmpresaListComponent } from './pages/empresa/empresa-list/empresa-list.component';
 import { FuncionarioFormComponent } from './pages/funcionario/funcionario-form/funcionario-form.component';
@@ -14,9 +14,9 @@ const routes: Routes = [
   {path: 'admin/empresa', component: EmpresaListComponent, canActivate: [AuthGuardService]},
   {path: 'admin/empresa/update/:id', component: EmpresaFormComponent, canActivate: [AuthGuardService]},
   {path: 'admin/empresa/create', component: EmpresaFormComponent, canActivate: [AuthGuardService]},
-  {path: 'empresa/:empresaId/almoxarifado', component: AlmoxarifadoListComponent, canActivate: [AuthGuardService]},
-  {path: 'empresa/:empresaId/almoxarifado/update/:id', component: AlmoxarifadoFormComponent, canActivate: [AuthGuardService]},
-  {path: 'empresa/:empresaId/almoxarifado/create', component: AlmoxarifadoFormComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/estoque', component: EstoqueListComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/estoque/update/:id', component: EstoqueFormComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/estoque/create', component: EstoqueFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/funcionario', component: FuncionarioListComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/funcionario/update/:id', component: FuncionarioFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/funcionario/create', component: FuncionarioFormComponent, canActivate: [AuthGuardService]},

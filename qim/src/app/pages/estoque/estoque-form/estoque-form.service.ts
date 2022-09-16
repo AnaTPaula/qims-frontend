@@ -2,12 +2,12 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, map, Observable, retry, throwError } from 'rxjs';
-import { Almoxarifado } from '../model';
+import { Estoque } from '../model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AlmoxarifadoFormService {
+export class EstoqueFormService {
 
   url = 'http://localhost:8000/v1/empresa/'
 
@@ -15,33 +15,33 @@ export class AlmoxarifadoFormService {
     private httpClient: HttpClient,
     private cookieService: CookieService) { }
 
-  getAlmoxarifado(empresaId: number, almoxarifadoId: number): Observable<Almoxarifado> {
-    return this.httpClient.get<Almoxarifado>(this.url + empresaId + '/almoxarifado/' + almoxarifadoId, { headers: { 'token': this.cookieService.get('token') } })
+  getEstoque(empresaId: number, EstoqueId: number): Observable<Estoque> {
+    return this.httpClient.get<Estoque>(this.url + empresaId + '/estoque/' + EstoqueId, { headers: { 'token': this.cookieService.get('token') } })
       .pipe(
         retry(2),
         catchError(this.handleError)
       );
   }
 
-  getAlmoxarifadosByNome(empresaId: number, nome: string): Observable<Almoxarifado[]> {
+  getEstoquesByNome(empresaId: number, nome: string): Observable<Estoque[]> {
     let params = new HttpParams().set('nome', nome);
-    return this.httpClient.get<Almoxarifado[]>(this.url + empresaId + '/almoxarifado', { headers: { 'token': this.cookieService.get('token') }, params: params })
+    return this.httpClient.get<Estoque[]>(this.url + empresaId + '/estoque', { headers: { 'token': this.cookieService.get('token') }, params: params })
       .pipe(
         retry(2),
         catchError(this.handleError),
       )
   }
 
-  createAlmoxarifado(almoxarifado: Almoxarifado): Observable<Almoxarifado> {
-    return this.httpClient.post<Almoxarifado>(this.url + almoxarifado.empresaId + '/almoxarifado', JSON.stringify(almoxarifado), this.getOptions(this.cookieService.get('token')))
+  createEstoque(Estoque: Estoque): Observable<Estoque> {
+    return this.httpClient.post<Estoque>(this.url + Estoque.empresaId + '/estoque', JSON.stringify(Estoque), this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),
         catchError(this.handleError)
       );
   }
 
-  updateAlmoxarifado(almoxarifado: Almoxarifado): Observable<Almoxarifado> {
-    return this.httpClient.put<Almoxarifado>(this.url + almoxarifado.empresaId + '/almoxarifado/' + almoxarifado.id, JSON.stringify(almoxarifado), this.getOptions(this.cookieService.get('token')))
+  updateEstoque(Estoque: Estoque): Observable<Estoque> {
+    return this.httpClient.put<Estoque>(this.url + Estoque.empresaId + '/estoque/' + Estoque.id, JSON.stringify(Estoque), this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),
         catchError(this.handleError)
