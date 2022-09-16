@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EstoqueListService } from './Estoque-list.service';
+import { EstoqueListService } from './estoque-list.service';
 
 describe('EstoqueListService', () => {
   let service: EstoqueListService;

@@ -43,6 +43,8 @@
       <ul class="navbar-nav">
 
         <li class="nav-item">
+
+          <!--ADMINISTRADOR-->
           <a routerLinkActive="active" routerLink="/admin/empresa" class="nav-link"
             *ngIf="getTipo() === 'administrador'">
             <i class="ni ni-tv-2 text-primary"></i>Lista de Empresas</a>
@@ -50,13 +52,7 @@
           <a routerLinkActive="active" routerLink="/admin/empresa/create" class="nav-link"
             *ngIf="getTipo() === 'administrador'">
             <i class="ni ni-tv-2 text-primary"></i>Criar Empresa</a>
-
-          <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'administrador'">
-            <i class="ni ni-tv-2 text-primary"></i>Informações do Administrador</a>
-
-          <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'administrador'">
-            <i class="ni ni-tv-2 text-primary"></i>Alterar Informações</a>
-
+          <!--EMPRESA-->
           <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/funcionario/create" class="nav-link"
             *ngIf="getTipo() === 'empresa' && situacao === 'APROVADO'">
             <i class="ni ni-tv-2 text-primary"></i>Criar Funcionário</a>
@@ -65,12 +61,15 @@
             *ngIf="getTipo() === 'empresa'">
             <i class="ni ni-tv-2 text-primary"></i>Listar Funcionários</a>
 
-          <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'empresa'">
-            <i class="ni ni-tv-2 text-primary"></i>Informações da Empresa</a>
+          <a routerLinkActive="active" routerLink="#" class="nav-link"
+            *ngIf="getTipo() === 'empresa'">
+            <i class="ni ni-tv-2 text-primary"></i>Vizualizar Estatistica de Estoque</a>
 
-          <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'empresa'">
-            <i class="ni ni-tv-2 text-primary"></i>Alterar Informações</a>
+          <a routerLinkActive="active" routerLink="#" class="nav-link"
+            *ngIf="getTipo() === 'empresa'">
+            <i class="ni ni-tv-2 text-primary"></i>Analisar curva ABC do estoque</a>
 
+          <!--OPERADOR-->
           <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/estoque/create" class="nav-link"
             *ngIf="getTipo() === 'funcionario' && acesso === 'total'">
             <i class="ni ni-tv-2 text-primary"></i>Criar Estoque</a>
@@ -79,20 +78,50 @@
             *ngIf="getTipo() === 'funcionario'">
             <i class="ni ni-tv-2 text-primary"></i>Listar Estoque</a>
 
-          <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'funcionario'">
-            <i class="ni ni-tv-2 text-primary"></i>Informações do Funcionário</a>
+          <a routerLinkActive="active" routerLink="#" class="nav-link"
+            *ngIf="getTipo() === 'funcionario' && acesso === 'total'">
+            <i class="ni ni-tv-2 text-primary"></i>Criar Produto</a>
+          
+          <a routerLinkActive="active" routerLink="#" class="nav-link"
+            *ngIf="getTipo() === 'funcionario'">
+            <i class="ni ni-tv-2 text-primary"></i>Listar Produtos</a>
 
-          <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'funcionario'">
-            <i class="ni ni-tv-2 text-primary"></i>Informações</a>
+          <a routerLinkActive="active" routerLink="#" class="nav-link"
+            *ngIf="getTipo() === 'funcionario' && acesso === 'total'">
+            <i class="ni ni-tv-2 text-primary"></i>Criar lote</a>
+          
+          <a routerLinkActive="active" routerLink="#" class="nav-link"
+            *ngIf="getTipo() === 'funcionario'">
+            <i class="ni ni-tv-2 text-primary"></i>Listar Lote</a>
         </li>
       </ul>
       <!-- Divider -->
       <hr class="my-3">
       <!-- Heading -->
-      <h6 class="navbar-heading text-muted">Teste</h6>
+      <h6 class="navbar-heading text-muted">Configurações</h6>
       <!-- Navigation -->
       <ul class="navbar-nav mb-md-3">
         <li class="nav-item">
+
+          <!--ADMINISTRADOR-->
+          <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'administrador'">
+            <i class="ni ni-tv-2 text-primary"></i>Informações do Administrador</a>
+
+          <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'administrador'">
+            <i class="ni ni-tv-2 text-primary"></i>Alterar Informações</a>
+          <!--EMPRESA-->
+          <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'empresa'">
+            <i class="ni ni-tv-2 text-primary"></i>Informações da Empresa</a>
+
+          <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'empresa'">
+            <i class="ni ni-tv-2 text-primary"></i>Informações</a>
+          <!--OPERADOR-->
+          <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'funcionario'">
+            <i class="ni ni-tv-2 text-primary"></i>Informações do Operador</a>
+
+          <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'funcionario'">
+            <i class="ni ni-tv-2 text-primary"></i>Informações</a>
+          <!--USUARIOS-->
           <a routerLinkActive="active" class="nav-link" (click)="sair()" routerLink="#">
             <i class="ni ni-tv-2 text-primary"></i>Sair</a>
         </li>
