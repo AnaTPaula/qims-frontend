@@ -17,11 +17,6 @@ export class AppComponent {
   ngOnInit() {
   }
 
-  sair() {
-    this.cookieService.deleteAll('/');
-    this.router.navigate(['/login']);
-  }
-
   getTipo() {
     return this.cookieService.get('tipo');
   }

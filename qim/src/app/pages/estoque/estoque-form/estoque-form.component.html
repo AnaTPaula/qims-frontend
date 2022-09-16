@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-1">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0">Criar Estoque</h3>
+                    </div>
+                    <div class="card-body">
+                        <form #form="ngForm">
+                            <div class="row">
+                                <label for="nomeEstoque" class="form-control-label">Nome do Estoque: </label>
+                                <input [(ngModel)]="Estoque.nome" type="text"
+                                    class="form-control form-control-alternative" id="nomeEstoque" name="nomeEstoque"
+                                    placeholder="Nome do Estoque" #nome="ngModel"
+                                    disabled="{{acesso === 'leitura'? true: false}}" uniqueEstoque
+                                    [EstoqueId]="Estoque.id" [empresaId]="empresaId" required [maxlength]="50">
+                                <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="text-danger">
+                                    <div *ngIf="nome.errors?.['required']">Nome é obrigatório.</div>
+                                    <div *ngIf="nome.errors?.['uniqueEstoque']">Nome já existe.</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="descricao" class="form-control-label">Descrição: </label>
+                                <textarea [(ngModel)]="Estoque.descricao" type="text"
+                                    class="form-control form-control-alternative" id="descricao" name="descricao"
+                                    placeholder="Descrição" rows="3" [maxlength]="255"
+                                    disabled="{{acesso === 'leitura'? true: false}}"></textarea>
+                            </div>
+                            <div class="row text-right">
+                                <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
+                                    [disabled]="!form.valid || form.pending || acesso === 'leitura'">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

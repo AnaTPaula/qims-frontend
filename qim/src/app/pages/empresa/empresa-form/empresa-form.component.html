@@ -1,51 +1,116 @@
-<div class="container">
-    <form #form="ngForm">
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+    style="min-height: 100px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
 
-        <div class="row">
-            <label for="nomeUsuario" class="form-label">Nome da empresa: </label>
-            <input [(ngModel)]="empresa.nomeUsuario" type="text" class="form-control" id="nomeUsuario"
-                name="nomeUsuario" placeholder="Nome da empresa" #nomeUsuario="ngModel" uniqueEmpresa
-                [empresaId]="empresa.id" required [maxlength]="50">
-            <div *ngIf="nomeUsuario.invalid && (nomeUsuario.dirty || nomeUsuario.touched)" class="text-danger">
-                <div *ngIf="nomeUsuario.errors?.['required']">Nome é obrigatório.</div>
-                <div *ngIf="nomeUsuario.errors?.['uniqueEmpresa']">Nome já existe.</div>
+</div>
+<div class="container-fluid mt--7">
+    <div class="row justify-content-center">
+
+        <div class="col-xl-8 order-xl-1">
+            <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">Cadastro de Empresa</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form #form="ngForm">
+                        <h6 class="heading-small text-muted mb-4">Informações da Empresa</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="nomeUsuario" class="form-control-label">Nome da empresa: </label>
+                                        <input [(ngModel)]="empresa.nomeUsuario" type="text"
+                                            class="form-control form-control-alternative" id="nomeUsuario"
+                                            name="nomeUsuario" placeholder="Nome da empresa" #nomeUsuario="ngModel"
+                                            uniqueEmpresa [empresaId]="empresa.id" required [maxlength]="50">
+                                        <div *ngIf="nomeUsuario.invalid && (nomeUsuario.dirty || nomeUsuario.touched)"
+                                            class="text-danger">
+                                            <div *ngIf="nomeUsuario.errors?.['required']">Nome é obrigatório.</div>
+                                            <div *ngIf="nomeUsuario.errors?.['uniqueEmpresa']">Nome já existe.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="senha" class="form-control-label">Senha: </label>
+                                        <input [(ngModel)]="empresa.senha" type="password"
+                                            class="form-control form-control-alternative" id="senha" name="senha"
+                                            placeholder="Senha" #senha="ngModel"
+                                            required="{{empresa.id? 'false': 'true'}}" [maxlength]="50">
+                                        <div *ngIf="senha.invalid && (senha.dirty || senha.touched)"
+                                            class="text-danger">
+                                            <div *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="tipoArmazenagem">Escolha o tipo de
+                                            armazenagem:</label>
+                                        <select [(ngModel)]="empresa.tipoArmazenagem"
+                                            class="form-control form-control-alternative" id="tipoArmazenagem"
+                                            name="tipoArmazenagem" disabled="{{empresa.id? 'true': 'false'}}">
+                                            <option value="FIFO">FIFO</option>
+                                            <option value="LIFO">LIFO</option>
+                                            <option value="FEFO">FEFO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-last-name">Escolha a
+                                            língua:</label>
+                                        <select [(ngModel)]="empresa.lingua"
+                                            class="form-control form-control-alternative" id="lingua" name="lingua">
+                                            <option value="pt-br">Português</option>
+                                            <option value="en">Inglês</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+
+                        <div class="row">
+
+                            <div class="col-12">
+                                <div class="custom-control custom-control-alternative custom-checkbox">
+                                    <input [(ngModel)]="empresa.aceiteTermosUso" id="aceiteTermosUso"
+                                        name="aceiteTermosUso" #aceiteTermosUso="ngModel" required
+                                        class="custom-control-input" id="customCheckRegister" type="checkbox">
+                                    <label class="custom-control-label" for="customCheckRegister">
+                                        <span class="text-muted">Eu aceito os <a href="#!">Termos de uso</a></span>
+                                    </label>
+
+                                    <div *ngIf="aceiteTermosUso.invalid && (aceiteTermosUso.dirty || aceiteTermosUso.touched)"
+                                        class="text-danger">
+                                        <div *ngIf="aceiteTermosUso.errors?.['required']">Os Termos de uso devem ser
+                                            aceitos.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
+                                [disabled]="!form.valid || form.pending">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-11 text-right">
+                    <a href="/" class="text-light"><small>Home</small></a>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <label for="senha" class="form-label">Senha: </label>
-            <input [(ngModel)]="empresa.senha" type="password" class="form-control" id="senha" name="senha"
-                placeholder="senha" #senha="ngModel" required="{{empresa.id? 'false': 'true'}}" [maxlength]="50">
-            <div *ngIf="senha.invalid && (senha.dirty || senha.touched)" class="text-danger">
-                <div *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
-            </div>
-        </div>
-        <div class="row">
-            <label for="tipoArmazenagem" class="form-label">Escolha o tipo de armazenage: </label>
-            <select [(ngModel)]="empresa.tipoArmazenagem" class="form-select form-select-sm" id="tipoArmazenagem"
-                name="tipoArmazenagem" disabled="{{empresa.id? 'true': 'false'}}">
-                <option value="FIFO">FIFO</option>
-                <option value="LIFO">LIFO</option>
-                <option value="FEFO">FEFO</option>
-            </select>
-        </div>
-        <div class="row">
-            <label for="lingua" class="form-label">Escolha a língua: </label>
-            <select [(ngModel)]="empresa.lingua" class="form-select form-select-sm" id="lingua" name="lingua">
-                <option value="pt-br">Português</option>
-                <option value="en">Inglês</option>
-            </select>
-        </div>
-        <div class="row">
-            <input type="checkbox" [(ngModel)]="empresa.aceiteTermosUso" class="form-check-input" id="aceiteTermosUso"
-                name="aceiteTermosUso" #aceiteTermosUso="ngModel" required>
-            <label class="form-check-label" for="aceiteTermosUso">Termos de uso</label>
-            <div *ngIf="aceiteTermosUso.invalid && (aceiteTermosUso.dirty || aceiteTermosUso.touched)" class="text-danger">
-                <div *ngIf="aceiteTermosUso.errors?.['required']">Os Termos de uso devem ser aceitos.</div>
-            </div>
-        </div>
-        <div class="row">
-            <input type="submit" value="Salvar" (click)="save()" [disabled]="!form.valid || form.pending">
-            <button routerLink="/admin/empresa">Voltar</button>
-        </div>
-    </form>
+    </div>
 </div>

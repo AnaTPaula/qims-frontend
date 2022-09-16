@@ -2,29 +2,29 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, Observable, retry, throwError } from 'rxjs';
-import { Almoxarifado } from '../model';
+import { Estoque } from '../model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AlmoxarifadoListService {
+export class EstoqueListService {
 
-  url = 'http://localhost:8000/v1/empresa/';
+  url = 'https://3550924e-41fc-4073-b7c2-5e109863b554.mock.pstmn.io/v1/empresa/';
 
   constructor(
     private httpClient: HttpClient,
     private cookieService: CookieService) { }
 
-  getAlmoxarifados(empresaId: number): Observable<Almoxarifado[]> {
-    return this.httpClient.get<Almoxarifado[]>(this.url + empresaId + '/almoxarifado', { headers: { 'token': this.cookieService.get('token') } })
+  getEstoques(empresaId: number): Observable<Estoque[]> {
+    return this.httpClient.get<Estoque[]>(this.url + empresaId + '/estoque', { headers: { 'token': this.cookieService.get('token') } })
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  deleteAlmoxarifado(almoxarifado: Almoxarifado): Observable<Almoxarifado> {
-    return this.httpClient.delete<Almoxarifado>(this.url + almoxarifado.empresaId + '/almoxarifado/' + almoxarifado.id, this.getOptions(this.cookieService.get('token')))
+  deleteEstoque(Estoque: Estoque): Observable<Estoque> {
+    return this.httpClient.delete<Estoque>(this.url + Estoque.empresaId + '/Estoque/' + Estoque.id, this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),
         catchError(this.handleError)

@@ -4,51 +4,51 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CookieService } from 'ngx-cookie-service';
 import { EMPTY, switchMap, take } from 'rxjs';
 import { ConfirmModalComponent } from 'src/app/shared/confirm-modal/confirm-modal.component';
-import { Almoxarifado } from '../model';
-import { AlmoxarifadoListService } from './almoxarifado-list.service';
+import { Estoque } from '../model';
+import { EstoqueListService } from './estoque-list.service';
 
 @Component({
-  selector: 'app-almoxarifado-list',
-  templateUrl: './almoxarifado-list.component.html',
-  styleUrls: ['./almoxarifado-list.component.css']
+  selector: 'app-Estoque-list',
+  templateUrl: './Estoque-list.component.html',
+  styleUrls: ['./Estoque-list.component.css']
 })
-export class AlmoxarifadoListComponent implements OnInit {
+export class EstoqueListComponent implements OnInit {
   empresaId: number | undefined;
-  almoxarifados: Almoxarifado[] = [];
+  Estoques: Estoque[] = [];
   acesso: string | undefined;
 
   constructor(
-    private almoxarifadoService: AlmoxarifadoListService,
+    private EstoqueService: EstoqueListService,
     private modalService: BsModalService,
     private activatedRoute: ActivatedRoute,
     private cookieService: CookieService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => this.empresaId = params['empresaId']);
-    this.getAlmoxarifados();
+    this.getEstoques();
     this.acesso = this.cookieService.get('acesso');
   }
 
-  getAlmoxarifados() {
+  getEstoques() {
     if (this.empresaId){
-      this.almoxarifadoService.getAlmoxarifados(this.empresaId).subscribe((almoxarifados: Almoxarifado[]) => {
-        this.almoxarifados = almoxarifados;
+      this.EstoqueService.getEstoques(this.empresaId).subscribe((Estoques: Estoque[]) => {
+        this.Estoques = Estoques;
       });
     }
   }
 
-  deleteAlmoxarifado(almoxarifado: Almoxarifado) {
+  deleteEstoque(Estoque: Estoque) {
     const result$ = this.showConfirm(
-      'Deletar Almoxarifado',
-      'Tem certeza que deseja deletar o almoxarifado ' + almoxarifado.nome + '?',
+      'Deletar Estoque',
+      'Tem certeza que deseja deletar o Estoque ' + Estoque.nome + '?',
       'Cancelar',
       'Deletar');
     result$?.asObservable()
       .pipe(
         take(1),
-        switchMap(response => response ? this.almoxarifadoService.deleteAlmoxarifado(almoxarifado) : EMPTY)
+        switchMap(response => response ? this.EstoqueService.deleteEstoque(Estoque) : EMPTY)
       ).subscribe(() => {
-        this.getAlmoxarifados();
+        this.getEstoques();
       });
   }
 
