@@ -29,20 +29,22 @@ export class LoginComponent implements OnInit {
       this.cookieService.set('tipo', usuario.tipo);
       this.cookieService.set('id', String(usuario.id!));
       this.cookieService.set('token', response.headers.get('token')!);
+      console.log('usuario: ' + usuario)
 
       if (usuario.tipo == 'administrador') {
-        this.router.navigate(['admin/empresa'])
+        console.log('oi');
+        this.router.navigate(['admin/empresas'])
       } else if (usuario.tipo == 'empresa') {
         this.cookieService.set('situacao', usuario.situacaoConta!);
-        this.router.navigate(['/empresa/' + usuario.id + '/funcionario'])
+        this.router.navigate(['/empresa/' + usuario.id + '/funcionarios'])
 
       } else if (usuario.tipo == 'funcionario') {
         this.cookieService.set('acesso', usuario.acesso!);
         this.cookieService.set('empresa', String(usuario.empresaId!));
-        this.router.navigate(['/empresa/' + usuario.empresaId + '/estoque'])
+        this.router.navigate(['/empresa/' + usuario.empresaId + '/estoques'])
 
       } else {
-        //this.router.navigate(['/login']);
+        this.router.navigate(['/']);
       }
     }, (err) => {
       this.msgError = 'Usuário ou senha incorretos.';
