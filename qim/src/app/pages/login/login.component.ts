@@ -29,10 +29,8 @@ export class LoginComponent implements OnInit {
       this.cookieService.set('tipo', usuario.tipo);
       this.cookieService.set('id', String(usuario.id!));
       this.cookieService.set('token', response.headers.get('token')!);
-      console.log('usuario: ' + usuario)
 
       if (usuario.tipo == 'administrador') {
-        console.log('oi');
         this.router.navigate(['admin/empresas'])
       } else if (usuario.tipo == 'empresa') {
         this.cookieService.set('situacao', usuario.situacaoConta!);
