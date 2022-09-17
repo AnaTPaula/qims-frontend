@@ -1,9 +1,6 @@
 <div class="header bg-gradient-danger py-7 py-lg-8">
     <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
-            xmlns="http://www.w3.org/2000/svg">
-            <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
+        
     </div>
 </div>
 <!-- Page content -->
@@ -35,6 +32,9 @@
 
                         <div class="form-group mb-3" *ngIf="usuario.tipo === 'funcionario'">
                             <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-shop"></i></span>
+                                </div>
 
                                 <input [(ngModel)]="usuario.nomeEmpresa" type="text" class="form-control"
                                     id="nomeUsuario" name="nomeEmpresa" placeholder="Nome da empresa"
@@ -51,7 +51,7 @@
                         <div class="form-group mb-3">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                    <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                                 </div>
                                 <input [(ngModel)]="usuario.nomeUsuario" type="text" class="form-control"
                                     id="nomeUsuario" name="nomeUsuario" placeholder="Nome do usuário"

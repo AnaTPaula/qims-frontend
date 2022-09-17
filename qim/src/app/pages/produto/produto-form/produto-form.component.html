@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-1">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0">Criar Produto</h3>
+                    </div>
+                    <div class="card-body">
+                        <form #form="ngForm">
+                            <div class="row">
+                                <label for="nomeProduto" class="form-control-label">Nome do Produto: </label>
+                                <input [(ngModel)]="produto.nome" type="text"
+                                    class="form-control form-control-alternative" id="nomeProduto" name="nomeProduto"
+                                    placeholder="Nome do Produto" #nomeProduto="ngModel"
+                                    disabled="{{acesso === 'leitura'? true: false}}" uniqueProduto
+                                    [produtoId]="produto.id" [empresaId]="empresaId" required [maxlength]="50">
+                                <div *ngIf="nomeProduto.invalid && (nomeProduto.dirty || nomeProduto.touched)" class="text-danger">
+                                    <div *ngIf="nomeProduto.errors?.['required']">Nome do produto é obrigatório.</div>
+                                    <div *ngIf="nomeProduto.errors?.['uniqueProduto']">Nome do produto já existe.</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="descricao" class="form-control-label">Descrição: </label>
+                                <textarea [(ngModel)]="produto.descricao" type="text"
+                                    class="form-control form-control-alternative" id="descricao" name="descricao"
+                                    placeholder="Descrição" rows="3" [maxlength]="255"
+                                    disabled="{{acesso === 'leitura'? true: false}}"></textarea>
+                            </div>
+                            <div class="row text-right">
+                                <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
+                                    [disabled]="!form.valid || form.pending || acesso === 'leitura'">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

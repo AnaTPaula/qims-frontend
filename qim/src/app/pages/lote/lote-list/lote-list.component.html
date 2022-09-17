@@ -1,19 +1,19 @@
 <div class="container">
     <div class="card list-category shadow">
-      <h5 class="card-header">Lista de Estoques</h5>
+      <h5 class="card-header">Lista de Lotes</h5>
       <div class="card-body">
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Nome</th>
+              <th scope="col">Lotes</th>
               <th scope="col"> </th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let entity of Estoques">
-              <td><a routerLink="update/{{entity.id}}">{{entity.nome}}</a></td>
+            <tr *ngFor="let entity of lotes">
+              <td><a routerLink="empresa/{{entity.empresaId}}/lote/update/{{entity.id}}">{{entity.codigoLote}}</a></td>
               <td>
-                <button type="button" class="btn btn-danger btn-sm ml-1" *ngIf="acesso === 'total'" (click)="deleteEstoque(entity)">
+                <button type="button" class="btn btn-danger btn-sm ml-1" *ngIf="acesso === 'total'" (click)="deleteLote(entity)">
                   <i class="fa fa-trash"></i>
                 </button>
               </td>
