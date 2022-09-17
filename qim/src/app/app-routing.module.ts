@@ -9,17 +9,27 @@ import { FuncionarioFormComponent } from './pages/funcionario/funcionario-form/f
 import { FuncionarioListComponent } from './pages/funcionario/funcionario-list/funcionario-list.component';
 import { HomeComponent } from './pages/home/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ProdutoFormComponent } from './pages/produto/produto-form/produto-form.component';
+import { ProdutoListComponent } from './pages/produto/produto-list/produto-list.component';
+import { LoteListComponent } from './pages/lote/lote-list/lote-list.component';
+import { LoteFormComponent } from './pages/lote/lote-form/lote-form.component';
 
 const routes: Routes = [
-  {path: 'admin/empresa', component: EmpresaListComponent, canActivate: [AuthGuardService]},
+  {path: 'admin/empresas', component: EmpresaListComponent, canActivate: [AuthGuardService]},
   {path: 'admin/empresa/update/:id', component: EmpresaFormComponent, canActivate: [AuthGuardService]},
   {path: 'admin/empresa/create', component: EmpresaFormComponent, canActivate: [AuthGuardService]},
-  {path: 'empresa/:empresaId/estoque', component: EstoqueListComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/estoques', component: EstoqueListComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/estoque/update/:id', component: EstoqueFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/estoque/create', component: EstoqueFormComponent, canActivate: [AuthGuardService]},
-  {path: 'empresa/:empresaId/funcionario', component: FuncionarioListComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/funcionarios', component: FuncionarioListComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/funcionario/update/:id', component: FuncionarioFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/funcionario/create', component: FuncionarioFormComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/produtos', component: ProdutoListComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/produto/update/:id', component: ProdutoFormComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/produto/create', component: ProdutoFormComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/lotes', component: LoteListComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/lote/update/:id', component: LoteFormComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/lote/create', component: LoteFormComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent},
   {path: 'empresa/create', component: EmpresaFormComponent},
   {path: '', component: HomeComponent}

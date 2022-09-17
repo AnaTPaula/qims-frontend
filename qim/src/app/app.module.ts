@@ -8,8 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { EstoqueFormComponent } from './pages/estoque/estoque-form/estoque-form.component';
+import { ProdutoFormComponent } from './pages/produto/produto-form/produto-form.component';
+import { LoteFormComponent } from './pages/lote/lote-form/lote-form.component';
 import { UniqueEstoqueDirective } from './pages/estoque/estoque-form/unique-estoque.directive';
+import { UniqueProdutoDirective } from './pages/produto/produto-form/unique-produto.directive';
+import { UniqueLoteDirective } from './pages/lote/lote-form/unique-lote.directive';
 import { EstoqueListComponent } from './pages/estoque/estoque-list/estoque-list.component';
+import { ProdutoListComponent } from './pages/produto/produto-list/produto-list.component';
+import { LoteListComponent } from './pages/lote/lote-list/lote-list.component';
 import { EmpresaFormComponent } from './pages/empresa/empresa-form/empresa-form.component';
 import { UniqueEmpresaDirective } from './pages/empresa/empresa-form/unique-empresa.directive';
 import { EmpresaListComponent } from './pages/empresa/empresa-list/empresa-list.component';
@@ -31,11 +37,17 @@ import { ComponentsModule } from './components/components.module';
     FuncionarioFormComponent,
     EstoqueListComponent,
     EstoqueFormComponent,
+    ProdutoListComponent,
+    ProdutoFormComponent,
+    LoteListComponent,
+    LoteFormComponent,
     LoginComponent,
     ConfirmModalComponent,
     UniqueEstoqueDirective,
     UniqueFuncionarioDirective,
     UniqueEmpresaDirective,
+    UniqueProdutoDirective,
+    UniqueLoteDirective,
     HomeComponent
   ],
   imports: [
