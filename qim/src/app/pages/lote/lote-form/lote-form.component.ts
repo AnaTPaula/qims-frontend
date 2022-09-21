@@ -37,7 +37,7 @@ export class LoteFormComponent implements OnInit {
         'empresaId': this.lote.empresaId
       } as Lote;
       this.loteService.updateLote(loteForUpdate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/lote'])
+        this.router.navigate(['/empresa/' + this.empresaId + '/lotes'])
       })
     } else {
       const loteForCreate = {
@@ -45,7 +45,7 @@ export class LoteFormComponent implements OnInit {
         'empresaId': this.lote.empresaId
       } as Lote;
       this.loteService.createLote(loteForCreate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/lote'])
+        this.router.navigate(['/empresa/' + this.empresaId + '/lotes'])
       })
     }
   }

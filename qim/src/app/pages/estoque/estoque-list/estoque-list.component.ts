@@ -8,17 +8,17 @@ import { Estoque } from '../model';
 import { EstoqueListService } from './estoque-list.service';
 
 @Component({
-  selector: 'app-Estoque-list',
-  templateUrl: './Estoque-list.component.html',
-  styleUrls: ['./Estoque-list.component.css']
+  selector: 'app-estoque-list',
+  templateUrl: './estoque-list.component.html',
+  styleUrls: ['./estoque-list.component.css']
 })
 export class EstoqueListComponent implements OnInit {
   empresaId: number | undefined;
-  Estoques: Estoque[] = [];
+  estoques: Estoque[] = [];
   acesso: string | undefined;
 
   constructor(
-    private EstoqueService: EstoqueListService,
+    private estoqueService: EstoqueListService,
     private modalService: BsModalService,
     private activatedRoute: ActivatedRoute,
     private cookieService: CookieService) { }
@@ -31,22 +31,22 @@ export class EstoqueListComponent implements OnInit {
 
   getEstoques() {
     if (this.empresaId){
-      this.EstoqueService.getEstoques(this.empresaId).subscribe((Estoques: Estoque[]) => {
-        this.Estoques = Estoques;
+      this.estoqueService.getEstoques(this.empresaId).subscribe((estoques: Estoque[]) => {
+        this.estoques = estoques;
       });
     }
   }
 
-  deleteEstoque(Estoque: Estoque) {
+  deleteEstoque(estoque: Estoque) {
     const result$ = this.showConfirm(
       'Deletar Estoque',
-      'Tem certeza que deseja deletar o Estoque ' + Estoque.nome + '?',
+      'Tem certeza que deseja deletar o Estoque ' + estoque.nome + '?',
       'Cancelar',
       'Deletar');
     result$?.asObservable()
       .pipe(
         take(1),
-        switchMap(response => response ? this.EstoqueService.deleteEstoque(Estoque) : EMPTY)
+        switchMap(response => response ? this.estoqueService.deleteEstoque(estoque) : EMPTY)
       ).subscribe(() => {
         this.getEstoques();
       });
