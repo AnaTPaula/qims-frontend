@@ -43,7 +43,7 @@ export class FuncionarioFormComponent implements OnInit {
         'empresaId': this.funcionario.empresaId
       } as Funcionario;
       this.funcionarioService.updateFuncionario(funcionarioForUpdate).subscribe(() => {
-          this.router.navigate(['/empresa/' + this.empresaId + '/funcionario'])
+          this.router.navigate(['/empresa/' + this.empresaId + '/funcionarios'])
       })
     } else {
       const funcionarioForCreate = {
@@ -53,7 +53,7 @@ export class FuncionarioFormComponent implements OnInit {
         'empresaId': this.empresaId
       } as Funcionario;
       this.funcionarioService.createFuncionario(funcionarioForCreate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/funcionario'])
+        this.router.navigate(['/empresa/' + this.empresaId + '/funcionarios'])
     })
     }
   }

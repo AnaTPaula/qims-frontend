@@ -39,7 +39,7 @@ export class EmpresaFormComponent implements OnInit {
         'lingua': this.empresa.lingua
       } as Empresa;
       this.empresaService.updateEmpresa(empresaForUpdate).subscribe(() => {
-          this.router.navigate(['/admin/empresa'])
+          this.router.navigate(['/admin/empresas'])
       })
     } else {
       const empresaForCreate = {
@@ -50,7 +50,7 @@ export class EmpresaFormComponent implements OnInit {
         'aceiteTermosUso': this.empresa.aceiteTermosUso
       } as Empresa;
       this.empresaService.createEmpresa(empresaForCreate).subscribe(() => {
-        this.router.navigate(['/admin/empresa'])
+        this.router.navigate(['/admin/empresas'])
     })
     }
   }

@@ -19,14 +19,14 @@ export class AuthGuardService implements CanActivate {
         if (state.url.startsWith('/admin')) {
           return true;
         } else {
-          this.router.navigate(['/admin/empresa']);
+          this.router.navigate(['/admin/empresas']);
           return false
         }
       } else if (tipo === 'empresa') {
         if (state.url.includes('funcionario')) {
           return true;
         } else {
-          this.router.navigate(['empresa/'+ this.cookieService.get('id') +'/funcionario']);
+          this.router.navigate(['empresa/'+ this.cookieService.get('id') +'/funcionarios']);
           return false
         }
       } else if (tipo === 'funcionario') {
@@ -35,7 +35,7 @@ export class AuthGuardService implements CanActivate {
         || state.url.includes('lote')) {
           return true;
         } else {
-          this.router.navigate(['empresa/'+ this.cookieService.get('empresa') +'/estoque']);
+          this.router.navigate(['empresa/'+ this.cookieService.get('empresa') +'/estoques']);
           return false
         }
       }

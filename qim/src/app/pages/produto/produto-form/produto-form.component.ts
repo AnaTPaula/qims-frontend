@@ -44,7 +44,7 @@ export class ProdutoFormComponent implements OnInit {
         'empresaId': this.produto.empresaId
       } as Produto;
       this.produtoService.updateProduto(produtoForUpdate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/produto'])
+        this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
       })
     } else {
       const produtoForCreate = {
@@ -53,7 +53,7 @@ export class ProdutoFormComponent implements OnInit {
         'empresaId': this.empresaId
       } as Produto;
       this.produtoService.createProduto(produtoForCreate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/produto'])
+        this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
       })
     }
   }

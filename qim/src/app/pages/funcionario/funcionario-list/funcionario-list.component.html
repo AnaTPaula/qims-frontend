@@ -13,7 +13,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let entity of funcionarios">
-              <td><a routerLink="update/{{entity.id}}">{{entity.nomeUsuario}}</a></td>
+              <td><a routerLink="/empresa/{{empresaId}}/funcionario/update/{{entity.id}}">{{entity.nomeUsuario}}</a></td>
               <td>{{convertAcesso(entity.acesso)}}</td>
               <td>{{convertDate(entity.dataCadastro)}}</td>
               <td>

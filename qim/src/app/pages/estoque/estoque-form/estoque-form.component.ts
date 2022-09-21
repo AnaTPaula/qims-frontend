@@ -44,7 +44,7 @@ export class EstoqueFormComponent implements OnInit {
         'empresaId': this.Estoque.empresaId
       } as Estoque;
       this.EstoqueService.updateEstoque(EstoqueForUpdate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/Estoque'])
+        this.router.navigate(['/empresa/' + this.empresaId + '/estoques'])
       })
     } else {
       const EstoqueForCreate = {
@@ -53,7 +53,7 @@ export class EstoqueFormComponent implements OnInit {
         'empresaId': this.empresaId
       } as Estoque;
       this.EstoqueService.createEstoque(EstoqueForCreate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/Estoque'])
+        this.router.navigate(['/empresa/' + this.empresaId + '/estoques'])
       })
     }
   }
