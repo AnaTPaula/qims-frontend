@@ -26,6 +26,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
 import { HomeComponent } from './pages/home/home/home.component';
 import { ComponentsModule } from './components/components.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { ComponentsModule } from './components/components.module';
     FormsModule,
     HttpClientModule,
     ComponentsModule,
+    NgbModule,
     ModalModule.forRoot()
   ],
   providers: [

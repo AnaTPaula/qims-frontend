@@ -16,8 +16,8 @@
                                     disabled="{{acesso === 'leitura'? true: false}}" uniqueProduto
                                     [produtoId]="produto.id" [empresaId]="empresaId" required [maxlength]="50">
                                 <div *ngIf="nomeProduto.invalid && (nomeProduto.dirty || nomeProduto.touched)" class="text-danger">
-                                    <div *ngIf="nomeProduto.errors?.['required']">Nome do produto é obrigatório.</div>
-                                    <div *ngIf="nomeProduto.errors?.['uniqueProduto']">Nome do produto já existe.</div>
+                                    <div class="alert alert-warning" role="alert" *ngIf="nomeProduto.errors?.['required']">Nome do produto é obrigatório.</div>
+                                    <div class="alert alert-warning" role="alert" *ngIf="nomeProduto.errors?.['uniqueProduto']">Nome do produto já existe.</div>
                                 </div>
                             </div>
                             <div class="row">

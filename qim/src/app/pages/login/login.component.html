@@ -1,6 +1,6 @@
 <div class="header bg-gradient-danger py-7 py-lg-8">
     <div class="separator separator-bottom separator-skew zindex-100">
-        
+
     </div>
 </div>
 <!-- Page content -->
@@ -37,16 +37,16 @@
                                 </div>
 
                                 <input [(ngModel)]="usuario.nomeEmpresa" type="text" class="form-control"
-                                    id="nomeUsuario" name="nomeEmpresa" placeholder="Nome da empresa"
-                                    #nomeEmpresa="ngModel" required>
-
+                                    id="nomeEmpresa" name="nomeEmpresa" placeholder="Nome da empresa"
+                                    #nomeEmpresa="ngModel" required>  
                             </div>
-                            <div *ngIf="nomeEmpresa.invalid && (nomeEmpresa.dirty || nomeEmpresa.touched)"
-                                class="text-danger">
-                                <div *ngIf="nomeEmpresa.errors?.['required']">Nome da empresa é obrigatório.</div>
+                            <div *ngIf="usuario.tipo === 'funcionario'">
+                                <div *ngIf="nomeEmpresa.invalid && (nomeEmpresa.dirty || nomeEmpresa.touched)" class="text-danger">
+                                    <div class="alert alert-warning" role="alert" *ngIf="nomeEmpresa.errors?.['required']">
+                                        Nome da empresa é obrigatório.</div>
+                                </div>
                             </div>
                         </div>
-
 
                         <div class="form-group mb-3">
                             <div class="input-group input-group-alternative">
@@ -56,10 +56,6 @@
                                 <input [(ngModel)]="usuario.nomeUsuario" type="text" class="form-control"
                                     id="nomeUsuario" name="nomeUsuario" placeholder="Nome do usuário"
                                     #nomeUsuario="ngModel" required>
-                            </div>
-                            <div *ngIf="nomeUsuario.invalid && (nomeUsuario.dirty || nomeUsuario.touched)"
-                                class="text-danger">
-                                <div *ngIf="nomeUsuario.errors?.['required']">Nome do usuário é obrigatório.</div>
                             </div>
                         </div>
 
@@ -71,9 +67,10 @@
                                 <input [(ngModel)]="usuario.senha" type="password" class="form-control" id="senha"
                                     name="senha" placeholder="senha" #senha="ngModel" required>
                             </div>
-                            <div *ngIf="senha.invalid && (senha.dirty || senha.touched)" class="text-danger">
-                                <div *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
-                            </div>
+                        </div>
+
+                        <div class="alert alert-warning" role="alert" *ngIf="msgError">
+                            {{msgError}}
                         </div>
 
                         <div class="text-center">
@@ -84,9 +81,21 @@
                 </div>
             </div>
 
-            <div class="alert alert-danger" role="alert" *ngIf="msgError">
-                {{msgError}}
+            
+
+            <!--ALERT NOME DO USUÁRIO-->
+
+            <div *ngIf="nomeUsuario.invalid && (nomeUsuario.dirty || nomeUsuario.touched)">
+                <div class="alert alert-warning" role="alert" *ngIf="nomeUsuario.errors?.['required']">
+                    Nome do usuário é obrigatório.</div>
             </div>
+
+            <!--SENHA-->
+            <div *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+                <div class="alert alert-warning" role="alert" *ngIf="senha.errors?.['required']">Senha é obrigatório.
+                </div>
+            </div>
+
             <div class="row mt-3">
                 <div class="col-11 text-right">
                     <a href="/" class="text-light"><small>Home</small></a>

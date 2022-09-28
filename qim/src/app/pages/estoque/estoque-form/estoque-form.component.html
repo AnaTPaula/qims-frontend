@@ -15,9 +15,9 @@
                                     placeholder="Nome do Estoque" #nome="ngModel"
                                     disabled="{{acesso === 'leitura'? true: false}}" uniqueEstoque
                                     [EstoqueId]="Estoque.id" [empresaId]="empresaId" required [maxlength]="50">
-                                <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="text-danger">
-                                    <div *ngIf="nome.errors?.['required']">Nome é obrigatório.</div>
-                                    <div *ngIf="nome.errors?.['uniqueEstoque']">Nome já existe.</div>
+                                <div *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+                                    <div class="alert alert-warning" role="alert" *ngIf="nome.errors?.['required']">Nome é obrigatório.</div>
+                                    <div class="alert alert-warning" role="alert" *ngIf="nome.errors?.['uniqueEstoque']">Nome já existe.</div>
                                 </div>
                             </div>
                             <div class="row">

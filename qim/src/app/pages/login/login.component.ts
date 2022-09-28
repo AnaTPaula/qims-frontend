@@ -10,7 +10,6 @@ import { Usuario } from './models';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   usuario = {} as Usuario;
   msgError: string | undefined;
 

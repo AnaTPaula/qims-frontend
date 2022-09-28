@@ -1,32 +1,83 @@
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-    style="min-height:1em; background-image: url(assets/img/theme/teste4.jpg); background-size: cover; background-position: center top;">
-    <!-- Mask -->
-    <span class="mask bg-gradient-danger opacity-8"></span>
-    <!-- Header container -->
-
-</div>
-<div class="container-fluid mt--7">
-    <div class="row justify-content-center">
-
-        <div class="col-xl-8 order-xl-1">
-            <div class="card bg-secondary shadow">
-                <div class="card-header bg-white border-0">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <h3 class="mb-0 text-light">Home</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-
-                    <h2 class="text-center">Bem vindo ao QIMS!</h2>
-                    <div class="text-center">
-                        <a class="btn btn-primary my-4" routerLink="/login">Login</a>
-                        <button type="button" class="btn btn-primary my-4" routerLink="/empresa/create">Criar
-                            Empresa</button>
-                    </div>
-                </div>
+<div>
+  <nav class="navbar navbar-horizontal navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <div class="container-fluid">
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+        aria-controls="sidenav-collapse-main">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Brand -->
+      <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
+        <!--<img src="./assets/img/brand/red.png" class="navbar-brand-img" alt="...">-->
+      </a>
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+        <!-- Collapse header -->
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a routerLinkActive="active" [routerLink]="['/dashboard']">
+                <img src="./assets/img/brand/blue.png">
+              </a>
             </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
         </div>
+        <!-- Form -->
+        <form class="mt-4 mb-3 d-md-none">
+          <div class="input-group input-group-rounded input-group-merge">
+            <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search"
+              aria-label="Search">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <span class="fa fa-search"></span>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- Navigation -->
+        <ul class="navbar-nav">
+          <li><a href="#">Planos</a></li>
+          <li><a href="#">Noticias</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="#">Sobre</a></li>
+
+
+          <button class="btn btn-icon btn-3 btn-warning" type="button" routerLink="/login">
+            <span class="btn-inner--icon"><i class="material-symbols-outlined">login</i></span>
+            <span class="btn-inner--text">Entrar</span>
+          </button>
+        </ul>
+      </div>
     </div>
+  </nav>
+
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <div class="align-text">
+        <h1>O QIMS ajuda microempresas e </h1>
+        <h1>microempreendedores a manter</h1>
+        <h1>um estoque mais organizado, com</h1>
+        <h1>um software simples e fácil de usar.</h1>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12" text-align="center">
+      <img class="home-img" src="assets/img/theme/homeimagem.png">
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-sm-12 h3">
+      <h3>Crie uma conta agora e já comece a organização.</h3>
+
+      <button type="button" class="btn btn-warning" style="margin-top: 30px; margin-left: 4.5em"
+        routerLink="/empresa/create">Criar Conta da Empresa</button>
+    </div>
+  </div>
 </div>
