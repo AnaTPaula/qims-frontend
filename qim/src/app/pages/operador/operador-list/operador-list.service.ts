@@ -2,12 +2,12 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, Observable, retry, throwError } from 'rxjs';
-import { Funcionario } from '../model';
+import { Operador } from '../model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FuncionarioListService {
+export class OperadorListService {
 
   url = 'http://localhost:8000/v1/empresa/'
 
@@ -15,16 +15,16 @@ export class FuncionarioListService {
     private httpClient: HttpClient,
     private cookieService: CookieService) { }
 
-  getFuncionarios(empresaId: number): Observable<Funcionario[]> {
-    return this.httpClient.get<Funcionario[]>(this.url + empresaId + '/funcionario', { headers: { 'token': this.cookieService.get('token') } })
+  getOperadores(empresaId: number): Observable<Operador[]> {
+    return this.httpClient.get<Operador[]>(this.url + empresaId + '/operador', { headers: { 'token': this.cookieService.get('token') } })
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  deleteFuncionario(funcionario: Funcionario): Observable<Funcionario> {
-    return this.httpClient.delete<Funcionario>(this.url + funcionario.empresaId + '/funcionario/' + funcionario.id, this.getOptions(this.cookieService.get('token')))
+  deleteOperador(operador: Operador): Observable<Operador> {
+    return this.httpClient.delete<Operador>(this.url + operador.empresaId + '/operador/' + operador.id, this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),
         catchError(this.handleError)

@@ -17,8 +17,8 @@
                                     [empresaId]="empresaId" required [maxlength]="50">
                                 <div *ngIf="codigoLote.invalid && (codigoLote.dirty || codigoLote.touched)"
                                     class="text-danger">
-                                    <div *ngIf="codigoLote.errors?.['required']">Código do Lote é obrigatório.</div>
-                                    <div *ngIf="codigoLote.errors?.['uniqueLote']">Lote já existe.</div>
+                                    <div class="alert alert-warning" role="alert" *ngIf="codigoLote.errors?.['required']">Código do Lote é obrigatório.</div>
+                                    <div class="alert alert-warning" role="alert" *ngIf="codigoLote.errors?.['uniqueLote']">Lote já existe.</div>
                                 </div>
                             </div>
                             <div class="row text-right">

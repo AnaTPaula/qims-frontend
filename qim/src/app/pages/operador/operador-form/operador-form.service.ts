@@ -2,12 +2,12 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, Observable, retry, throwError } from 'rxjs';
-import { Funcionario } from '../model';
+import { Operador } from '../model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FuncionarioFormService {
+export class OperadorFormService {
 
   url = 'http://localhost:8000/v1/empresa/'
 
@@ -15,33 +15,33 @@ export class FuncionarioFormService {
     private httpClient: HttpClient,
     private cookieService: CookieService) { }
 
-  getFuncionario(empresaId: number, funcionarioId: number): Observable<Funcionario> {
-    return this.httpClient.get<Funcionario>(this.url + empresaId + '/funcionario/' + funcionarioId, { headers: { 'token': this.cookieService.get('token') } })
+  getOperador(empresaId: number, operadorId: number): Observable<Operador> {
+    return this.httpClient.get<Operador>(this.url + empresaId + '/operador/' + operadorId, { headers: { 'token': this.cookieService.get('token') } })
       .pipe(
         retry(2),
         catchError(this.handleError)
       );
   }
 
-  getFuncionariosByNome(empresaId: number, nome: string): Observable<Funcionario[]> {
+  getOperadoresByNome(empresaId: number, nome: string): Observable<Operador[]> {
     let params = new HttpParams().set('nome', nome);
-    return this.httpClient.get<Funcionario[]>(this.url + empresaId + '/funcionario', { headers: { 'token': this.cookieService.get('token') }, params: params })
+    return this.httpClient.get<Operador[]>(this.url + empresaId + '/operador', { headers: { 'token': this.cookieService.get('token') }, params: params })
       .pipe(
         retry(2),
         catchError(this.handleError),
       )
   }
 
-  createFuncionario(funcionario: Funcionario): Observable<Funcionario> {
-    return this.httpClient.post<Funcionario>(this.url + funcionario.empresaId + '/funcionario', JSON.stringify(funcionario), this.getOptions(this.cookieService.get('token')))
+  createOperador(operador: Operador): Observable<Operador> {
+    return this.httpClient.post<Operador>(this.url + operador.empresaId + '/operador', JSON.stringify(operador), this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),
         catchError(this.handleError)
       );
   }
 
-  updateFuncionario(funcionario: Funcionario): Observable<Funcionario> {
-    return this.httpClient.put<Funcionario>(this.url + funcionario.empresaId + '/funcionario/' + funcionario.id, JSON.stringify(funcionario), this.getOptions(this.cookieService.get('token')))
+  updateOperador(operador: Operador): Observable<Operador> {
+    return this.httpClient.put<Operador>(this.url + operador.empresaId + '/operador/' + operador.id, JSON.stringify(operador), this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),
         catchError(this.handleError)

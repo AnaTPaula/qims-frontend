@@ -19,13 +19,14 @@ import { LoteListComponent } from './pages/lote/lote-list/lote-list.component';
 import { EmpresaFormComponent } from './pages/empresa/empresa-form/empresa-form.component';
 import { UniqueEmpresaDirective } from './pages/empresa/empresa-form/unique-empresa.directive';
 import { EmpresaListComponent } from './pages/empresa/empresa-list/empresa-list.component';
-import { FuncionarioFormComponent } from './pages/funcionario/funcionario-form/funcionario-form.component';
-import { UniqueFuncionarioDirective } from './pages/funcionario/funcionario-form/unique-funcionario.directive';
-import { FuncionarioListComponent } from './pages/funcionario/funcionario-list/funcionario-list.component';
+import { OperadorFormComponent } from './pages/operador/operador-form/operador-form.component';
+import { UniqueOperadorDirective } from './pages/operador/operador-form/unique-operador.directive';
+import { OperadorListComponent } from './pages/operador/operador-list/operador-list.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
 import { HomeComponent } from './pages/home/home/home.component';
 import { ComponentsModule } from './components/components.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -33,8 +34,8 @@ import { ComponentsModule } from './components/components.module';
     AppComponent,
     EmpresaFormComponent,
     EmpresaListComponent,
-    FuncionarioListComponent,
-    FuncionarioFormComponent,
+    OperadorListComponent,
+    OperadorFormComponent,
     EstoqueListComponent,
     EstoqueFormComponent,
     ProdutoListComponent,
@@ -44,7 +45,7 @@ import { ComponentsModule } from './components/components.module';
     LoginComponent,
     ConfirmModalComponent,
     UniqueEstoqueDirective,
-    UniqueFuncionarioDirective,
+    UniqueOperadorDirective,
     UniqueEmpresaDirective,
     UniqueProdutoDirective,
     UniqueLoteDirective,
@@ -56,6 +57,7 @@ import { ComponentsModule } from './components/components.module';
     FormsModule,
     HttpClientModule,
     ComponentsModule,
+    NgbModule,
     ModalModule.forRoot()
   ],
   providers: [

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FuncionarioListComponent } from './funcionario-list.component';
+import { OperadorListComponent } from './operador-list.component';
 
-describe('FuncionarioListComponent', () => {
-  let component: FuncionarioListComponent;
-  let fixture: ComponentFixture<FuncionarioListComponent>;
+describe('OperadorListComponent', () => {
+  let component: OperadorListComponent;
+  let fixture: ComponentFixture<OperadorListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FuncionarioListComponent ]
+      declarations: [ OperadorListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FuncionarioListComponent);
+    fixture = TestBed.createComponent(OperadorListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

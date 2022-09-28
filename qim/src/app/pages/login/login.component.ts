@@ -10,7 +10,6 @@ import { Usuario } from './models';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   usuario = {} as Usuario;
   msgError: string | undefined;
 
@@ -34,9 +33,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['admin/empresas'])
       } else if (usuario.tipo == 'empresa') {
         this.cookieService.set('situacao', usuario.situacaoConta!);
-        this.router.navigate(['/empresa/' + usuario.id + '/funcionarios'])
+        this.router.navigate(['/empresa/' + usuario.id + '/operadores'])
 
-      } else if (usuario.tipo == 'funcionario') {
+      } else if (usuario.tipo == 'operador') {
         this.cookieService.set('acesso', usuario.acesso!);
         this.cookieService.set('empresa', String(usuario.empresaId!));
         this.router.navigate(['/empresa/' + usuario.empresaId + '/estoques'])

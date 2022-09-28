@@ -5,8 +5,8 @@ import { EstoqueFormComponent } from './pages/estoque/estoque-form/estoque-form.
 import { EstoqueListComponent } from './pages/estoque/estoque-list/estoque-list.component';
 import { EmpresaFormComponent } from './pages/empresa/empresa-form/empresa-form.component';
 import { EmpresaListComponent } from './pages/empresa/empresa-list/empresa-list.component';
-import { FuncionarioFormComponent } from './pages/funcionario/funcionario-form/funcionario-form.component';
-import { FuncionarioListComponent } from './pages/funcionario/funcionario-list/funcionario-list.component';
+import { OperadorFormComponent } from './pages/operador/operador-form/operador-form.component';
+import { OperadorListComponent } from './pages/operador/operador-list/operador-list.component';
 import { HomeComponent } from './pages/home/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProdutoFormComponent } from './pages/produto/produto-form/produto-form.component';
@@ -21,9 +21,9 @@ const routes: Routes = [
   {path: 'empresa/:empresaId/estoques', component: EstoqueListComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/estoque/update/:id', component: EstoqueFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/estoque/create', component: EstoqueFormComponent, canActivate: [AuthGuardService]},
-  {path: 'empresa/:empresaId/funcionarios', component: FuncionarioListComponent, canActivate: [AuthGuardService]},
-  {path: 'empresa/:empresaId/funcionario/update/:id', component: FuncionarioFormComponent, canActivate: [AuthGuardService]},
-  {path: 'empresa/:empresaId/funcionario/create', component: FuncionarioFormComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/operadores', component: OperadorListComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/operador/update/:id', component: OperadorFormComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/operador/create', component: OperadorFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/produtos', component: ProdutoListComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/produto/update/:id', component: ProdutoFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/produto/create', component: ProdutoFormComponent, canActivate: [AuthGuardService]},
