@@ -1,8 +1,8 @@
-export interface Funcionario {
+export interface Operador {
     id?: number;
     nomeUsuario: string;
     senha?: string;
     dataCadastro: number;
-    acesso: string;
+    tipoAcesso: string;
     empresaId: number;
 }

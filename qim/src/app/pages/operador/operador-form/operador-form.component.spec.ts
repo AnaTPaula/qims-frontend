@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FuncionarioFormComponent } from './funcionario-form.component';
+import { OperadorFormComponent } from './operador-form.component';
 
-describe('FuncionarioFormComponent', () => {
-  let component: FuncionarioFormComponent;
-  let fixture: ComponentFixture<FuncionarioFormComponent>;
+describe('OperadorFormComponent', () => {
+  let component: OperadorFormComponent;
+  let fixture: ComponentFixture<OperadorFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FuncionarioFormComponent ]
+      declarations: [ OperadorFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FuncionarioFormComponent);
+    fixture = TestBed.createComponent(OperadorFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
