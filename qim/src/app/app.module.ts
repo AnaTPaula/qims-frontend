@@ -28,7 +28,7 @@ import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.comp
 import { HomeComponent } from './pages/home/home/home.component';
 import { ComponentsModule } from './components/components.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { HistoricoListComponent } from './pages/historico/historico-list/historico-list.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +42,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EstoqueFormComponent,
     ProdutoListComponent,
     ProdutoFormComponent,
+    HistoricoListComponent,
     LoteListComponent,
     LoteFormComponent,
     LoginComponent,
