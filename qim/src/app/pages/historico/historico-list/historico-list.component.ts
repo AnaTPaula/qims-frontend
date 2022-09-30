@@ -16,6 +16,7 @@ export class HistoricoListComponent implements OnInit {
   empresaId: number | undefined;
   produtoId: number | undefined;
   historico: Historico[] = [];
+  paginaAtual = 1;
   
   constructor(
     private historicoService: HistoricoListService,

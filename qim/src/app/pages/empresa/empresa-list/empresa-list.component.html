@@ -15,7 +15,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let empresa of empresas">
+          <tr
+            *ngFor="let empresa of empresas | paginate: { itemsPerPage: 1, currentPage: paginaAtual }; let i = index">
             <td><a routerLink="/admin/empresa/update/{{empresa.id}}">{{empresa.nomeUsuario}}</a></td>
             <td>{{empresa.razaoSocial}}</td>
             <td>{{empresa.situacaoConta}}</td>
@@ -38,5 +39,7 @@
           </tr>
         </tbody>
       </table>
+      <pagination-controls class="radius-style align-style" (pageChange)="paginaAtual = $event" previousLabel="Anterior"
+        nextLabel="Próximo"></pagination-controls>
     </div>
   </div>

@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { EstoqueFormComponent } from './pages/estoque/estoque-form/estoque-form.component';
 import { ProdutoFormComponent } from './pages/produto/produto-form/produto-form.component';
 import { LoteFormComponent } from './pages/lote/lote-form/lote-form.component';
@@ -61,6 +62,7 @@ import { HistoricoListComponent } from './pages/historico/historico-list/histori
     HttpClientModule,
     ComponentsModule,
     NgbModule,
+    NgxPaginationModule,
     ModalModule.forRoot()
   ],
   providers: [

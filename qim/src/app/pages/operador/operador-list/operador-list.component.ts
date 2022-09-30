@@ -7,6 +7,7 @@ import { ConfirmModalComponent } from 'src/app/shared/confirm-modal/confirm-moda
 import { Operador } from '../model';
 import { OperadorListService } from './operador-list.service';
 
+
 @Component({
   selector: 'app-operador-list',
   templateUrl: './operador-list.component.html',
@@ -16,6 +17,7 @@ export class OperadorListComponent implements OnInit {
   empresaId: number | undefined;
   operadores: Operador[] = [];
   situacao: string | undefined;
+  paginaAtual = 1;
 
   constructor(
     private operadorService: OperadorListService,
