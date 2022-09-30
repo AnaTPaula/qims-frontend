@@ -1,0 +1,68 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+    style="min-height: 100px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+
+</div>
+<div class="container-fluid mt--7">
+    <div class="row justify-content-center">
+
+        <div class="col-xl-8 order-xl-1">
+            <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">Alterar dados Administrador</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form #form="ngForm">
+                        <h6 class="heading-small text-muted mb-4">Informações do Administrador</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="nomeUsuario" class="form-control-label">Nome do administrador: </label>
+                                        <input [(ngModel)]="adm.nomeUsuario" type="text"
+                                            class="form-control form-control-alternative" id="nomeUsuario"
+                                            name="nomeUsuario" placeholder="Nome do administrador" #nomeUsuario="ngModel"
+                                            required [maxlength]="50">
+                                        <div *ngIf="nomeUsuario.invalid && (nomeUsuario.dirty || nomeUsuario.touched)"
+                                            class="text-danger">
+                                            <div class="alert alert-warning" role="alert" *ngIf="nomeUsuario.errors?.['required']">Nome é obrigatório.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="senha" class="form-control-label">Senha: </label>
+                                        <input [(ngModel)]="adm.senha" type="password"
+                                            class="form-control form-control-alternative" id="senha" name="senha"
+                                            placeholder="Senha" #senha="ngModel"
+                                            required="{{adm.id? 'false': 'true'}}" [maxlength]="50">
+                                        <div *ngIf="senha.invalid && (senha.dirty || senha.touched)"
+                                            class="text-danger">
+                                            <div class="alert alert-warning" role="alert" *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
+                                [disabled]="!form.valid || form.pending">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-11 text-right">
+                    <a href="/" class="text-light"><small>Home</small></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

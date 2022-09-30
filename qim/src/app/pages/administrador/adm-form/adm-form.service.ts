@@ -1,39 +1,47 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, Observable, retry, throwError } from 'rxjs';
-import { Empresa } from '../model';
-
+import { Adm } from '../model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmpresaListService {
+export class AdmFormService {
 
-  url = 'http://localhost:8000/v1/empresa'
+  url = 'http://localhost:8000/v1/admin'
 
   constructor(
     private httpClient: HttpClient,
     private cookieService: CookieService) { }
 
-  getEmpresas(): Observable<Empresa[]> {
-    return this.httpClient.get<Empresa[]>(this.url, { headers: { 'token': this.cookieService.get('token') } })
+  getAdm(admId: number): Observable<Adm> {
+    return this.httpClient.get<Adm>(this.url + '/' + admId, { headers: { 'token': this.cookieService.get('token') } })
       .pipe(
         retry(2),
         catchError(this.handleError)
+      );
+  }
+
+  getAdmByNome(nome: string): Observable<Adm[]> {
+    let params = new HttpParams().set('nome', nome);
+    return this.httpClient.get<Adm[]>(this.url, { headers: { 'token': this.cookieService.get('token') }, params: params })
+      .pipe(
+        retry(2),
+        catchError(this.handleError),
       )
   }
 
-  deleteEmpresa(empresa: Empresa): Observable<Empresa> {
-    return this.httpClient.delete<Empresa>(this.url + '/' + empresa.id, this.getOptions(this.cookieService.get('token')))
+  createAdm(adm: Adm): Observable<Adm> {
+    return this.httpClient.post<Adm>(this.url, JSON.stringify(adm), this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),
         catchError(this.handleError)
-      )
+      );
   }
 
-  updateSituacaoEmpresa(empresa: Empresa): Observable<Empresa> {
-    return this.httpClient.put<Empresa>(this.url + '/' + empresa.id + '/situacao', JSON.stringify(empresa), this.getOptions(this.cookieService.get('token')))
+  updateAdm(adm: Adm): Observable<Adm> {
+    return this.httpClient.put<Adm>(this.url + '/' + adm.id, JSON.stringify(adm), this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),
         catchError(this.handleError)

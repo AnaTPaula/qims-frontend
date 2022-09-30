@@ -66,13 +66,15 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="input-last-name">Escolha a
-                                            língua:</label>
-                                        <select [(ngModel)]="empresa.lingua"
-                                            class="form-control form-control-alternative" id="lingua" name="lingua">
-                                            <option value="pt-br">Português</option>
-                                            <option value="en">Inglês</option>
-                                        </select>
+                                        <label for="razaoSocial" class="form-control-label">Razão Social: </label>
+                                        <input [(ngModel)]="empresa.razaoSocial" type="text"
+                                            class="form-control form-control-alternative" id="razaoSocial"
+                                            name="razaoSocial" placeholder="Nome da empresa" #razaoSocial="ngModel"
+                                            uniqueEmpresa [empresaId]="empresa.id" required [maxlength]="50">
+                                        <div *ngIf="razaoSocial.invalid && (razaoSocial.dirty || razaoSocial.touched)"
+                                            class="text-danger">
+                                            <div class="alert alert-warning" role="alert" *ngIf="razaoSocial.errors?.['required']">Razão Social é obrigatório.</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

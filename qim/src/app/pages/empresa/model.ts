@@ -4,7 +4,7 @@ export interface Empresa {
     senha?: string;
     dataCadastro: number;
     situacaoConta: string;
-    lingua: string;
+    razaoSocial: string;
     tipoArmazenagem: string;
     aceiteTermosUso: boolean;
 

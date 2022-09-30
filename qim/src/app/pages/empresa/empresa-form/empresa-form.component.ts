@@ -25,7 +25,6 @@ export class EmpresaFormComponent implements OnInit {
         this.empresa = empresa;
       });
     } else {
-      this.empresa.lingua = 'pt-br';
       this.empresa.tipoArmazenagem = 'FIFO';
     }
   }
@@ -36,7 +35,7 @@ export class EmpresaFormComponent implements OnInit {
         'id': this.empresa.id,
         'nomeUsuario': this.empresa.nomeUsuario,
         'senha': this.empresa.senha,
-        'lingua': this.empresa.lingua
+        'razaoSocial': this.empresa.razaoSocial
       } as Empresa;
       this.empresaService.updateEmpresa(empresaForUpdate).subscribe(() => {
           this.router.navigate(['/admin/empresas'])
@@ -45,7 +44,7 @@ export class EmpresaFormComponent implements OnInit {
       const empresaForCreate = {
         'nomeUsuario': this.empresa.nomeUsuario,
         'senha': this.empresa.senha,
-        'lingua': this.empresa.lingua,
+        'razaoSocial': this.empresa.razaoSocial,
         'tipoArmazenagem': this.empresa.tipoArmazenagem,
         'aceiteTermosUso': this.empresa.aceiteTermosUso
       } as Empresa;

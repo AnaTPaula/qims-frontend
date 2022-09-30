@@ -29,7 +29,7 @@ export class AuthGuardService implements CanActivate {
           this.router.navigate(['empresa/'+ this.cookieService.get('id') +'/operadores']);
           return false
         }
-      } else if (tipo === 'operadores') {
+      } else if (tipo === 'operador') {
         if (state.url.includes('estoque') 
         || state.url.includes('produto') 
         || state.url.includes('lote')) {

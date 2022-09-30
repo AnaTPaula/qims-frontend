@@ -22,6 +22,7 @@ import { EmpresaListComponent } from './pages/empresa/empresa-list/empresa-list.
 import { OperadorFormComponent } from './pages/operador/operador-form/operador-form.component';
 import { UniqueOperadorDirective } from './pages/operador/operador-form/unique-operador.directive';
 import { OperadorListComponent } from './pages/operador/operador-list/operador-list.component';
+import { AdmFormComponent } from './pages/administrador/adm-form/adm-form.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
 import { HomeComponent } from './pages/home/home/home.component';
@@ -32,6 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
+    AdmFormComponent,
     EmpresaFormComponent,
     EmpresaListComponent,
     OperadorListComponent,
