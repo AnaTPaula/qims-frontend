@@ -37,6 +37,10 @@ export class SidebarComponent implements OnInit {
     }
   }
 
+  getId() {
+    return this.cookieService.get('id');
+  }
+
   sair() {
     this.cookieService.deleteAll('/');
     this.router.navigate(['/login']);

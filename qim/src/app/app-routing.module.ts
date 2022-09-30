@@ -13,9 +13,11 @@ import { ProdutoFormComponent } from './pages/produto/produto-form/produto-form.
 import { ProdutoListComponent } from './pages/produto/produto-list/produto-list.component';
 import { LoteListComponent } from './pages/lote/lote-list/lote-list.component';
 import { LoteFormComponent } from './pages/lote/lote-form/lote-form.component';
+import { AdmFormComponent } from './pages/administrador/adm-form/adm-form.component';
 
 const routes: Routes = [
   {path: 'admin/empresas', component: EmpresaListComponent, canActivate: [AuthGuardService]},
+  {path: 'admin/:id', component: AdmFormComponent, canActivate: [AuthGuardService]},
   {path: 'admin/empresa/update/:id', component: EmpresaFormComponent, canActivate: [AuthGuardService]},
   {path: 'admin/empresa/create', component: EmpresaFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/estoques', component: EstoqueListComponent, canActivate: [AuthGuardService]},

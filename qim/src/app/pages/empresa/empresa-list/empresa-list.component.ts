@@ -60,7 +60,7 @@ export class EmpresaListComponent implements OnInit {
     const empresaForUpdate = {
       'id': empresa.id,
       'nomeUsuario': empresa.nomeUsuario,
-      'lingua': empresa.lingua,
+      'razaoSocial': empresa.razaoSocial,
       'situacaoConta': 'APROVADO'
     } as Empresa;
     const result$ = this.showConfirm(
@@ -82,7 +82,7 @@ export class EmpresaListComponent implements OnInit {
     const empresaForUpdate = {
       'id': empresa.id,
       'nomeUsuario': empresa.nomeUsuario,
-      'lingua': empresa.lingua,
+      'razaoSocial': empresa.razaoSocial,
       'situacaoConta': 'REPROVADO'
     } as Empresa;
     const result$ = this.showConfirm(

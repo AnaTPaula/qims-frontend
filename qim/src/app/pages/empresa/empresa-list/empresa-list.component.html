@@ -6,6 +6,7 @@
         <thead>
           <tr>
             <th scope="col">Nome</th>
+            <th scope="col">Razão Social</th>
             <th scope="col">Situação</th>
             <th scope="col">Tipo de Armazenagem</th>
             <th scope="col">Termos de uso</th>
@@ -16,6 +17,7 @@
         <tbody>
           <tr *ngFor="let empresa of empresas">
             <td><a routerLink="/admin/empresa/update/{{empresa.id}}">{{empresa.nomeUsuario}}</a></td>
+            <td>{{empresa.razaoSocial}}</td>
             <td>{{empresa.situacaoConta}}</td>
             <td>{{empresa.tipoArmazenagem}}</td>
             <td>{{empresa.aceiteTermosUso? "Aceitos": "Não Aceitos"}}</td>
