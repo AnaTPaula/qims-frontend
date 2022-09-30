@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Empresa } from '../model';
 import { EmpresaFormService } from './empresa-form.service';
 
@@ -15,6 +16,7 @@ export class EmpresaFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private cookieService: CookieService,
     private empresaService: EmpresaFormService) { 
   }
 
@@ -38,7 +40,11 @@ export class EmpresaFormComponent implements OnInit {
         'razaoSocial': this.empresa.razaoSocial
       } as Empresa;
       this.empresaService.updateEmpresa(empresaForUpdate).subscribe(() => {
+        if (this.cookieService.get('tipo') === 'administrador'){
           this.router.navigate(['/admin/empresas'])
+        } else{
+          this.router.navigate(['/empresa/'+ this.empresaId +'/operadores'])
+        }
       })
     } else {
       const empresaForCreate = {
@@ -53,5 +59,9 @@ export class EmpresaFormComponent implements OnInit {
     })
     }
   }
+
+  isLogado() {
+    return this.empresaId !== undefined;
+  } 
 
 }

@@ -38,11 +38,13 @@
 
                                 <input [(ngModel)]="usuario.nomeEmpresa" type="text" class="form-control"
                                     id="nomeEmpresa" name="nomeEmpresa" placeholder="Nome da empresa"
-                                    #nomeEmpresa="ngModel" required>  
+                                    #nomeEmpresa="ngModel" required>
                             </div>
                             <div *ngIf="usuario.tipo === 'operador'">
-                                <div *ngIf="nomeEmpresa.invalid && (nomeEmpresa.dirty || nomeEmpresa.touched)" class="text-danger">
-                                    <div class="alert alert-warning" role="alert" *ngIf="nomeEmpresa.errors?.['required']">
+                                <div *ngIf="nomeEmpresa.invalid && (nomeEmpresa.dirty || nomeEmpresa.touched)"
+                                    class="text-danger">
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="nomeEmpresa.errors?.['required']">
                                         Nome da empresa é obrigatório.</div>
                                 </div>
                             </div>
@@ -64,8 +66,13 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                 </div>
-                                <input [(ngModel)]="usuario.senha" type="password" class="form-control" id="senha"
+                                <input [(ngModel)]="usuario.senha" type="{{viewPassword? 'text' : 'password'}}" class="form-control" id="senha"
                                     name="senha" placeholder="senha" #senha="ngModel" required>
+                                <div class="input-group-append">
+                                    <span class="material-symbols-outlined input-group-text mousepoint" (click)="showPassword()">
+                                       {{viewPassword?'visibility_off': 'visibility'}}
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
@@ -81,7 +88,7 @@
                 </div>
             </div>
 
-            
+
 
             <!--ALERT NOME DO USUÁRIO-->
 

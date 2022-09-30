@@ -108,8 +108,8 @@
                     </form>
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-11 text-right">
+            <div class="row mt-3" *ngIf="!isLogado()">
+                <div class="col-11 text-right"> 
                     <a href="/" class="text-light"><small>Home</small></a>
                 </div>
             </div>

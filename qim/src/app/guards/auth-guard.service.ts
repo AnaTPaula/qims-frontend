@@ -23,7 +23,8 @@ export class AuthGuardService implements CanActivate {
           return false
         }
       } else if (tipo === 'empresa') {
-        if (state.url.includes('operador')) {
+        if (state.url.includes('operador')
+        || state.url.includes('infoempresa')){
           return true;
         } else {
           this.router.navigate(['empresa/'+ this.cookieService.get('id') +'/operadores']);

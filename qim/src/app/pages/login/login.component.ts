@@ -12,6 +12,7 @@ import { Usuario } from './models';
 export class LoginComponent implements OnInit {
   usuario = {} as Usuario;
   msgError: string | undefined;
+  viewPassword: boolean = false;
 
   constructor(private loginService: LoginService, private router: Router, private cookieService: CookieService) { }
 
@@ -46,6 +47,10 @@ export class LoginComponent implements OnInit {
     }, (err) => {
       this.msgError = 'Usuário ou senha incorretos.';
     })
+  }
+
+  showPassword(){
+    this.viewPassword = !this.viewPassword;
   }
 
 }

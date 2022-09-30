@@ -21,6 +21,7 @@ const routes: Routes = [
   {path: 'admin/:id', component: AdmFormComponent, canActivate: [AuthGuardService]},
   {path: 'admin/empresa/update/:id', component: EmpresaFormComponent, canActivate: [AuthGuardService]},
   {path: 'admin/empresa/create', component: EmpresaFormComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:id/infoempresa', component: EmpresaFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/estoques', component: EstoqueListComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/estoque/update/:id', component: EstoqueFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/estoque/create', component: EstoqueFormComponent, canActivate: [AuthGuardService]},
