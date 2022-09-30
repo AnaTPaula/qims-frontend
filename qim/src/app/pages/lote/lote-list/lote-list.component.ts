@@ -16,6 +16,7 @@ export class LoteListComponent implements OnInit {
   empresaId: number | undefined;
   lotes: Lote[] = [];
   acesso: string | undefined;
+  paginaAtual = 1;
 
 
   constructor(

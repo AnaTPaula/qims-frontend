@@ -14,6 +14,7 @@ import { EmpresaListService } from './empresa-list.service';
 export class EmpresaListComponent implements OnInit {
   empresas: Empresa[] = [];
   tipo: string | undefined;
+  paginaAtual = 1;
 
 
   constructor(

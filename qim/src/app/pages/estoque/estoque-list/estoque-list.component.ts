@@ -16,6 +16,7 @@ export class EstoqueListComponent implements OnInit {
   empresaId: number | undefined;
   estoques: Estoque[] = [];
   acesso: string | undefined;
+  paginaAtual = 1;
 
   constructor(
     private estoqueService: EstoqueListService,

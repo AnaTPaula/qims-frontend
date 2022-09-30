@@ -16,6 +16,7 @@ export class ProdutoListComponent implements OnInit {
   empresaId: number | undefined;
   produtos: Produto[] = [];
   acesso: string | undefined;
+  paginaAtual = 1;
 
   constructor(
     private produtoService: ProdutoListService,

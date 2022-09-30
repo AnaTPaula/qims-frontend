@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { EstoqueFormComponent } from './pages/estoque/estoque-form/estoque-form.component';
 import { ProdutoFormComponent } from './pages/produto/produto-form/produto-form.component';
 import { LoteFormComponent } from './pages/lote/lote-form/lote-form.component';
@@ -28,7 +29,7 @@ import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.comp
 import { HomeComponent } from './pages/home/home/home.component';
 import { ComponentsModule } from './components/components.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { HistoricoListComponent } from './pages/historico/historico-list/historico-list.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EstoqueFormComponent,
     ProdutoListComponent,
     ProdutoFormComponent,
+    HistoricoListComponent,
     LoteListComponent,
     LoteFormComponent,
     LoginComponent,
@@ -60,6 +62,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     ComponentsModule,
     NgbModule,
+    NgxPaginationModule,
     ModalModule.forRoot()
   ],
   providers: [
