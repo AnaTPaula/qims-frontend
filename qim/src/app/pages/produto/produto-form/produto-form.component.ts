@@ -41,6 +41,8 @@ export class ProdutoFormComponent implements OnInit {
         'id': this.produto.id,
         'nome': this.produto.nome,
         'descricao': this.produto.descricao,
+        'preco': this.produto.preco,
+        'unidade': this.produto.unidade,
         'empresaId': this.produto.empresaId
       } as Produto;
       this.produtoService.updateProduto(produtoForUpdate).subscribe(() => {
@@ -50,6 +52,8 @@ export class ProdutoFormComponent implements OnInit {
       const produtoForCreate = {
         'nome': this.produto.nome,
         'descricao': this.produto.descricao,
+        'preco': this.produto.preco,
+        'unidade': this.produto.unidade,
         'empresaId': this.empresaId
       } as Produto;
       this.produtoService.createProduto(produtoForCreate).subscribe(() => {

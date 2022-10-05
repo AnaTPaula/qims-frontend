@@ -17,8 +17,52 @@
                                     [empresaId]="empresaId" required [maxlength]="50">
                                 <div *ngIf="codigoLote.invalid && (codigoLote.dirty || codigoLote.touched)"
                                     class="text-danger">
-                                    <div class="alert alert-warning" role="alert" *ngIf="codigoLote.errors?.['required']">Código do Lote é obrigatório.</div>
-                                    <div class="alert alert-warning" role="alert" *ngIf="codigoLote.errors?.['uniqueLote']">Lote já existe.</div>
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="codigoLote.errors?.['required']">Código do Lote é obrigatório.</div>
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="codigoLote.errors?.['uniqueLote']">Lote já existe.</div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label for="dataEntrada" class="form-control-label">Data de Entrada: </label>
+                                <input [(ngModel)]="lote.dataEntrada" type="date"
+                                    class="form-control form-control-alternative" id="dataEntrada" name="dataEntrada"
+                                    placeholder="Data de Entrada" #dataEntrada="ngModel"
+                                    disabled="{{acesso === 'leitura'? true:false}}" uniqueLote [loteId]="lote.id"
+                                    [empresaId]="empresaId" required [maxlength]="50">
+                                <div *ngIf="dataEntrada.invalid && (dataEntrada.dirty || dataEntrada.touched)"
+                                    class="text-danger">
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="dataEntrada.errors?.['required']">Data de entrada é obrigatório.</div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label for="dataValidade" class="form-control-label">Data de Validade: </label>
+                                <input [(ngModel)]="lote.dataValidade" type="date"
+                                    class="form-control form-control-alternative" id="dataValidade" name="dataValidade"
+                                    placeholder="Data de Validade" #dataValidade="ngModel"
+                                    disabled="{{acesso === 'leitura'? true:false}}" uniqueLote [loteId]="lote.id"
+                                    [empresaId]="empresaId" required [maxlength]="50">
+                                <div *ngIf="dataValidade.invalid && (dataValidade.dirty || dataValidade.touched)"
+                                    class="text-danger">
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="dataValidade.errors?.['required']">Data de validade é obrigatório.</div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label for="quantidade" class="form-control-label"> Quantidade: </label>
+                                <input [(ngModel)]="lote.quantidade" type="text"
+                                    class="form-control form-control-alternative" id="quantidade" name="quantidade"
+                                    placeholder="Quantidade" #quantidade="ngModel"
+                                    disabled="{{acesso === 'leitura'? true:false}}" uniqueLote [loteId]="lote.id"
+                                    [empresaId]="empresaId" required [maxlength]="50">
+                                <div *ngIf="quantidade.invalid && (quantidade.dirty || quantidade.touched)"
+                                    class="text-danger">
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="quantidade.errors?.['required']">Quantidade é obrigatória.</div>
                                 </div>
                             </div>
                             <div class="row text-right">

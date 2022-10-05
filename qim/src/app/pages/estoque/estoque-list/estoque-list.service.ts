@@ -9,7 +9,7 @@ import { Estoque } from '../model';
 })
 export class EstoqueListService {
 
-  url = 'https://3550924e-41fc-4073-b7c2-5e109863b554.mock.pstmn.io/v1/empresa/';
+  url = 'http://localhost:8000/v1/empresa/';
 
   constructor(
     private httpClient: HttpClient,

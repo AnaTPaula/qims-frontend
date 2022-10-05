@@ -27,6 +27,31 @@
                                     placeholder="Descrição" rows="3" [maxlength]="255"
                                     disabled="{{acesso === 'leitura'? true: false}}"></textarea>
                             </div>
+
+                            <div class="row">
+                                <label for="preco" class="form-control-label">Preço: </label>
+                                <input [(ngModel)]="produto.preco" type="number"
+                                    class="form-control form-control-alternative" id="preco" name="preco"
+                                    placeholder="Preço" #preco="ngModel"
+                                    disabled="{{acesso === 'leitura'? true: false}}" uniqueProduto
+                                    [produtoId]="produto.id" [empresaId]="empresaId" required [maxlength]="50">
+                                <div *ngIf="preco.invalid && (preco.dirty || preco.touched)" class="text-danger">
+                                    <div class="alert alert-warning" role="alert" *ngIf="preco.errors?.['required']">Preço é obrigatório.</div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label for="unidade" class="form-control-label">Unidade: </label>
+                                <input [(ngModel)]="produto.unidade" type="text"
+                                    class="form-control form-control-alternative" id="unidade" name="unidade"
+                                    placeholder="Unidade do Produto" #unidade="ngModel"
+                                    disabled="{{acesso === 'leitura'? true: false}}" uniqueProduto
+                                    [produtoId]="produto.id" [empresaId]="empresaId" required [maxlength]="50">
+                                <div *ngIf="unidade.invalid && (unidade.dirty || unidade.touched)" class="text-danger">
+                                    <div class="alert alert-warning" role="alert" *ngIf="unidade.errors?.['required']">Unidade do produto é obrigatório.</div>
+                                </div>
+                            </div>
+
                             <div class="row text-right">
                                 <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
                                     [disabled]="!form.valid || form.pending || acesso === 'leitura'">

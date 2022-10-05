@@ -12,6 +12,7 @@ export class OperadorFormComponent implements OnInit {
   empresaId: number | undefined;
   operadorId: number | undefined;
   operador = {} as Operador;
+  viewPassword: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -57,5 +58,10 @@ export class OperadorFormComponent implements OnInit {
     })
     }
   }
+
+  showPassword(){
+    this.viewPassword = !this.viewPassword;
+  }
+
 
 }

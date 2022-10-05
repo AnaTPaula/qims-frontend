@@ -34,6 +34,9 @@ export class LoteFormComponent implements OnInit {
       const loteForUpdate = {
         'id': this.lote.id,
         'codigoLote': this.lote.codigoLote,
+        'dataEntrada': this.lote.dataEntrada,
+        'dataValidade': this.lote.dataValidade,
+        'quantidade': this.lote.quantidade,
         'empresaId': this.lote.empresaId
       } as Lote;
       this.loteService.updateLote(loteForUpdate).subscribe(() => {
@@ -42,6 +45,9 @@ export class LoteFormComponent implements OnInit {
     } else {
       const loteForCreate = {
         'codigoLote': this.lote.codigoLote,
+        'dataEntrada': this.lote.dataEntrada,
+        'dataValidade': this.lote.dataValidade,
+        'quantidade': this.lote.quantidade,
         'empresaId': this.lote.empresaId
       } as Lote;
       this.loteService.createLote(loteForCreate).subscribe(() => {

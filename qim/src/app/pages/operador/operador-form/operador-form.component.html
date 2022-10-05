@@ -16,18 +16,26 @@
                                     uniqueOperador [operadorId]="operador.id" [empresaId]="empresaId">
                                 <div *ngIf="nomeUsuario.invalid && (nomeUsuario.dirty || nomeUsuario.touched)"
                                     class="text-danger">
-                                    <div *ngIf="nomeUsuario.errors?.['required']">Nome é obrigatório.</div>
-                                    <div *ngIf="nomeUsuario.errors?.['uniqueOperador']">Nome já existe.</div>
+                                    <div class="alert alert-warning" role="alert" *ngIf="nomeUsuario.errors?.['required']">Nome é obrigatório.</div>
+                                    <div class="alert alert-warning" role="alert"*ngIf="nomeUsuario.errors?.['uniqueOperador']">Nome já existe.</div>
                                 </div>
                             </div>
                             <div class="row">
                                 <label for="senha" class="form-control-label">Senha: </label>
-                                <input [(ngModel)]="operador.senha" type="password"
+                                <div class="input-group input-group-alternative">
+                                <input [(ngModel)]="operador.senha" type="{{viewPassword? 'text' : 'password'}}"
                                     class="form-control form-control-alternative" id="senha" name="senha"
                                     placeholder="Senha" #senha="ngModel" required="{{operador.id? 'false': 'true'}}"
                                     [maxlength]="50">
+                                <div class="input-group-append">
+                                    <span class="material-symbols-outlined input-group-text mousepoint"
+                                        (click)="showPassword()">
+                                        {{viewPassword?'visibility_off': 'visibility'}}
+                                    </span>
+                                </div>
+                            </div>
                                 <div *ngIf="senha.invalid && (senha.dirty || senha.touched)" class="text-danger">
-                                    <div *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
+                                    <div class="alert alert-warning" role="alert" *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
                                 </div>
                             </div>
                             <div class="row">
@@ -35,8 +43,9 @@
                                     <div class="form-group">
                                         <label for="tipoAcesso" class="form-control-label">Escolha o tipo de acesso:
                                         </label>
-                                        <select [(ngModel)]="operador.tipoAcesso" class="form-control form-control-alternative"
-                                            id="tipoAcesso" name="tipoAcesso">
+                                        <select [(ngModel)]="operador.tipoAcesso"
+                                            class="form-control form-control-alternative" id="tipoAcesso"
+                                            name="tipoAcesso">
                                             <option value="total" selected>Permissão Total</option>
                                             <option value="modificar">Permissão Alteração/Leitura</option>
                                             <option value="leitura">Permissão apenas Leitura</option>

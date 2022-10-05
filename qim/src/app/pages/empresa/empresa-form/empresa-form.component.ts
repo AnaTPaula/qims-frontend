@@ -12,6 +12,7 @@ import { EmpresaFormService } from './empresa-form.service';
 export class EmpresaFormComponent implements OnInit {
   empresaId: number | undefined;
   empresa = {} as Empresa;
+  viewPassword: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -61,7 +62,19 @@ export class EmpresaFormComponent implements OnInit {
   }
 
   isLogado() {
-    return this.empresaId !== undefined;
+    return this.cookieService.get('token');
   } 
+
+  showPassword(){
+    this.viewPassword = !this.viewPassword;
+  }
+
+  isEmpresa(){
+    if (this.empresaId){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
 }

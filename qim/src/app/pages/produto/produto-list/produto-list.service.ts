@@ -24,7 +24,7 @@ export class ProdutoListService {
   }
 
   deleteProduto(produto: Produto): Observable<Produto> {
-    return this.httpClient.delete<Produto>(this.url + produto.empresaId + '/Produto/' + produto.id, this.getOptions(this.cookieService.get('token')))
+    return this.httpClient.delete<Produto>(this.url + produto.empresaId + '/produto/' + produto.id, this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),
         catchError(this.handleError)

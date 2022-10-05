@@ -11,6 +11,7 @@ import { AdmFormService } from './adm-form.service';
 export class AdmFormComponent implements OnInit {
   admId: number | undefined;
   adm = {} as Adm;
+  viewPassword: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -46,5 +47,9 @@ export class AdmFormComponent implements OnInit {
         this.router.navigate(['/admin/empresas'])
     })
     }
+  }
+
+  showPassword(){
+    this.viewPassword = !this.viewPassword;
   }
 }
