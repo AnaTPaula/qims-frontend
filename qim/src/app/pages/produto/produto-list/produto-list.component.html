@@ -16,7 +16,7 @@
           <tr *ngFor="let entity of produtos | paginate: { itemsPerPage: 10, currentPage: paginaAtual }; let i = index">
             <td><a routerLink="/empresa/{{entity.empresaId}}/produto/update/{{entity.id}}">{{entity.nome}}</a></td>
             <td>{{entity.descricao}}</td>
-            <td>{{entity.preco}}</td>
+            <td>{{entity.preco | currency}}</td>
             <td>{{entity.unidade}}</td>
             <td>
               <button type="button" class="btn btn-danger btn-sm ml-1" *ngIf="acesso === 'total'"

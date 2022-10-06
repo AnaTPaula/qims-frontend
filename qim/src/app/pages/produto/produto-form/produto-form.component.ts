@@ -14,7 +14,7 @@ export class ProdutoFormComponent implements OnInit {
   empresaId: number | undefined;
   produto = {} as Produto;
   acesso = '';
-  
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -41,7 +41,7 @@ export class ProdutoFormComponent implements OnInit {
         'id': this.produto.id,
         'nome': this.produto.nome,
         'descricao': this.produto.descricao,
-        'preco': this.produto.preco,
+        'preco': this.transformarPreco(this.produto.preco.toString()),
         'unidade': this.produto.unidade,
         'empresaId': this.produto.empresaId
       } as Produto;
@@ -52,7 +52,7 @@ export class ProdutoFormComponent implements OnInit {
       const produtoForCreate = {
         'nome': this.produto.nome,
         'descricao': this.produto.descricao,
-        'preco': this.produto.preco,
+        'preco': this.transformarPreco(this.produto.preco.toString()),
         'unidade': this.produto.unidade,
         'empresaId': this.empresaId
       } as Produto;
@@ -61,4 +61,15 @@ export class ProdutoFormComponent implements OnInit {
       })
     }
   }
+
+  transformarPreco(preco: string) {
+
+    if (!preco.includes(',') && !preco.includes('.')) {
+      preco = preco + '.0';
+    } else if (preco.includes(',')) {
+      preco = preco.replace(',', '.');
+    }
+    return Number.parseFloat(preco);
+  }
+
 }

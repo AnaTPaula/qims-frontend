@@ -3,6 +3,6 @@ export interface Lote {
     empresaId: number;
     codigoLote: string;
     dataEntrada: Date;
-    dataValidade: Date;
+    dataValidade?: Date;
     quantidade: number;
 }
