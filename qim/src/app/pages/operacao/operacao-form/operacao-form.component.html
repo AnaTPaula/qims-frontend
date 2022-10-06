@@ -71,7 +71,7 @@
 
                             <div class="row">
                                 <label for="quantidade" class="form-control-label"> Quantidade: </label>
-                                <input [(ngModel)]="operacao.quantidade" type="text"
+                                <input [(ngModel)]="operacao.quantidade" type="number"
                                     class="form-control form-control-alternative" id="quantidade" name="quantidade"
                                     placeholder="Quantidade" #quantidade="ngModel"
                                     disabled="{{acesso === 'leitura'? true:false}}" required [maxlength]="50">

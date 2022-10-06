@@ -21,13 +21,13 @@ export class OperacaoFormComponent implements OnInit {
   estoques: Estoque[] = [];
   operacao: Operacao = {} as Operacao;
   acesso = '';
-  
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private produtoService: ProdutoListService,
-    private estoqueService: EstoqueListService, 
+    private estoqueService: EstoqueListService,
     private operacaoService: OperacaoFormService,
     private loteService: LoteFormService,
     private cookieService: CookieService) {
@@ -42,7 +42,7 @@ export class OperacaoFormComponent implements OnInit {
   }
 
   getProdutos() {
-    if (this.empresaId){
+    if (this.empresaId) {
       this.produtoService.getProdutos(this.empresaId).subscribe((produtos: Produto[]) => {
         this.produtos = produtos;
       });
@@ -50,31 +50,38 @@ export class OperacaoFormComponent implements OnInit {
   }
 
   getEstoques() {
-    if (this.empresaId){
-      this.estoqueService.getEstoques(this.empresaId).subscribe((estoques: Estoque[]) =>{
+    if (this.empresaId) {
+      this.estoqueService.getEstoques(this.empresaId).subscribe((estoques: Estoque[]) => {
         this.estoques = estoques;
       })
     }
   }
 
   save() {
-      const loteForCreate = {
-        'quantidade': this.operacao.quantidade,
-        'codigoLote': this.operacao.codigoLote,
-        'dataEntrada': this.operacao.dataEntrada,
-        'dataValidade': this.operacao.dataValidade
-      } as Lote;
-      this.loteService.createLote(loteForCreate).subscribe(() => {
-        const operacaoForCreate = {
-          'tipoOperacao': this.operacao.tipoOperacao,
-          'empresaId': this.operacao.empresaId,
-          'produtoId': this.operacao.produtoId,
-          'estoqueId': this.operacao.estoqueId,
-        }
-        this.operacaoService.createOperacao(this.operacao).subscribe(() => {
-          this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
-        })
+    console.log(this.operacao.dataEntrada);
+    console.log();
+    let dataValidade = undefined;
+    if(this.operacao.dataValidade) {
+      dataValidade = new Date(this.operacao.dataValidade!).getTime() / 1000
+    }
+    const loteForCreate = {
+      'empresaId': this.empresaId,
+      'quantidade': this.operacao.quantidade,
+      'codigoLote': this.operacao.codigoLote,
+      'dataEntrada': new Date(this.operacao.dataEntrada).getTime() / 1000,
+      'dataValidade': dataValidade
+    } as Lote;
+    this.loteService.createLote(loteForCreate).subscribe(() => {
+      const operacaoForCreate = {
+        'tipoOperacao': this.operacao.tipoOperacao,
+        'empresaId': this.operacao.empresaId,
+        'produtoId': this.operacao.produtoId,
+        'estoqueId': this.operacao.estoqueId,
+      }
+      this.operacaoService.createOperacao(this.operacao).subscribe(() => {
+        this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
       })
-}
+    })
+  }
 }
 

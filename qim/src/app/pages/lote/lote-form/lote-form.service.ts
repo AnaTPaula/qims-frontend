@@ -24,7 +24,7 @@ export class LoteFormService {
   }
 
   getLotesByNome(empresaId: number, nome: string): Observable<Lote[]> {
-    let params = new HttpParams().set('nome', nome);
+    let params = new HttpParams().set('codigo_lote', nome);
     return this.httpClient.get<Lote[]>(this.url + empresaId + '/lote', { headers: { 'token': this.cookieService.get('token') }, params: params })
       .pipe(
         retry(2),
