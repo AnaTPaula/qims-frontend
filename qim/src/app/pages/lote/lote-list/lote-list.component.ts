@@ -18,7 +18,7 @@ export class LoteListComponent implements OnInit {
   acesso: string | undefined;
   tipoArmazenagem: string = '';
   paginaAtual = 1;
-
+  requestFailed: boolean = false;
 
   constructor(
     private loteService: LoteListService,
@@ -37,6 +37,8 @@ export class LoteListComponent implements OnInit {
     if (this.empresaId){
       this.loteService.getLotes(this.empresaId).subscribe((lotes: Lote[]) => {
         this.lotes = lotes;
+      },(error: any) => {
+        this.requestFailed = true;
       });
     }
   }
@@ -72,6 +74,10 @@ export class LoteListComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  checkError() {
+    this.requestFailed = false;
   }
 
 }

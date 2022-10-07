@@ -17,6 +17,7 @@ export class ProdutoListComponent implements OnInit {
   produtos: Produto[] = [];
   acesso: string | undefined;
   paginaAtual = 1;
+  requestFailed: boolean = false;
 
   constructor(
     private produtoService: ProdutoListService,
@@ -34,6 +35,8 @@ export class ProdutoListComponent implements OnInit {
     if (this.empresaId){
       this.produtoService.getProdutos(this.empresaId).subscribe((produtos: Produto[]) => {
         this.produtos = produtos;
+      },(error: any) => {
+        this.requestFailed = true;
       });
     }
   }
@@ -50,7 +53,9 @@ export class ProdutoListComponent implements OnInit {
         switchMap(response => response ? this.produtoService.deleteProduto(produto) : EMPTY)
       ).subscribe(() => {
         this.getProdutos();
-      });
+      }, (error: any) => {
+        this.requestFailed = true;
+    });
   }
 
   showConfirm(title: string, body: string, cancel: string, confirm: string) {
@@ -63,4 +68,7 @@ export class ProdutoListComponent implements OnInit {
     return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
   }
 
+  checkError() {
+    this.requestFailed = false;
+  }
 }

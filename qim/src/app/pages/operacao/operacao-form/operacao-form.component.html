@@ -9,7 +9,8 @@
                     <div class="card-body">
                         <form #form="ngForm">
                             <div class="row">
-                                <label for="tipoOperacao" class="form-control-label">Selecione o Tipo de Operação: </label>
+                                <label for="tipoOperacao" class="form-control-label">Selecione o Tipo de Operação:
+                                </label>
                                 <select [(ngModel)]="operacao.tipoOperacao" class="form-control" name="tipoOperacao">
                                     <option value="ENTRADA">Entrada de Produtos</option>
                                     <option value="SAIDA">Saída de Produtos</option>
@@ -30,8 +31,8 @@
                                 <input [(ngModel)]="operacao.codigoLote" type="text"
                                     class="form-control form-control-alternative" id="codigoLote" name="codigoLote"
                                     placeholder="Codigo do Lote" #codigoLote="ngModel"
-                                    disabled="{{acesso === 'leitura'? true: false}}" uniqueLote
-                                    [empresaId]="empresaId" required [maxlength]="50">
+                                    disabled="{{acesso === 'leitura'? true: false}}" uniqueLote [empresaId]="empresaId"
+                                    required [maxlength]="50">
                                 <div *ngIf="codigoLote.invalid && (codigoLote.dirty || codigoLote.touched)"
                                     class="text-danger">
                                     <div class="alert alert-warning" role="alert"
@@ -98,6 +99,15 @@
                         </form>
                     </div>
                 </div>
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+                <span class="alert-inner--text">Um erro ocorreu</span>
+                <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="requestSuccess">
+                Operação efetuada com sucesso!
             </div>
         </div>
     </div>

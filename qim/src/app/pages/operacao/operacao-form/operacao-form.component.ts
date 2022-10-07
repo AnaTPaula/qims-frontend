@@ -22,6 +22,8 @@ export class OperacaoFormComponent implements OnInit {
   operacao: Operacao = {} as Operacao;
   tipoArmazenagem: string = '';
   acesso = '';
+  requestFailed: boolean = false;
+  requestSuccess: boolean = false;
 
 
   constructor(
@@ -37,6 +39,8 @@ export class OperacaoFormComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.empresaId = params['empresaId'];
+    } ,(error: any) => {
+      this.requestFailed = true;
     });
     this.getProdutos();
     this.getEstoques();
@@ -48,6 +52,9 @@ export class OperacaoFormComponent implements OnInit {
     if (this.empresaId) {
       this.produtoService.getProdutos(this.empresaId).subscribe((produtos: Produto[]) => {
         this.produtos = produtos;
+      }, (error: any) => {
+        this.requestFailed = true;
+        
       });
     }
   }
@@ -56,6 +63,9 @@ export class OperacaoFormComponent implements OnInit {
     if (this.empresaId) {
       this.estoqueService.getEstoques(this.empresaId).subscribe((estoques: Estoque[]) => {
         this.estoques = estoques;
+      }, (error: any) => {
+        this.requestFailed = true;
+        
       })
     }
   }
@@ -84,7 +94,13 @@ export class OperacaoFormComponent implements OnInit {
           'loteId': lote.id,
         } as Operacao
         this.operacaoService.createOperacao(operacaoForCreate).subscribe(() => {
+          this.requestSuccess = true;
+        setTimeout(() => {
           this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
+        },
+          1000);
+      }, (error: any) => {
+        this.requestFailed = true;
         })
       })
 
@@ -97,9 +113,20 @@ export class OperacaoFormComponent implements OnInit {
         'quantidade': this.operacao.quantidade
       } as Operacao
       this.operacaoService.createOperacao(operacaoForCreate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
+        this.requestSuccess = true;
+        setTimeout(() => {
+          this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
+        },
+          1000);
+      }, (error: any) => {
+        this.requestFailed = true;
+        
       })
     }
+  }
+
+  checkError() {
+    this.requestFailed = false;
   }
 }
 

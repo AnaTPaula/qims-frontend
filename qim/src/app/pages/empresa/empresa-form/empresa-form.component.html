@@ -1,5 +1,3 @@
-
-
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
     style="min-height: 100px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
     <!-- Mask -->
@@ -133,6 +131,15 @@
                                 [disabled]="!form.valid || form.pending">
                         </div>
                     </form>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+                    <span class="alert-inner--text">Um erro ocorreu</span>
+                    <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="alert alert-success" role="alert" *ngIf="requestSuccess">
+                    Operação efetuada com sucesso!
                 </div>
             </div>
         </div>

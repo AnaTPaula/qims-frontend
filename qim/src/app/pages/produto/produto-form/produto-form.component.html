@@ -15,9 +15,12 @@
                                     placeholder="Nome do Produto" #nomeProduto="ngModel"
                                     disabled="{{acesso === 'leitura'? true: false}}" uniqueProduto
                                     [produtoId]="produto.id" [empresaId]="empresaId" required [maxlength]="50">
-                                <div *ngIf="nomeProduto.invalid && (nomeProduto.dirty || nomeProduto.touched)" class="text-danger">
-                                    <div class="alert alert-warning" role="alert" *ngIf="nomeProduto.errors?.['required']">Nome do produto é obrigatório.</div>
-                                    <div class="alert alert-warning" role="alert" *ngIf="nomeProduto.errors?.['uniqueProduto']">Nome do produto já existe.</div>
+                                <div *ngIf="nomeProduto.invalid && (nomeProduto.dirty || nomeProduto.touched)"
+                                    class="text-danger">
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="nomeProduto.errors?.['required']">Nome do produto é obrigatório.</div>
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="nomeProduto.errors?.['uniqueProduto']">Nome do produto já existe.</div>
                                 </div>
                             </div>
                             <div class="row">
@@ -35,7 +38,8 @@
                                     placeholder="Preço" #preco="ngModel"
                                     disabled="{{acesso === 'leitura'? true: false}}" required>
                                 <div *ngIf="preco.invalid && (preco.dirty || preco.touched)" class="text-danger">
-                                    <div class="alert alert-warning" role="alert" *ngIf="preco.errors?.['required']">Preço é obrigatório.</div>
+                                    <div class="alert alert-warning" role="alert" *ngIf="preco.errors?.['required']">
+                                        Preço é obrigatório.</div>
                                 </div>
                             </div>
 
@@ -46,7 +50,8 @@
                                     placeholder="Unidade do Produto" #unidade="ngModel"
                                     disabled="{{acesso === 'leitura'? true: false}}" required [maxlength]="50">
                                 <div *ngIf="unidade.invalid && (unidade.dirty || unidade.touched)" class="text-danger">
-                                    <div class="alert alert-warning" role="alert" *ngIf="unidade.errors?.['required']">Unidade do produto é obrigatório.</div>
+                                    <div class="alert alert-warning" role="alert" *ngIf="unidade.errors?.['required']">
+                                        Unidade do produto é obrigatório.</div>
                                 </div>
                             </div>
 
@@ -58,8 +63,15 @@
                     </div>
                 </div>
             </div>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+                <span class="alert-inner--text">Um erro ocorreu</span>
+                <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="requestSuccess">
+                Operação efetuada com sucesso!
+            </div>
         </div>
     </div>
 </div>
-
-

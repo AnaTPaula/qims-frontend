@@ -18,6 +18,7 @@ export class OperadorListComponent implements OnInit {
   operadores: Operador[] = [];
   situacao: string | undefined;
   paginaAtual = 1;
+  requestFailed: boolean = false;
 
   constructor(
     private operadorService: OperadorListService,
@@ -35,6 +36,8 @@ export class OperadorListComponent implements OnInit {
     if (this.empresaId){
       this.operadorService.getOperadores(this.empresaId).subscribe((operadores: Operador[]) => {
         this.operadores= operadores;
+      },(error: any) => {
+        this.requestFailed = true;
       });
     }
   }
@@ -71,7 +74,9 @@ export class OperadorListComponent implements OnInit {
         switchMap(response => response ? this.operadorService.deleteOperador(operador) : EMPTY)
       ).subscribe(() => {
         this.getOperadores();
-      });
+      }, (error: any) => {
+        this.requestFailed = true;
+    });
   }
 
   showConfirm(title: string, body: string, cancel: string, confirm: string) {
@@ -82,6 +87,10 @@ export class OperadorListComponent implements OnInit {
     bsModalRef.content.confirm = confirm;
     bsModalRef.content.buttomClass = 'btn-danger';
     return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
+  }
+
+  checkError() {
+    this.requestFailed = false;
   }
 
 }
