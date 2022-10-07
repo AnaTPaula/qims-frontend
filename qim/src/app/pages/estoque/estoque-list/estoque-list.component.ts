@@ -17,7 +17,8 @@ export class EstoqueListComponent implements OnInit {
   estoques: Estoque[] = [];
   acesso: string | undefined;
   paginaAtual = 1;
-
+  requestFailed: boolean = false;
+ 
   constructor(
     private estoqueService: EstoqueListService,
     private modalService: BsModalService,
@@ -34,7 +35,10 @@ export class EstoqueListComponent implements OnInit {
     if (this.empresaId){
       this.estoqueService.getEstoques(this.empresaId).subscribe((estoques: Estoque[]) => {
         this.estoques = estoques;
-      });
+      },(error: any) => {
+        this.requestFailed = true;
+      }
+      );
     }
   }
 
@@ -50,6 +54,8 @@ export class EstoqueListComponent implements OnInit {
         switchMap(response => response ? this.estoqueService.deleteEstoque(estoque) : EMPTY)
       ).subscribe(() => {
         this.getEstoques();
+      },(error: any) => {
+        this.requestFailed = true;
       });
   }
 
@@ -61,6 +67,10 @@ export class EstoqueListComponent implements OnInit {
     bsModalRef.content.confirm = confirm;
     bsModalRef.content.buttomClass = 'btn-danger';
     return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
+  }
+
+  checkError() {
+    this.requestFailed = false;
   }
 
 }

@@ -24,27 +24,38 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="nomeUsuario" class="form-control-label">Nome do administrador: </label>
+                                        <label for="nomeUsuario" class="form-control-label">Nome do administrador:
+                                        </label>
                                         <input [(ngModel)]="adm.nomeUsuario" type="text"
                                             class="form-control form-control-alternative" id="nomeUsuario"
-                                            name="nomeUsuario" placeholder="Nome do administrador" #nomeUsuario="ngModel"
-                                            required [maxlength]="50">
+                                            name="nomeUsuario" placeholder="Nome do administrador"
+                                            #nomeUsuario="ngModel" required [maxlength]="50">
                                         <div *ngIf="nomeUsuario.invalid && (nomeUsuario.dirty || nomeUsuario.touched)"
                                             class="text-danger">
-                                            <div class="alert alert-warning" role="alert" *ngIf="nomeUsuario.errors?.['required']">Nome é obrigatório.</div>
+                                            <div class="alert alert-warning" role="alert"
+                                                *ngIf="nomeUsuario.errors?.['required']">Nome é obrigatório.</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="senha" class="form-control-label">Senha: </label>
-                                        <input [(ngModel)]="adm.senha" type="password"
-                                            class="form-control form-control-alternative" id="senha" name="senha"
-                                            placeholder="Senha" #senha="ngModel"
-                                            required="{{adm.id? 'false': 'true'}}" [maxlength]="50">
+                                        <div class="input-group input-group-alternative">
+                                            <input [(ngModel)]="adm.senha" type="{{viewPassword? 'text' : 'password'}}"
+                                                class="form-control form-control-alternative" id="senha" name="senha"
+                                                placeholder="Senha" #senha="ngModel"
+                                                required="{{adm.id? 'false': 'true'}}" [maxlength]="50">
+                                            <div class="input-group-append">
+                                                <span class="material-symbols-outlined input-group-text mousepoint"
+                                                    (click)="showPassword()">
+                                                    {{viewPassword?'visibility_off': 'visibility'}}
+                                                </span>
+                                            </div>
+                                        </div>
                                         <div *ngIf="senha.invalid && (senha.dirty || senha.touched)"
                                             class="text-danger">
-                                            <div class="alert alert-warning" role="alert" *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
+                                            <div class="alert alert-warning" role="alert"
+                                                *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -56,6 +67,17 @@
                                 [disabled]="!form.valid || form.pending">
                         </div>
                     </form>
+
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+                        <span class="alert-inner--text">Um erro ocorreu</span>
+                        <button type="button" class="close" (click)="checkError()" data-dismiss="alert"
+                            aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="alert alert-success" role="alert" *ngIf="requestSuccess">
+                        Operação efetuada com sucesso!
+                    </div>
                 </div>
             </div>
             <div class="row mt-3">

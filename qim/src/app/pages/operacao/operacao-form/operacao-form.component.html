@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-1">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0">Entrada / Saida</h3>
+                    </div>
+                    <div class="card-body">
+                        <form #form="ngForm">
+                            <div class="row">
+                                <label for="tipoOperacao" class="form-control-label">Selecione o Tipo de Operação:
+                                </label>
+                                <select [(ngModel)]="operacao.tipoOperacao" class="form-control" name="tipoOperacao">
+                                    <option value="ENTRADA">Entrada de Produtos</option>
+                                    <option value="SAIDA">Saída de Produtos</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <label for="produto" class="form-control-label">Selecione o produto: </label>
+                                <select [(ngModel)]="operacao.produtoId" class="form-control" name="produto">
+                                    <option value="">-</option>
+                                    <option *ngFor="let produto of produtos" value="{{produto.id}}">
+                                        {{produto.nome}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="row" *ngIf="operacao.tipoOperacao == 'ENTRADA'">
+                                <label for="codigoLote" class="form-control-label">Codigo do Lote: </label>
+                                <input [(ngModel)]="operacao.codigoLote" type="text"
+                                    class="form-control form-control-alternative" id="codigoLote" name="codigoLote"
+                                    placeholder="Codigo do Lote" #codigoLote="ngModel"
+                                    disabled="{{acesso === 'leitura'? true: false}}" uniqueLote [empresaId]="empresaId"
+                                    required [maxlength]="50">
+                                <div *ngIf="codigoLote.invalid && (codigoLote.dirty || codigoLote.touched)"
+                                    class="text-danger">
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="codigoLote.errors?.['required']">Código do Lote é obrigatório.</div>
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="codigoLote.errors?.['uniqueLote']">Lote já existe.</div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label for="estoque" class="form-control-label">Selecione o estoque: </label>
+                                <select [(ngModel)]="operacao.estoqueId" class="form-control" name="estoque">
+                                    <option value="">-</option>
+                                    <option *ngFor="let estoque of estoques" value="{{estoque.id}}">
+                                        {{estoque.nome}}
+                                    </option>
+                                </select>
+                            </div>
+
+
+                            <div class="row" *ngIf="operacao.tipoOperacao == 'ENTRADA'">
+                                <label for="dataEntrada" class="form-control-label">Data de Entrada: </label>
+                                <input [(ngModel)]="operacao.dataEntrada" type="date"
+                                    class="form-control form-control-alternative" id="dataEntrada" name="dataEntrada"
+                                    placeholder="Data de Entrada" #dataEntrada="ngModel"
+                                    disabled="{{acesso === 'leitura'? true:false}}" required [maxlength]="50">
+                                <div *ngIf="dataEntrada.invalid && (dataEntrada.dirty || dataEntrada.touched)"
+                                    class="text-danger">
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="dataEntrada.errors?.['required']">Data de entrada é obrigatório.</div>
+                                </div>
+                            </div>
+
+                            <div class="row" *ngIf="operacao.tipoOperacao == 'ENTRADA' && tipoArmazenagem == 'FEFO'">
+                                <label for="dataValidade" class="form-control-label">Data de Validade: </label>
+                                <input [(ngModel)]="operacao.dataValidade" type="date"
+                                    class="form-control form-control-alternative" id="dataValidade" name="dataValidade"
+                                    placeholder="Data de Validade" #dataValidade="ngModel"
+                                    disabled="{{acesso === 'leitura'? true:false}}" required [maxlength]="50">
+                                <div *ngIf="dataValidade.invalid && (dataValidade.dirty || dataValidade.touched)"
+                                    class="text-danger">
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="dataValidade.errors?.['required']">Data de validade é obrigatório.</div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label for="quantidade" class="form-control-label"> Quantidade: </label>
+                                <input [(ngModel)]="operacao.quantidade" type="number"
+                                    class="form-control form-control-alternative" id="quantidade" name="quantidade"
+                                    placeholder="Quantidade" #quantidade="ngModel"
+                                    disabled="{{acesso === 'leitura'? true:false}}" required [maxlength]="50">
+                                <div *ngIf="quantidade.invalid && (quantidade.dirty || quantidade.touched)"
+                                    class="text-danger">
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="quantidade.errors?.['required']">Quantidade é obrigatória.</div>
+                                </div>
+                            </div>
+
+                            <div class="row text">
+                                <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
+                                    [disabled]="!form.valid || form.pending || acesso === 'leitura'">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+                <span class="alert-inner--text">Um erro ocorreu</span>
+                <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="requestSuccess">
+                Operação efetuada com sucesso!
+            </div>
+        </div>
+    </div>
+</div>

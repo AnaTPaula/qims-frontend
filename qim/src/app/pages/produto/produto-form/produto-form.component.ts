@@ -14,7 +14,9 @@ export class ProdutoFormComponent implements OnInit {
   empresaId: number | undefined;
   produto = {} as Produto;
   acesso = '';
-  
+  requestFailed: boolean = false;
+  requestSuccess: boolean = false;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -26,11 +28,15 @@ export class ProdutoFormComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.produtoId = params['id'];
       this.empresaId = params['empresaId'];
+    }, (error: any) => {
+      this.requestFailed = true;
     });
     if (this.produtoId && this.empresaId) {
       this.produtoService.getProduto(this.produtoId, this.empresaId).subscribe((produto: Produto) => {
         this.produto = produto;
-      });
+      }, (error: any) => {
+        this.requestFailed = true;
+    });
     }
     this.acesso = this.cookieService.get('acesso');
   }
@@ -41,20 +47,52 @@ export class ProdutoFormComponent implements OnInit {
         'id': this.produto.id,
         'nome': this.produto.nome,
         'descricao': this.produto.descricao,
+        'preco': this.transformarPreco(this.produto.preco.toString()),
+        'unidade': this.produto.unidade,
         'empresaId': this.produto.empresaId
       } as Produto;
       this.produtoService.updateProduto(produtoForUpdate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
+        this.requestSuccess = true;
+        setTimeout(() => {
+          this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
+        },
+          1000);
+      }, (error: any) => {
+        this.requestFailed = true;
       })
     } else {
       const produtoForCreate = {
         'nome': this.produto.nome,
         'descricao': this.produto.descricao,
+        'preco': this.transformarPreco(this.produto.preco.toString()),
+        'unidade': this.produto.unidade,
         'empresaId': this.empresaId
       } as Produto;
       this.produtoService.createProduto(produtoForCreate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
+        this.requestSuccess = true;
+        setTimeout(() => {
+          this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
+        },
+          1000);
+      }, (error: any) => {
+        this.requestFailed = true;
+
       })
     }
   }
+
+  transformarPreco(preco: string) {
+
+    if (!preco.includes(',') && !preco.includes('.')) {
+      preco = preco + '.0';
+    } else if (preco.includes(',')) {
+      preco = preco.replace(',', '.');
+    }
+    return Number.parseFloat(preco);
+  }
+
+  checkError() {
+    this.requestFailed = false;
+  }
+
 }

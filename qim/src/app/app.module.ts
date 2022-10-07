@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -30,7 +30,11 @@ import { HomeComponent } from './pages/home/home/home.component';
 import { ComponentsModule } from './components/components.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HistoricoListComponent } from './pages/historico/historico-list/historico-list.component';
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import { OperacaoFormComponent } from './pages/operacao/operacao-form/operacao-form.component';
 
+registerLocaleData(ptBr);
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +47,7 @@ import { HistoricoListComponent } from './pages/historico/historico-list/histori
     EstoqueFormComponent,
     ProdutoListComponent,
     ProdutoFormComponent,
+    OperacaoFormComponent,
     HistoricoListComponent,
     LoteListComponent,
     LoteFormComponent,
@@ -68,7 +73,9 @@ import { HistoricoListComponent } from './pages/historico/historico-list/histori
   providers: [
     LoginComponent, 
     CookieService,
-    AuthGuardService
+    AuthGuardService,
+    { provide: LOCALE_ID, useValue: 'pt' },
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
   ],
   bootstrap: [AppComponent]
 })

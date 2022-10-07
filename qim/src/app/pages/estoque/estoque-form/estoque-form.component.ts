@@ -14,6 +14,8 @@ export class EstoqueFormComponent implements OnInit {
   EstoqueId: number | undefined;
   Estoque = {} as Estoque;
   acesso: string | undefined;
+  requestFailed: boolean = false;
+  requestSuccess: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,6 +32,8 @@ export class EstoqueFormComponent implements OnInit {
     if (this.empresaId && this.EstoqueId) {
       this.EstoqueService.getEstoque(this.empresaId, this.EstoqueId).subscribe((Estoque: Estoque) => {
         this.Estoque = Estoque;
+      }, (error: any) => {
+        this.requestFailed = true;
       });
     }
     this.acesso = this.cookieService.get('acesso');
@@ -44,7 +48,13 @@ export class EstoqueFormComponent implements OnInit {
         'empresaId': this.Estoque.empresaId
       } as Estoque;
       this.EstoqueService.updateEstoque(EstoqueForUpdate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/estoques'])
+        this.requestSuccess = true;
+        setTimeout(() => {
+          this.router.navigate(['/empresa/' + this.empresaId + '/estoques'])
+        },
+          1000);
+      }, (error: any) => {
+        this.requestFailed = true;
       })
     } else {
       const EstoqueForCreate = {
@@ -53,8 +63,18 @@ export class EstoqueFormComponent implements OnInit {
         'empresaId': this.empresaId
       } as Estoque;
       this.EstoqueService.createEstoque(EstoqueForCreate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/estoques'])
+        this.requestSuccess = true;
+        setTimeout(() => {
+          this.router.navigate(['/empresa/' + this.empresaId + '/estoques'])
+        },
+          1000);
+      }, (error: any) => {
+        this.requestFailed = true;
       })
     }
+  }
+
+  checkError() {
+    this.requestFailed = false;
   }
 }

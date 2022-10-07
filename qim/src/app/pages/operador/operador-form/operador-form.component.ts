@@ -12,6 +12,9 @@ export class OperadorFormComponent implements OnInit {
   empresaId: number | undefined;
   operadorId: number | undefined;
   operador = {} as Operador;
+  viewPassword: boolean = false;
+  requestFailed: boolean = false;
+  requestSuccess: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,11 +26,15 @@ export class OperadorFormComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.empresaId = params['empresaId'];
       this.operadorId = params['id'];
+    } ,(error: any) => {
+      this.requestFailed = true;
     });
     if( this.empresaId && this.operadorId) {
       this.operadorService.getOperador(this.empresaId, this.operadorId).subscribe((operador: Operador) => {
         this.operador = operador;
-      });
+      }, (error: any) => {
+        this.requestFailed = true;
+    });
     } else {
       this.operador.tipoAcesso = 'total'
     }
@@ -43,7 +50,14 @@ export class OperadorFormComponent implements OnInit {
         'empresaId': this.operador.empresaId
       } as Operador;
       this.operadorService.updateOperador(operadorForUpdate).subscribe(() => {
+        this.requestSuccess = true;
+        setTimeout(() => {
           this.router.navigate(['/empresa/' + this.empresaId + '/operadores'])
+        },
+          1000);
+      }, (error: any) => {
+        this.requestFailed = true;
+         
       })
     } else {
       const operadorForCreate = {
@@ -53,9 +67,24 @@ export class OperadorFormComponent implements OnInit {
         'empresaId': this.empresaId
       } as Operador;
       this.operadorService.createOperador(operadorForCreate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/operadores'])
+        this.requestSuccess = true;
+        setTimeout(() => {
+          this.router.navigate(['/empresa/' + this.empresaId + '/operadores'])
+        },
+          1000);
+      }, (error: any) => {
+        this.requestFailed = true;
     })
     }
   }
+
+  showPassword(){
+    this.viewPassword = !this.viewPassword;
+  }
+
+  checkError() {
+    this.requestFailed = false;
+  }
+
 
 }

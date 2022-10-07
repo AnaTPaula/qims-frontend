@@ -14,6 +14,8 @@ export class LoteFormComponent implements OnInit {
   empresaId: number | undefined;
   lote = {} as Lote;
   acesso = '';
+  requestFailed: boolean = false;
+  requestSuccess: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,6 +28,8 @@ export class LoteFormComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.empresaId = params['empresaId'];
       this.loteId = params['id'];
+    }, (error: any) => {
+      this.requestFailed = true;
     });
   }
 
@@ -34,19 +38,41 @@ export class LoteFormComponent implements OnInit {
       const loteForUpdate = {
         'id': this.lote.id,
         'codigoLote': this.lote.codigoLote,
+        'dataEntrada': this.lote.dataEntrada,
+        'dataValidade': this.lote.dataValidade,
+        'quantidade': this.lote.quantidade,
         'empresaId': this.lote.empresaId
       } as Lote;
       this.loteService.updateLote(loteForUpdate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/lotes'])
+        this.requestSuccess = true;
+        setTimeout(() => {
+          this.router.navigate(['/empresa/' + this.empresaId + '/lotes'])
+        },
+          1000);
+      }, (error: any) => {
+        this.requestFailed = true;
       })
     } else {
       const loteForCreate = {
         'codigoLote': this.lote.codigoLote,
+        'dataEntrada': this.lote.dataEntrada,
+        'dataValidade': this.lote.dataValidade,
+        'quantidade': this.lote.quantidade,
         'empresaId': this.lote.empresaId
       } as Lote;
       this.loteService.createLote(loteForCreate).subscribe(() => {
-        this.router.navigate(['/empresa/' + this.empresaId + '/lotes'])
+        this.requestSuccess = true;
+        setTimeout(() => {
+          this.router.navigate(['/empresa/' + this.empresaId + '/lotes'])
+        },
+          1000);
+      }, (error: any) => {
+        this.requestFailed = true;
       })
     }
+  }
+
+  checkError() {
+    this.requestFailed = false;
   }
 }

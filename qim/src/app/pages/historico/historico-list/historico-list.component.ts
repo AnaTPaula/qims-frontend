@@ -17,6 +17,7 @@ export class HistoricoListComponent implements OnInit {
   produtoId: number | undefined;
   historico: Historico[] = [];
   paginaAtual = 1;
+  requestFailed: boolean = false;
   
   constructor(
     private historicoService: HistoricoListService,
@@ -48,4 +49,9 @@ export class HistoricoListComponent implements OnInit {
       return '';
     }
   }
+
+  checkError() {
+    this.requestFailed = false;
+  }
+
 }

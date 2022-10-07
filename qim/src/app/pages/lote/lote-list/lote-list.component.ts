@@ -16,8 +16,9 @@ export class LoteListComponent implements OnInit {
   empresaId: number | undefined;
   lotes: Lote[] = [];
   acesso: string | undefined;
+  tipoArmazenagem: string = '';
   paginaAtual = 1;
-
+  requestFailed: boolean = false;
 
   constructor(
     private loteService: LoteListService,
@@ -29,12 +30,15 @@ export class LoteListComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => this.empresaId = params['empresaId']);
     this.getLotes();
     this.acesso = this.cookieService.get('acesso');
+    this.tipoArmazenagem = this.cookieService.get('tipoArmazenagem');
   }
 
   getLotes() {
     if (this.empresaId){
       this.loteService.getLotes(this.empresaId).subscribe((lotes: Lote[]) => {
         this.lotes = lotes;
+      },(error: any) => {
+        this.requestFailed = true;
       });
     }
   }
@@ -62,6 +66,18 @@ export class LoteListComponent implements OnInit {
     bsModalRef.content.confirm = confirm;
     bsModalRef.content.buttomClass = 'btn-danger';
     return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
+  }
+
+  convertDate(timestamp: number) {
+    if (timestamp) {
+      return new Date(timestamp * 1000).toLocaleDateString("pt-br");
+    } else {
+      return '';
+    }
+  }
+
+  checkError() {
+    this.requestFailed = false;
   }
 
 }

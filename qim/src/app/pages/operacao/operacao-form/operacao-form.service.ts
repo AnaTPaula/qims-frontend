@@ -1,34 +1,26 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { catchError, Observable, retry, throwError } from 'rxjs';
-import { Estoque } from '../model';
+import { catchError, map, Observable, retry, throwError } from 'rxjs';
+import { Operacao } from '../model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EstoqueListService {
+export class OperacaoFormService {
 
-  url = 'http://localhost:8000/v1/empresa/';
+  url = 'http://localhost:8000/v1/empresa/'
 
   constructor(
     private httpClient: HttpClient,
     private cookieService: CookieService) { }
 
-  getEstoques(empresaId: number): Observable<Estoque[]> {
-    return this.httpClient.get<Estoque[]>(this.url + empresaId + '/estoque', { headers: { 'token': this.cookieService.get('token') } })
+  createOperacao(operacao: Operacao): Observable<Operacao> {
+    return this.httpClient.post<Operacao>(this.url + operacao.empresaId + '/estoque/alterar', JSON.stringify(operacao), this.getOptions(this.cookieService.get('token')))
       .pipe(
         retry(2),
         catchError(this.handleError)
-      )
-  }
-
-  deleteEstoque(Estoque: Estoque): Observable<Estoque> {
-    return this.httpClient.delete<Estoque>(this.url + Estoque.empresaId + '/estoque/' + Estoque.id, this.getOptions(this.cookieService.get('token')))
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+      );
   }
 
   getOptions(token: string) {

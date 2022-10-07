@@ -15,7 +15,7 @@ export class EmpresaListComponent implements OnInit {
   empresas: Empresa[] = [];
   tipo: string | undefined;
   paginaAtual = 1;
-
+  requestFailed: boolean = false;
 
   constructor(
     private empresaListService: EmpresaListService,
@@ -30,7 +30,10 @@ export class EmpresaListComponent implements OnInit {
   getEmpresas() {
     this.empresaListService.getEmpresas().subscribe((empresas: Empresa[]) => {
       this.empresas = empresas;
-    });
+    },(error: any) => {
+      this.requestFailed = true;
+    }
+    );
   }
 
   convertDate(timestamp: number) {
@@ -54,6 +57,8 @@ export class EmpresaListComponent implements OnInit {
         switchMap(response => response ? this.empresaListService.deleteEmpresa(empresa) : EMPTY)
       ).subscribe(() => {
         this.getEmpresas();
+      },(error: any) => {
+        this.requestFailed = true;
       });
   }
 
@@ -76,6 +81,8 @@ export class EmpresaListComponent implements OnInit {
         switchMap(response => response ? this.empresaListService.updateSituacaoEmpresa(empresaForUpdate) : EMPTY)
       ).subscribe(() => {
         this.getEmpresas();
+      },(error: any) => {
+        this.requestFailed = true;
       });
   }
 
@@ -98,6 +105,8 @@ export class EmpresaListComponent implements OnInit {
         switchMap(response => response ? this.empresaListService.updateSituacaoEmpresa(empresaForUpdate) : EMPTY)
       ).subscribe(() => {
         this.getEmpresas();
+      },(error: any) => {
+        this.requestFailed = true;
       });
   }
 
@@ -109,6 +118,10 @@ export class EmpresaListComponent implements OnInit {
     bsModalRef.content.confirm = confirm;
     bsModalRef.content.buttomClass = buttomClass;
     return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
+  }
+
+  checkError() {
+    this.requestFailed = false;
   }
 
 }

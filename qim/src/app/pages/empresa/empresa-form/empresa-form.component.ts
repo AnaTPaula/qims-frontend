@@ -12,6 +12,9 @@ import { EmpresaFormService } from './empresa-form.service';
 export class EmpresaFormComponent implements OnInit {
   empresaId: number | undefined;
   empresa = {} as Empresa;
+  viewPassword: boolean = false;
+  requestFailed: boolean = false;
+  requestSuccess: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,6 +28,8 @@ export class EmpresaFormComponent implements OnInit {
     if( this.empresaId) {
       this.empresaService.getEmpresa(this.empresaId).subscribe((empresa: Empresa) => {
         this.empresa = empresa;
+      },(error: any) => {
+        this.requestFailed = true;
       });
     } else {
       this.empresa.tipoArmazenagem = 'FIFO';
@@ -40,11 +45,17 @@ export class EmpresaFormComponent implements OnInit {
         'razaoSocial': this.empresa.razaoSocial
       } as Empresa;
       this.empresaService.updateEmpresa(empresaForUpdate).subscribe(() => {
-        if (this.cookieService.get('tipo') === 'administrador'){
-          this.router.navigate(['/admin/empresas'])
-        } else{
-          this.router.navigate(['/empresa/'+ this.empresaId +'/operadores'])
-        }
+        this.requestSuccess = true;
+        setTimeout(() => {
+          if (this.cookieService.get('tipo') === 'administrador'){
+            this.router.navigate(['/admin/empresas'])
+          } else{
+            this.router.navigate(['/empresa/'+ this.empresaId +'/operadores'])
+          }
+        },
+          1000);
+      }, (error: any) => {
+        this.requestFailed = true;
       })
     } else {
       const empresaForCreate = {
@@ -55,13 +66,35 @@ export class EmpresaFormComponent implements OnInit {
         'aceiteTermosUso': this.empresa.aceiteTermosUso
       } as Empresa;
       this.empresaService.createEmpresa(empresaForCreate).subscribe(() => {
-        this.router.navigate(['/admin/empresas'])
+        this.requestSuccess = true;
+        setTimeout(() => {
+          this.router.navigate(['/admin/empresas'])
+        },
+          1000);
+      }, (error: any) => {
+        this.requestFailed = true;
     })
     }
   }
 
   isLogado() {
-    return this.empresaId !== undefined;
+    return this.cookieService.get('token');
   } 
+
+  showPassword(){
+    this.viewPassword = !this.viewPassword;
+  }
+
+  isEmpresa(){
+    if (this.empresaId){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  checkError() {
+    this.requestFailed = false;
+  }
 
 }

@@ -34,7 +34,8 @@ export class AuthGuardService implements CanActivate {
         if (state.url.includes('estoque') 
         || state.url.includes('historico') 
         || state.url.includes('produto') 
-        || state.url.includes('lote')){
+        || state.url.includes('lote')
+        || state.url.includes('operacao')){
           return true;
         } else {
           this.router.navigate(['empresa/'+ this.cookieService.get('empresa') +'/estoques']);

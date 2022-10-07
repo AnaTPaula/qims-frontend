@@ -16,8 +16,10 @@
                                     disabled="{{acesso === 'leitura'? true: false}}" uniqueEstoque
                                     [EstoqueId]="Estoque.id" [empresaId]="empresaId" required [maxlength]="50">
                                 <div *ngIf="nome.invalid && (nome.dirty || nome.touched)">
-                                    <div class="alert alert-warning" role="alert" *ngIf="nome.errors?.['required']">Nome é obrigatório.</div>
-                                    <div class="alert alert-warning" role="alert" *ngIf="nome.errors?.['uniqueEstoque']">Nome já existe.</div>
+                                    <div class="alert alert-warning" role="alert" *ngIf="nome.errors?.['required']">Nome
+                                        é obrigatório.</div>
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="nome.errors?.['uniqueEstoque']">Nome já existe.</div>
                                 </div>
                             </div>
                             <div class="row">
@@ -35,8 +37,16 @@
                     </div>
                 </div>
             </div>
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+                <span class="alert-inner--text">Um erro ocorreu</span>
+                <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="requestSuccess">
+                Operação efetuada com sucesso!
+            </div>
         </div>
     </div>
 </div>
-
-
