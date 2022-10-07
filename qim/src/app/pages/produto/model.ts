@@ -5,4 +5,5 @@ export interface Produto {
     preco: number;
     unidade: string;
     empresaId: number;
+    quantidade?: number;
 }

@@ -16,7 +16,7 @@
         </thead>
         <tbody>
           <tr
-            *ngFor="let empresa of empresas | paginate: { itemsPerPage: 1, currentPage: paginaAtual }; let i = index">
+            *ngFor="let empresa of empresas | paginate: { itemsPerPage: 10, currentPage: paginaAtual }; let i = index">
             <td><a routerLink="/admin/empresa/update/{{empresa.id}}">{{empresa.nomeUsuario}}</a></td>
             <td>{{empresa.razaoSocial}}</td>
             <td>{{empresa.situacaoConta}}</td>

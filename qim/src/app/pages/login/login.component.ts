@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
       } else if (usuario.tipo == 'operador') {
         this.cookieService.set('acesso', usuario.tipoAcesso!);
         this.cookieService.set('empresa', String(usuario.empresaId!));
+        this.cookieService.set('tipoArmazenagem', String(usuario.tipoArmazenagem));
         this.router.navigate(['/empresa/' + usuario.empresaId + '/estoques'])
 
       } else {

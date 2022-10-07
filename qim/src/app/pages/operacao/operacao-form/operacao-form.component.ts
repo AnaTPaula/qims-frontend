@@ -20,6 +20,7 @@ export class OperacaoFormComponent implements OnInit {
   produtos: Produto[] = [];
   estoques: Estoque[] = [];
   operacao: Operacao = {} as Operacao;
+  tipoArmazenagem: string = '';
   acesso = '';
 
 
@@ -39,6 +40,8 @@ export class OperacaoFormComponent implements OnInit {
     });
     this.getProdutos();
     this.getEstoques();
+    this.tipoArmazenagem = this.cookieService.get('tipoArmazenagem');
+    this.operacao.tipoOperacao = 'ENTRADA';
   }
 
   getProdutos() {
@@ -58,30 +61,45 @@ export class OperacaoFormComponent implements OnInit {
   }
 
   save() {
-    console.log(this.operacao.dataEntrada);
-    console.log();
-    let dataValidade = undefined;
-    if(this.operacao.dataValidade) {
-      dataValidade = new Date(this.operacao.dataValidade!).getTime() / 1000
-    }
-    const loteForCreate = {
-      'empresaId': this.empresaId,
-      'quantidade': this.operacao.quantidade,
-      'codigoLote': this.operacao.codigoLote,
-      'dataEntrada': new Date(this.operacao.dataEntrada).getTime() / 1000,
-      'dataValidade': dataValidade
-    } as Lote;
-    this.loteService.createLote(loteForCreate).subscribe(() => {
+    console.log(this.operacao)
+    if (this.operacao.tipoOperacao === 'ENTRADA') {
+      let dataValidade = undefined;
+      if(this.operacao.dataValidade) {
+        dataValidade = new Date(this.operacao.dataValidade!).getTime() / 1000
+      }
+      const loteForCreate = {
+        'empresaId': this.empresaId,
+        'quantidade': this.operacao.quantidade,
+        'codigoLote': this.operacao.codigoLote,
+        'dataEntrada': new Date(this.operacao.dataEntrada).getTime() / 1000,
+        'dataValidade': dataValidade
+      } as Lote;
+      this.loteService.createLote(loteForCreate).subscribe((lote) => {
+        const operacaoForCreate = {
+          'tipoOperacao': this.operacao.tipoOperacao,
+          'empresaId': this.empresaId,
+          'produtoId': Number.parseInt(this.operacao.produtoId),
+          'estoqueId': Number.parseInt(this.operacao.estoqueId),
+          'localizacao': this.operacao.localizacao,
+          'loteId': lote.id,
+        } as Operacao
+        this.operacaoService.createOperacao(operacaoForCreate).subscribe(() => {
+          this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
+        })
+      })
+
+    } else {
       const operacaoForCreate = {
         'tipoOperacao': this.operacao.tipoOperacao,
-        'empresaId': this.operacao.empresaId,
-        'produtoId': this.operacao.produtoId,
-        'estoqueId': this.operacao.estoqueId,
-      }
-      this.operacaoService.createOperacao(this.operacao).subscribe(() => {
+        'empresaId': this.empresaId,
+        'produtoId': Number.parseInt(this.operacao.produtoId),
+        'estoqueId': Number.parseInt(this.operacao.estoqueId),
+        'quantidade': this.operacao.quantidade
+      } as Operacao
+      this.operacaoService.createOperacao(operacaoForCreate).subscribe(() => {
         this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
       })
-    })
+    }
   }
 }
 

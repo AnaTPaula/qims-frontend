@@ -5,4 +5,5 @@ export interface Lote {
     dataEntrada: number;
     dataValidade?: number;
     quantidade: number;
+    associado?: boolean;
 }

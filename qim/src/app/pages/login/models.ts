@@ -6,5 +6,6 @@ export interface Usuario {
     empresaId?: number;
     nomeEmpresa?: string;
     tipoAcesso?: string;
+    tipoArmazenagem?: string;
     situacaoConta?: string;
 }

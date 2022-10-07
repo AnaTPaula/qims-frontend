@@ -1,8 +1,8 @@
 export interface Operacao {
     tipoOperacao: string;
     empresaId: number;
-    produtoId: number;
-    estoqueId: number;
+    produtoId: any;
+    estoqueId: any;
     loteId?: number;
     quantidade?: number;
     codigoLote?: string;

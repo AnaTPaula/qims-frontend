@@ -70,6 +70,10 @@
             <i class="ni ni-chart-bar-32 text-primary"></i>Analisar curva ABC do estoque</a>
 
           <!--OPERADOR-->
+          <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/operacao" class="nav-link"
+            *ngIf="getTipo() === 'operador' && (acesso === 'total' || acesso == 'modificar')">
+            <i class="ni ni-fat-add text-primary"></i>Realizar operação</a>
+
           <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/estoque/create" class="nav-link"
             *ngIf="getTipo() === 'operador' && acesso === 'total'">
             <i class="ni ni-fat-add text-primary"></i>Criar Estoque</a>

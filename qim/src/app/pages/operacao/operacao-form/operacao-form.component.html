@@ -9,15 +9,23 @@
                     <div class="card-body">
                         <form #form="ngForm">
                             <div class="row">
+                                <label for="tipoOperacao" class="form-control-label">Selecione o Tipo de Operação: </label>
+                                <select [(ngModel)]="operacao.tipoOperacao" class="form-control" name="tipoOperacao">
+                                    <option value="ENTRADA">Entrada de Produtos</option>
+                                    <option value="SAIDA">Saída de Produtos</option>
+                                </select>
+                            </div>
+                            <div class="row">
                                 <label for="produto" class="form-control-label">Selecione o produto: </label>
                                 <select [(ngModel)]="operacao.produtoId" class="form-control" name="produto">
-                                    <option *ngFor="let produto of produtos" value="produto.id">
+                                    <option value="">-</option>
+                                    <option *ngFor="let produto of produtos" value="{{produto.id}}">
                                         {{produto.nome}}
                                     </option>
                                 </select>
                             </div>
 
-                            <div class="row">
+                            <div class="row" *ngIf="operacao.tipoOperacao == 'ENTRADA'">
                                 <label for="codigoLote" class="form-control-label">Codigo do Lote: </label>
                                 <input [(ngModel)]="operacao.codigoLote" type="text"
                                     class="form-control form-control-alternative" id="codigoLote" name="codigoLote"
@@ -36,14 +44,15 @@
                             <div class="row">
                                 <label for="estoque" class="form-control-label">Selecione o estoque: </label>
                                 <select [(ngModel)]="operacao.estoqueId" class="form-control" name="estoque">
-                                    <option *ngFor="let estoque of estoques" value="estoque.id">
+                                    <option value="">-</option>
+                                    <option *ngFor="let estoque of estoques" value="{{estoque.id}}">
                                         {{estoque.nome}}
                                     </option>
                                 </select>
                             </div>
 
 
-                            <div class="row">
+                            <div class="row" *ngIf="operacao.tipoOperacao == 'ENTRADA'">
                                 <label for="dataEntrada" class="form-control-label">Data de Entrada: </label>
                                 <input [(ngModel)]="operacao.dataEntrada" type="date"
                                     class="form-control form-control-alternative" id="dataEntrada" name="dataEntrada"
@@ -56,7 +65,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row" *ngIf="operacao.tipoOperacao == 'ENTRADA' && tipoArmazenagem == 'FEFO'">
                                 <label for="dataValidade" class="form-control-label">Data de Validade: </label>
                                 <input [(ngModel)]="operacao.dataValidade" type="date"
                                     class="form-control form-control-alternative" id="dataValidade" name="dataValidade"
@@ -81,8 +90,6 @@
                                         *ngIf="quantidade.errors?.['required']">Quantidade é obrigatória.</div>
                                 </div>
                             </div>
-
-
 
                             <div class="row text">
                                 <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"

@@ -16,6 +16,7 @@ export class LoteListComponent implements OnInit {
   empresaId: number | undefined;
   lotes: Lote[] = [];
   acesso: string | undefined;
+  tipoArmazenagem: string = '';
   paginaAtual = 1;
 
 
@@ -29,6 +30,7 @@ export class LoteListComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => this.empresaId = params['empresaId']);
     this.getLotes();
     this.acesso = this.cookieService.get('acesso');
+    this.tipoArmazenagem = this.cookieService.get('tipoArmazenagem');
   }
 
   getLotes() {
@@ -62,6 +64,14 @@ export class LoteListComponent implements OnInit {
     bsModalRef.content.confirm = confirm;
     bsModalRef.content.buttomClass = 'btn-danger';
     return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
+  }
+
+  convertDate(timestamp: number) {
+    if (timestamp) {
+      return new Date(timestamp * 1000).toLocaleDateString("pt-br");
+    } else {
+      return '';
+    }
   }
 
 }

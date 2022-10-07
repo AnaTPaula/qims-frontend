@@ -6,14 +6,20 @@
         <thead>
           <tr>
             <th scope="col">Lotes</th>
+            <th scope="col">Data Entrada</th>
+            <th scope="col" *ngIf="tipoArmazenagem == 'FEFO'">Data Validade</th>
+            <th scope="col">Quantidade</th>
             <th scope="col"> </th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let entity of lotes | paginate: { itemsPerPage: 10, currentPage: paginaAtual }; let i = index">
-            <td><a routerLink="empresa/{{entity.empresaId}}/lote/update/{{entity.id}}">{{entity.codigoLote}}</a></td>
+            <td><a routerLink="/empresa/{{entity.empresaId}}/lote/update/{{entity.id}}">{{entity.codigoLote}}</a></td>
+            <td>{{convertDate(entity.dataEntrada)}}</td>
+            <td *ngIf="tipoArmazenagem == 'FEFO'">{{convertDate(entity.dataValidade!)}}</td>
+            <td>{{entity.quantidade}}</td>
             <td>
-              <button type="button" class="btn btn-danger btn-sm ml-1" *ngIf="acesso === 'total'"
+              <button type="button" class="btn btn-danger btn-sm ml-1" *ngIf="acesso === 'total' && !entity.associado"
                 (click)="deleteLote(entity)">
                 <i class="fa fa-trash"></i>
               </button>
