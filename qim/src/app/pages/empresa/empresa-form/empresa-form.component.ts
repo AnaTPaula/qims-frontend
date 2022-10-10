@@ -53,7 +53,7 @@ export class EmpresaFormComponent implements OnInit {
             this.router.navigate(['/empresa/'+ this.empresaId +'/operadores'])
           }
         },
-          1000);
+          2000);
       }, (error: any) => {
         this.requestFailed = true;
       })
@@ -70,7 +70,7 @@ export class EmpresaFormComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/admin/empresas'])
         },
-          1000);
+          2000);
       }, (error: any) => {
         this.requestFailed = true;
     })

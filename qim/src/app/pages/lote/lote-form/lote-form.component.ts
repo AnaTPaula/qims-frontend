@@ -48,7 +48,7 @@ export class LoteFormComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/empresa/' + this.empresaId + '/lotes'])
         },
-          1000);
+          2000);
       }, (error: any) => {
         this.requestFailed = true;
       })
@@ -65,7 +65,7 @@ export class LoteFormComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/empresa/' + this.empresaId + '/lotes'])
         },
-          1000);
+          2000);
       }, (error: any) => {
         this.requestFailed = true;
       })

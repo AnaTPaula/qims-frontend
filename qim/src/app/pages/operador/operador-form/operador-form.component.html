@@ -8,8 +8,9 @@
                     </div>
                     <div class="card-body">
                         <form #form="ngForm">
-                            <div class="row">
-                                <label for="nomeUsuario" class="form-control-label">Nome do Operador: </label>
+                            <div class="row" *ngIf="tipoUsuario !== 'operador'">
+                                <label for="nomeUsuario" class="form-control-label">Nome do Operador:
+                                    <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="operador.nomeUsuario" type="text"
                                     class="form-control form-control-alternative" id="nomeUsuario" name="nomeUsuario"
                                     placeholder="Nome do operador" #nomeUsuario="ngModel" required [maxlength]="50"
@@ -23,7 +24,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label for="senha" class="form-control-label">Senha: </label>
+                                <label for="senha" class="form-control-label">Senha:
+                                    <span class="text-danger"> * </span></label>
                                 <div class="input-group input-group-alternative">
                                     <input [(ngModel)]="operador.senha" type="{{viewPassword? 'text' : 'password'}}"
                                         class="form-control form-control-alternative" id="senha" name="senha"
@@ -41,11 +43,11 @@
                                         Senha é obrigatório.</div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" *ngIf="tipoUsuario !== 'operador'">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="tipoAcesso" class="form-control-label">Escolha o tipo de acesso:
-                                        </label>
+                                            <span class="text-danger"> * </span></label>
                                         <select [(ngModel)]="operador.tipoAcesso"
                                             class="form-control form-control-alternative" id="tipoAcesso"
                                             name="tipoAcesso">

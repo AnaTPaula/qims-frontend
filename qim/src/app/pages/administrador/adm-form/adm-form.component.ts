@@ -44,7 +44,7 @@ export class AdmFormComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/admin/empresas'])
         },
-          1000);
+          2000);
       }, (error: any) => {
         this.requestFailed = true;
       })
@@ -58,7 +58,7 @@ export class AdmFormComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/admin/empresas'])
         },
-          1000);
+          2000);
       }, (error: any) => {
         this.requestFailed = true;
       })
