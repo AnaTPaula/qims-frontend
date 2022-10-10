@@ -50,7 +50,8 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label">Senha:<span class="text-danger" *ngIf="!empresaId"> *
+                                        <label class="form-control-label">Senha:<span class="text-danger"
+                                                *ngIf="!empresaId"> *
                                             </span></label>
                                         <div class="input-group input-group-alternative">
                                             <input [(ngModel)]="empresa.senha"
@@ -128,10 +129,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row" >
+                            <div class="col text-left" *ngIf="isEmpresa()">
+                                <button type="button" class="btn btn-primary my-4" (click)="cancelarConta()">Cancelar conta</button>
+                            </div>
 
-                        <div class="text-right">
-                            <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
-                                [disabled]="!form.valid || form.pending">
+                            <div class="col text-right" >
+                                <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
+                                    [disabled]="!form.valid || form.pending">
+                            </div>
                         </div>
                     </form>
                 </div>
