@@ -78,11 +78,11 @@
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
 
-            <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'empresa'">
-              <i class="ni ni-sound-wave text-danger "></i>Vizualizar Estatistica de Estoque</a>
+            <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/estatistica/" class="nav-link" *ngIf="getTipo() === 'empresa'">
+              <i class="ni ni-sound-wave text-danger "></i>Vizualizar Estatisticas</a>
 
             <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'empresa'">
-              <i class="ni ni-chart-bar-32 text-danger "></i>Analisar curva ABC do estoque</a>
+              <i class="ni ni-chart-bar-32 text-danger "></i>Analisar curva ABC</a>
           </li>
         </ul>
       </div>

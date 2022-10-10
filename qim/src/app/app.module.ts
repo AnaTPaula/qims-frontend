@@ -33,6 +33,7 @@ import { HistoricoListComponent } from './pages/historico/historico-list/histori
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { OperacaoFormComponent } from './pages/operacao/operacao-form/operacao-form.component';
+import { EstatisticaListComponent } from './pages/estatistica/estatistica-list/estatistica-list.component';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -49,6 +50,7 @@ registerLocaleData(ptBr);
     ProdutoFormComponent,
     OperacaoFormComponent,
     HistoricoListComponent,
+    EstatisticaListComponent,
     LoteListComponent,
     LoteFormComponent,
     LoginComponent,
