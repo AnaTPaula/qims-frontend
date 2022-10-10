@@ -40,6 +40,16 @@ export class EmpresaFormService {
       );
   }
 
+  deleteEmpresa(empresaId: number): Observable<Empresa> {
+    return this.httpClient.delete<Empresa>(this.url + '/' + empresaId, this.getOptions(this.cookieService.get('token')))
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+ 
+
   updateEmpresa(empresa: Empresa): Observable<Empresa> {
     return this.httpClient.put<Empresa>(this.url + '/' + empresa.id, JSON.stringify(empresa), this.getOptions(this.cookieService.get('token')))
       .pipe(
@@ -49,6 +59,15 @@ export class EmpresaFormService {
   }
 
   getOptions(token: string) {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': token
+      })
+    }
+  }
+
+  deleteOptions(token: string) {
     return {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

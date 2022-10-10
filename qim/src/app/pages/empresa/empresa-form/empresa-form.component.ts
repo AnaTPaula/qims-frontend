@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Empresa } from '../model';
 import { EmpresaFormService } from './empresa-form.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { switchMap, take, EMPTY } from 'rxjs';
+import { ConfirmModalComponent } from 'src/app/shared/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-empresa-form',
@@ -19,6 +22,7 @@ export class EmpresaFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private modalService: BsModalService,
     private cookieService: CookieService,
     private empresaService: EmpresaFormService) { 
   }
@@ -97,4 +101,32 @@ export class EmpresaFormComponent implements OnInit {
     this.requestFailed = false;
   }
 
+  cancelarConta() {
+    const result$ = this.showConfirm(
+      'Deletar Empresa',
+      'Tem certeza que deseja deletar a empresa ' + this.empresa.nomeUsuario + '?',
+      'Cancelar',
+      'Deletar',
+      'btn-danger');
+    result$?.asObservable()
+      .pipe(
+        take(1),
+        switchMap(response => response ? this.empresaService.deleteEmpresa(this.empresaId!) : EMPTY)
+      ).subscribe(() => {
+        this.cookieService.deleteAll('/');
+        this.router.navigate(['/']);
+      },(error: any) => {
+        this.requestFailed = true;
+      });
+  }
+
+  showConfirm(title: string, body: string, cancel: string, confirm: string, buttomClass: string) {
+    const bsModalRef: BsModalRef = this.modalService.show(ConfirmModalComponent);
+    bsModalRef.content.title = title;
+    bsModalRef.content.body = body;
+    bsModalRef.content.cancel = cancel;
+    bsModalRef.content.confirm = confirm;
+    bsModalRef.content.buttomClass = buttomClass;
+    return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
+  }
 }
