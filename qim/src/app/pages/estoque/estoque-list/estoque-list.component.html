@@ -6,12 +6,14 @@
         <thead>
           <tr>
             <th scope="col">Nome</th>
+            <th scope="col">Descrição</th>
             <th scope="col"> </th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let entity of estoques | paginate: { itemsPerPage: 10, currentPage: paginaAtual }; let i = index">
             <td><a routerLink="/empresa/{{empresaId}}/estoque/update/{{entity.id}}">{{entity.nome}}</a></td>
+            <td>{{entity.descricao}}</td>
             <td>
               <button type="button" class="btn btn-danger btn-sm ml-1" *ngIf="acesso === 'total'"
                 (click)="deleteEstoque(entity)">

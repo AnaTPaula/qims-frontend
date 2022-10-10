@@ -48,6 +48,14 @@ export class OperadorFormService {
       );
   }
 
+  patchOperador(operador: Operador): Observable<Operador> {
+    return this.httpClient.patch<Operador>(this.url + operador.empresaId + '/operador/' + operador.id, JSON.stringify(operador), this.getOptions(this.cookieService.get('token')))
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      );
+  }
+
   getOptions(token: string) {
     return {
       headers: new HttpHeaders({

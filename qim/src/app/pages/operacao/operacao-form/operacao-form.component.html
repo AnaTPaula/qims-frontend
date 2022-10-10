@@ -10,14 +10,15 @@
                         <form #form="ngForm">
                             <div class="row">
                                 <label for="tipoOperacao" class="form-control-label">Selecione o Tipo de Operação:
-                                </label>
+                                    <span class="text-danger"> * </span></label>
                                 <select [(ngModel)]="operacao.tipoOperacao" class="form-control" name="tipoOperacao">
                                     <option value="ENTRADA">Entrada de Produtos</option>
                                     <option value="SAIDA">Saída de Produtos</option>
                                 </select>
                             </div>
                             <div class="row">
-                                <label for="produto" class="form-control-label">Selecione o produto: </label>
+                                <label for="produto" class="form-control-label">Selecione o produto:
+                                    <span class="text-danger"> * </span></label>
                                 <select [(ngModel)]="operacao.produtoId" class="form-control" name="produto">
                                     <option value="">-</option>
                                     <option *ngFor="let produto of produtos" value="{{produto.id}}">
@@ -27,7 +28,8 @@
                             </div>
 
                             <div class="row" *ngIf="operacao.tipoOperacao == 'ENTRADA'">
-                                <label for="codigoLote" class="form-control-label">Codigo do Lote: </label>
+                                <label for="codigoLote" class="form-control-label">Codigo do Lote: 
+                                    <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="operacao.codigoLote" type="text"
                                     class="form-control form-control-alternative" id="codigoLote" name="codigoLote"
                                     placeholder="Codigo do Lote" #codigoLote="ngModel"
@@ -43,7 +45,8 @@
                             </div>
 
                             <div class="row">
-                                <label for="estoque" class="form-control-label">Selecione o estoque: </label>
+                                <label for="estoque" class="form-control-label">Selecione o estoque: 
+                                    <span class="text-danger"> * </span></label>
                                 <select [(ngModel)]="operacao.estoqueId" class="form-control" name="estoque">
                                     <option value="">-</option>
                                     <option *ngFor="let estoque of estoques" value="{{estoque.id}}">
@@ -54,7 +57,8 @@
 
 
                             <div class="row" *ngIf="operacao.tipoOperacao == 'ENTRADA'">
-                                <label for="dataEntrada" class="form-control-label">Data de Entrada: </label>
+                                <label for="dataEntrada" class="form-control-label">Data de Entrada: 
+                                    <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="operacao.dataEntrada" type="date"
                                     class="form-control form-control-alternative" id="dataEntrada" name="dataEntrada"
                                     placeholder="Data de Entrada" #dataEntrada="ngModel"
@@ -67,7 +71,8 @@
                             </div>
 
                             <div class="row" *ngIf="operacao.tipoOperacao == 'ENTRADA' && tipoArmazenagem == 'FEFO'">
-                                <label for="dataValidade" class="form-control-label">Data de Validade: </label>
+                                <label for="dataValidade" class="form-control-label">Data de Validade:
+                                    <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="operacao.dataValidade" type="date"
                                     class="form-control form-control-alternative" id="dataValidade" name="dataValidade"
                                     placeholder="Data de Validade" #dataValidade="ngModel"
@@ -80,7 +85,8 @@
                             </div>
 
                             <div class="row">
-                                <label for="quantidade" class="form-control-label"> Quantidade: </label>
+                                <label for="quantidade" class="form-control-label"> Quantidade: 
+                                    <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="operacao.quantidade" type="number"
                                     class="form-control form-control-alternative" id="quantidade" name="quantidade"
                                     placeholder="Quantidade" #quantidade="ngModel"

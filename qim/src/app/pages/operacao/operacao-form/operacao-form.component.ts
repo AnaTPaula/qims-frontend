@@ -98,7 +98,7 @@ export class OperacaoFormComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
         },
-          1000);
+          2000);
       }, (error: any) => {
         this.requestFailed = true;
         })
@@ -117,7 +117,7 @@ export class OperacaoFormComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/empresa/' + this.empresaId + '/produtos'])
         },
-          1000);
+          2000);
       }, (error: any) => {
         this.requestFailed = true;
         

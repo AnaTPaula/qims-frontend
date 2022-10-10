@@ -9,7 +9,8 @@
                     <div class="card-body">
                         <form #form="ngForm">
                             <div class="row">
-                                <label for="nomeEstoque" class="form-control-label">Nome do Estoque: </label>
+                                <label for="nomeEstoque" class="form-control-label">Nome do Estoque: 
+                                    <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="Estoque.nome" type="text"
                                     class="form-control form-control-alternative" id="nomeEstoque" name="nomeEstoque"
                                     placeholder="Nome do Estoque" #nome="ngModel"

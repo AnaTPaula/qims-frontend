@@ -9,7 +9,8 @@
                     <div class="card-body">
                         <form #form="ngForm">
                             <div class="row">
-                                <label for="nomeProduto" class="form-control-label">Nome do Produto: </label>
+                                <label for="nomeProduto" class="form-control-label">Nome do Produto:
+                                    <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="produto.nome" type="text"
                                     class="form-control form-control-alternative" id="nomeProduto" name="nomeProduto"
                                     placeholder="Nome do Produto" #nomeProduto="ngModel"
@@ -32,7 +33,8 @@
                             </div>
 
                             <div class="row">
-                                <label for="preco" class="form-control-label">Preço: </label>
+                                <label for="preco" class="form-control-label">Preço:
+                                    <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="produto.preco" type="number" step=".01"
                                     class="form-control form-control-alternative" id="preco" name="preco"
                                     placeholder="Preço" #preco="ngModel"
@@ -44,7 +46,8 @@
                             </div>
 
                             <div class="row">
-                                <label for="unidade" class="form-control-label">Unidade: </label>
+                                <label for="unidade" class="form-control-label">Unidade: 
+                                    <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="produto.unidade" type="text"
                                     class="form-control form-control-alternative" id="unidade" name="unidade"
                                     placeholder="Unidade do Produto" #unidade="ngModel"

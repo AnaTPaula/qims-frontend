@@ -52,7 +52,7 @@ export class EstoqueFormComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/empresa/' + this.empresaId + '/estoques'])
         },
-          1000);
+          2000);
       }, (error: any) => {
         this.requestFailed = true;
       })
@@ -67,7 +67,7 @@ export class EstoqueFormComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/empresa/' + this.empresaId + '/estoques'])
         },
-          1000);
+          2000);
       }, (error: any) => {
         this.requestFailed = true;
       })
