@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="card list-category shadow">
+    <h5 class="card-header">Dashboard</h5>
+    <div class="card-body">
+      <div class="row">
+        <!-- CARD TOTAL DE PRODUTOS-->
+        <div style="width: 18rem;" class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-lg-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Produto</h5>
+                  <span class="h2 font-weight-bold mb-0">{{estatistica.totalProdutos}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                    <i class="material-symbols-outlined">shopping_basket</i>
+                  </div>
+                </div>
+              </div>
+             <!--<p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>--> 
+            </div>
+          </div>
+        </div>
+
+        <!--CARD TOTAL DE ESTOQUE-->
+
+        <div style="width: 18r  em;" class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-lg-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Estoque</h5>
+                  <span class="h2 font-weight-bold mb-0">{{estatistica.totalEstoque}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                    <i class="material-symbols-outlined">inventory_2</i>
+                  </div>
+                </div>
+              </div>
+             <!-- <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>--> 
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD TOTAL PREÇO-->
+
+        <div style="width: 18r  em;" class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-lg-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Preço</h5>
+                  <span class="h2 font-weight-bold mb-0">{{estatistica.totalPreco}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                    <i class="material-symbols-outlined">attach_money</i>
+                  </div>
+                </div>
+              </div>
+              <!--<p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>--> 
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+    </div>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+      <span class="alert-inner--text">Um erro ocorreu</span>
+      <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+  </div>
+</div>
