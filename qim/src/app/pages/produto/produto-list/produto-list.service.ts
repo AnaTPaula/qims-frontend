@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, Observable, retry, throwError } from 'rxjs';
-import { Produto } from '../model';
+import { Produto, ProdutoEstoque } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,14 @@ export class ProdutoListService {
 
   getProdutos(empresaId: number): Observable<Produto[]> {
     return this.httpClient.get<Produto[]>(this.url + empresaId + '/produto', { headers: { 'token': this.cookieService.get('token') } })
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  getProdutoEstoque(produto: Produto): Observable<ProdutoEstoque[]> {
+    return this.httpClient.get<ProdutoEstoque[]>(this.url + produto.empresaId + '/produto/' + produto.id + '/estoque', { headers: { 'token': this.cookieService.get('token') } })
       .pipe(
         retry(2),
         catchError(this.handleError)

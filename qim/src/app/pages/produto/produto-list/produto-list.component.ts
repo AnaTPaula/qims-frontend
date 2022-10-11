@@ -4,7 +4,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CookieService } from 'ngx-cookie-service';
 import { EMPTY, switchMap, take } from 'rxjs';
 import { ConfirmModalComponent } from 'src/app/shared/confirm-modal/confirm-modal.component';
-import { Produto } from '../model';
+import { ListModalComponent } from 'src/app/shared/list-modal/list-modal.component';
+import { Produto, ProdutoEstoque } from '../model';
 import { ProdutoListService } from './produto-list.service';
 
 @Component({
@@ -58,6 +59,24 @@ export class ProdutoListComponent implements OnInit {
     });
   }
 
+  mostrarProdutoPorEstoque(produto: Produto) {
+    let produtoEstoques: ProdutoEstoque[] = [];
+    let headers = ['Estoque', 'Quantidade'];
+    this.produtoService.getProdutoEstoque(produto).subscribe((entity: ProdutoEstoque[]) => {
+      let items = []
+      produtoEstoques = entity;
+      for(let o of produtoEstoques) {
+        items.push([o.nomeEstoque, o.quantidade]);
+      }
+      this.showList(
+        'Estoques do produto',
+        headers,
+        items);
+    },(error: any) => {
+      this.requestFailed = true;
+    });
+  }
+
   showConfirm(title: string, body: string, cancel: string, confirm: string) {
     const bsModalRef: BsModalRef = this.modalService.show(ConfirmModalComponent);
     bsModalRef.content.title = title;
@@ -66,6 +85,14 @@ export class ProdutoListComponent implements OnInit {
     bsModalRef.content.confirm = confirm;
     bsModalRef.content.buttomClass = 'btn-danger';
     return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
+  }
+
+  showList(title: string, headers: string[], items: object[]) {
+    const bsModalRef: BsModalRef = this.modalService.show(ListModalComponent);
+    bsModalRef.content.title = title;
+    bsModalRef.content.headers = headers;
+    bsModalRef.content.items = items;
+    return (<ListModalComponent>bsModalRef.content);
   }
 
   checkError() {

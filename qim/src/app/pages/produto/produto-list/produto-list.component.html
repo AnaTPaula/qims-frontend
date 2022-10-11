@@ -10,27 +10,29 @@
             <th scope="col">Preço</th>
             <th scope="col">Unidade</th>
             <th scope="col">Quantidade</th>
+            <th scope="col">Histórico</th>
             <th scope="col"> </th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let entity of produtos | paginate: { itemsPerPage: 10, currentPage: paginaAtual }; let i = index">
+          <tr *ngFor="let entity of produtos | paginate: { itemsPerPage: 10, currentPage: paginaAtual, id:'produtos'}; let i = index" >
             <td><a routerLink="/empresa/{{entity.empresaId}}/produto/update/{{entity.id}}">{{entity.nome}}</a></td>
             <td>{{entity.descricao}}</td>
             <td>{{entity.preco | currency}}</td>
             <td>{{entity.unidade}}</td>
-            <td>{{entity.quantidade}}</td>
+            <td><a routerLink="/empresa/{{entity.empresaId}}/produtos" (click)="mostrarProdutoPorEstoque(entity)">{{entity.quantidade}}</a></td>
+            <td><button class="btn btn-danger btn-sm" routerLink="/empresa/{{entity.empresaId}}/produto/{{entity.id}}/historico"><i class="material-symbols-outlined">manage_search</i></button></td>
             <td>
-              <button type="button" class="btn btn-danger btn-sm ml-1" *ngIf="acesso === 'total'"
+              <button type="button" class="btn btn-danger btn-sm" *ngIf="acesso === 'total'"
                 (click)="deleteProduto(entity)">
-                <i class="fa fa-trash"></i>
+                <i class="material-symbols-outlined">delete</i>
               </button>
             </td>
           </tr>
         </tbody>
       </table>
       <pagination-controls class="radius-style align-style" (pageChange)="paginaAtual = $event" previousLabel="Anterior"
-        nextLabel="Próximo"></pagination-controls>
+        nextLabel="Próximo" id="produtos"></pagination-controls>
     </div>
     <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
       <span class="alert-inner--text">Um erro ocorreu</span>

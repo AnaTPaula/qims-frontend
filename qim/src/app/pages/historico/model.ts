@@ -1,6 +1,6 @@
 export interface Historico {
     operador: string;
-    produto: string ;
+    nomeProduto: string ;
     estoque: string;
     quantidade: number;
     empresaId: number;
