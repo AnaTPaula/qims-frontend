@@ -44,7 +44,7 @@ export class HistoricoListComponent implements OnInit {
 
   convertDate(timestamp: number) {
     if (timestamp) {
-      return new Date(timestamp * 1000).toLocaleDateString("pt-br");
+      return new Date(timestamp * 1000).toLocaleDateString("pt-br")+ " " + new Date(timestamp * 1000).toLocaleTimeString("pt-br");
     } else {
       return '';
     }

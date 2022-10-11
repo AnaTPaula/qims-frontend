@@ -1,0 +1,31 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">{{title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <table class="table">
+            <thead>
+              <tr>
+                <th *ngFor="let header of headers" scope="col">{{header}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of items | paginate: { itemsPerPage: 4, currentPage: paginaAtual, id:'modal'}; let i = index">
+                <td *ngIf="item[0]">{{item[0]}}</td>
+                <td *ngIf="item[1]">{{item[1]}}</td>
+                <td *ngIf="item[2]">{{item[2]}}</td>
+                <td *ngIf="item[3]">{{item[3]}}</td>
+                <td *ngIf="item[4]">{{item[4]}}</td>
+                <td *ngIf="item[5]">{{item[5]}}</td>
+                <td *ngIf="item[6]">{{item[6]}}</td>
+                <td *ngIf="item[7]">{{item[7]}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls id="modal" class="radius-style align-style" (pageChange)="paginaAtual = $event" previousLabel="Anterior"
+            nextLabel="Próximo"></pagination-controls>
+    </div>
+</div>

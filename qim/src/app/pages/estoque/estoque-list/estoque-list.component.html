@@ -7,6 +7,7 @@
           <tr>
             <th scope="col">Nome</th>
             <th scope="col">Descrição</th>
+            <th scope="col">Quantidade</th>
             <th scope="col"> </th>
           </tr>
         </thead>
@@ -14,6 +15,7 @@
           <tr *ngFor="let entity of estoques | paginate: { itemsPerPage: 10, currentPage: paginaAtual }; let i = index">
             <td><a routerLink="/empresa/{{empresaId}}/estoque/update/{{entity.id}}">{{entity.nome}}</a></td>
             <td>{{entity.descricao}}</td>
+            <td><a routerLink="/empresa/{{entity.empresaId}}/estoques" (click)="mostrarEstoquePorProduto(entity)">{{entity.quantidade}}</a></td>
             <td>
               <button type="button" class="btn btn-danger btn-sm ml-1" *ngIf="acesso === 'total'"
                 (click)="deleteEstoque(entity)">

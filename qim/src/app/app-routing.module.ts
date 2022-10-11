@@ -17,6 +17,10 @@ import { AdmFormComponent } from './pages/administrador/adm-form/adm-form.compon
 import { HistoricoListComponent } from './pages/historico/historico-list/historico-list.component';
 import { EstatisticaListComponent } from './pages/estatistica/estatistica-list/estatistica-list.component';
 import { OperacaoFormComponent } from './pages/operacao/operacao-form/operacao-form.component';
+import { PlanosComponent } from './pages/home/home/planos.component';
+//import { NoticiasComponent } from './pages/home/home/noticias.component';
+//import { SobreComponent } from './pages/home/home/sobre.component';
+//import { ContatoComponent } from './pages/home/home/contato.component';
 
 const routes: Routes = [
   {path: 'admin/empresas', component: EmpresaListComponent, canActivate: [AuthGuardService]},
@@ -41,7 +45,11 @@ const routes: Routes = [
   {path: 'empresa/:empresaId/operacao', component: OperacaoFormComponent, canActivate:[AuthGuardService]},
   {path: 'login', component: LoginComponent},
   {path: 'empresa/create', component: EmpresaFormComponent},
-  {path: '', component: HomeComponent}
+  {path: '', component: HomeComponent},
+  {path: 'home/planos', component: PlanosComponent},
+  //{path: 'home/noticias', component: NoticiasComponent},
+  //{path: 'home/sobre', component: SobreComponent},
+  //{path: 'home/contato', component: ContatoComponent}
 
 ];
 

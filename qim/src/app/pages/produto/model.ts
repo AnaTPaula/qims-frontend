@@ -7,3 +7,12 @@ export interface Produto {
     empresaId: number;
     quantidade?: number;
 }
+
+export interface ProdutoEstoque {
+    produtoId: number;
+    nomeProduto: string;
+    empresaId: number;
+    quantidade: number;
+    localizacao: string;
+    nomeEstoque: string;
+}
