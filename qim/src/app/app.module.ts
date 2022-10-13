@@ -35,10 +35,7 @@ import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { OperacaoFormComponent } from './pages/operacao/operacao-form/operacao-form.component';
 import { EstatisticaListComponent } from './pages/estatistica/estatistica-list/estatistica-list.component';
-import { PlanosComponent } from './pages/home/home/planos.component';
-//import { SobreComponent } from './pages/home/home/sobre.component';
-//import { ContatoComponent } from './pages/home/home/contato.component';
-//import { NoticiasComponent } from './pages/home/home/noticias.component';
+
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -66,11 +63,7 @@ registerLocaleData(ptBr);
     UniqueEmpresaDirective,
     UniqueProdutoDirective,
     UniqueLoteDirective,
-    HomeComponent,
-    PlanosComponent,
-    //SobreComponent,
-    //ContatoComponent,
-    //NoticiasComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
