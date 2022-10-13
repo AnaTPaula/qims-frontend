@@ -2,45 +2,45 @@ h1 {
     font-family: var(--font-family-display, "Charlie Display", sans-serif);
     font-weight: 500;
     margin-top: 0em;
-    margin-left: 2em;
     font-size: 2em;
     line-height: 1.25;
     text-align:left;
 }
 
-.align-text{
-    padding-top: 10rem;
-}
-
 h3 {
-    font-family: var(--font-family-display, "Charlie Display", sans-serif);
-    font-weight: 250;
-    margin-top: 0em;
-    margin-left: 2.5em;
-    font-size: 1.2em;
-    line-height: 1.25;
-    text-align:left;
+        margin-bottom: 0.5rem;
+        font-family: inherit;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #32325d;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: rgb(220, 85, 85);
+
+h6 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+.align-text{
+    padding-top: 2rem;
 }
 
-nav {
-     background-color: rgb(220, 85, 85) !important;
+.align-text-intro{
+    padding-top: 8rem;
+}
+
+
+.nav-link {
+    color: rgba(8, 0, 0, 0.92);
 }
 
 li {
     float: left;
+    
 }
 
-li a {
+li {
     display: block;
-    color: white;
+    color: rgb(52, 49, 49);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -49,7 +49,8 @@ li a {
 /* Change the link color to #111 (black) on hover */
 /* Fundo botão*/
 li a:hover {
-    background-color: rgb(213, 123, 123);
+    background-color: rgb(217, 63, 63);
+    border-radius: 1em;
 }
 
 .home-img {
@@ -59,5 +60,116 @@ li a:hover {
     display: block;
     padding-top: 10%;
   }
-  
-  
+
+.backgroud {
+    background-color: rgb(255, 255, 255);
+}
+
+h3, .h3 {
+    font-size: 1.75rem;
+}
+
+.icon-shape {
+    padding: 12px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.icon-lg {
+    width: 4rem;
+    height: 4rem;
+}
+
+.icon-shape-success {
+    color: #1aae6f;
+    background-color: rgba(84, 218, 161, 0.5);
+}
+.icon-shape {
+    padding: 12px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.icon-lg {
+    width: 4rem;
+    height: 4rem;
+}
+.icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.icon-shape-success {
+    color: #1aae6f;
+    background-color: rgba(84, 218, 161, 0.5);
+}
+
+p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+.mb-0, .my-0 {
+    margin-bottom: 0 !important;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.floating {
+    animation: floating 2s ease infinite;
+    will-change: transform;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.order-md-2 {
+    order: 2;
+}
+
+.separator {
+    position: absolute; 
+    top: 15.9rem;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 150px;
+    transform: translateZ(0);
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.1
+    rem 1rem; 
+}
