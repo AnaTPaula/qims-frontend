@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, map, Observable, retry, throwError } from 'rxjs';
 import { Lote } from '../model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoteFormService {
 
-  url = 'http://localhost:8000/v1/empresa/'
+  url = environment.apiUrl + '/empresa/'
 
   constructor(
     private httpClient: HttpClient,

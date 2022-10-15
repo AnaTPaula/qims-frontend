@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { Empresa } from '../model';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Empresa } from '../model';
 })
 export class EmpresaListService {
 
-  url = 'http://localhost:8000/v1/empresa'
+  url = environment.apiUrl + '/empresa'
 
   constructor(
     private httpClient: HttpClient,

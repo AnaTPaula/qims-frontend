@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { Adm } from '../model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdmFormService {
 
-  url = 'http://localhost:8000/v1/admin'
+  url = environment.apiUrl + '/admin'
 
   constructor(
     private httpClient: HttpClient,

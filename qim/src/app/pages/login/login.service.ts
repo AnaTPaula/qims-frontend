@@ -3,13 +3,14 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Usuario } from './models';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  url = 'http://localhost:8000/v1/login';
+  url = environment.apiUrl + '/login';
 
   constructor(private httpClient: HttpClient) { }
 

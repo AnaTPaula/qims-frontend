@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { Operador } from '../model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OperadorListService {
 
-  url = 'http://localhost:8000/v1/empresa/'
+  url = environment.apiUrl + '/empresa/'
 
   constructor(
     private httpClient: HttpClient,
