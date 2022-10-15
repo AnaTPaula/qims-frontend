@@ -1,4 +1,4 @@
-<div class="container">
+<!--<div class="container">
   <div class="card list-category shadow">
     <h5 class="card-header">Lista de operadores</h5>
     <div class="card-body">
@@ -33,6 +33,53 @@
       <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">×</span>
       </button>
+    </div>
+  </div>
+</div>-->
+
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row align-item">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h5 class="mb-0">Lista de Operadores</h5>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Tipo de Acesso</th>
+                <th scope="col">Data de criação</th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let entity of operadores | paginate: { itemsPerPage: 10, currentPage: paginaAtual }; let i = index">
+                <td><a routerLink="/empresa/{{empresaId}}/operador/update/{{entity.id}}">{{entity.nomeUsuario}}</a></td>
+                <td>{{convertAcesso(entity.tipoAcesso)}}</td>
+                <td>{{convertDate(entity.dataCadastro)}}</td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteOperador(entity)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls class="radius-style align-style" (pageChange)="paginaAtual = $event"
+            previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+        </div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+          <span class="alert-inner--text">Um erro ocorreu</span>
+          <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
