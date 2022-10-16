@@ -124,12 +124,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" >
-                            <div class="col text-left" *ngIf="isEmpresa()">
-                                <button type="button" class="btn btn-primary my-4" (click)="cancelarConta()">Cancelar conta</button>
+                        <div class="row">
+                            <div class="col-2 text-left">
+                                <a class="btn btn-warning my-4 text-left"
+                                    routerLink='/admin/empresas'>Voltar</a>
                             </div>
 
-                            <div class="col text-right" >
+                            <div  class="col-4"  *ngIf="isEmpresa()">
+                                <button type="button" class="btn btn-primary my-4" (click)="cancelarConta()">Cancelar
+                                    conta</button>
+                            </div>
+
+                            <div class="col text-right">
                                 <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
                                     [disabled]="!form.valid || form.pending">
                             </div>

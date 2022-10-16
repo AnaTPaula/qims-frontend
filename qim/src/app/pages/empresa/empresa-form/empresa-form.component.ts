@@ -129,4 +129,6 @@ export class EmpresaFormComponent implements OnInit {
     bsModalRef.content.buttomClass = buttomClass;
     return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
   }
+
+  
 }

@@ -35,7 +35,6 @@ const routes: Routes = [
   {path: 'empresa/:empresaId/produto/update/:id', component: ProdutoFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/produto/create', component: ProdutoFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/lotes', component: LoteListComponent, canActivate: [AuthGuardService]},
-  {path: 'empresa/:empresaId/lote/update/:id', component: LoteFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/lote/create', component: LoteFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/produto/:produtoId/historico',component: HistoricoListComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/estatistica', component: EstatisticaListComponent, canActivate: [AuthGuardService]},

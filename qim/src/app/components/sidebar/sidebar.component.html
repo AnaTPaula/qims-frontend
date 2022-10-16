@@ -98,6 +98,10 @@
             *ngIf="getTipo() === 'operador'">
             <i class="ni ni-bullet-list-67 text-danger "></i>Listar Estoque</a>
 
+          <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/lotes" class="nav-link"
+            *ngIf="getTipo() === 'operador'">
+            <i class="ni ni-bullet-list-67 text-danger "></i>Listar lote</a>
+
         </li>
       </ul>
 
