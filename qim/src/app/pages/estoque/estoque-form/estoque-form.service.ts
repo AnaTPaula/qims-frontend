@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, map, Observable, retry, throwError } from 'rxjs';
 import { Estoque } from '../model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstoqueFormService {
 
-  url = 'http://localhost:8000/v1/empresa/'
+  url = environment.apiUrl + '/empresa/'
 
   constructor(
     private httpClient: HttpClient,

@@ -45,7 +45,7 @@ export class OperacaoFormComponent implements OnInit {
     this.getProdutos();
     this.getEstoques();
     this.tipoArmazenagem = this.cookieService.get('tipoArmazenagem');
-    this.operacao.tipoOperacao = 'ENTRADA';
+    this.operacao.tipoOperacao = 'SAIDA';
   }
 
   getProdutos() {

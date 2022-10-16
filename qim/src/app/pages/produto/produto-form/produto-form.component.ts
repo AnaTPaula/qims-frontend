@@ -49,6 +49,9 @@ export class ProdutoFormComponent implements OnInit {
         'descricao': this.produto.descricao,
         'preco': this.transformarPreco(this.produto.preco.toString()),
         'unidade': this.produto.unidade,
+        'estoqueMinimo': this.produto.estoqueMinimo,
+        'estoqueMaximo': this.produto.estoqueMaximo,
+        'pontoReposicao': this.produto.pontoReposicao,
         'empresaId': this.produto.empresaId
       } as Produto;
       this.produtoService.updateProduto(produtoForUpdate).subscribe(() => {
@@ -66,6 +69,9 @@ export class ProdutoFormComponent implements OnInit {
         'descricao': this.produto.descricao,
         'preco': this.transformarPreco(this.produto.preco.toString()),
         'unidade': this.produto.unidade,
+        'estoqueMinimo': this.produto.estoqueMinimo,
+        'estoqueMaximo': this.produto.estoqueMaximo,
+        'pontoReposicao': this.produto.pontoReposicao,
         'empresaId': this.empresaId
       } as Produto;
       this.produtoService.createProduto(produtoForCreate).subscribe(() => {

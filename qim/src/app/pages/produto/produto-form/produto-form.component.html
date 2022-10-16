@@ -58,6 +58,30 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <label for="estoqueMinimo" class="form-control-label">Estoque Mínimo:</label>
+                                <input [(ngModel)]="produto.estoqueMinimo" type="number" step=".01"
+                                    class="form-control form-control-alternative" id="estoqueMinimo" name="estoqueMinimo"
+                                    placeholder="Estoque Mínimo do Produto" #estoqueMinimo="ngModel"
+                                    disabled="{{acesso === 'leitura'? true: false}}">
+                            </div>
+
+                            <div class="row">
+                                <label for="estoqueMaximo" class="form-control-label">Estoque Máximo:</label>
+                                <input [(ngModel)]="produto.estoqueMaximo" type="number" step=".01"
+                                    class="form-control form-control-alternative" id="estoqueMaximo" name="estoqueMaximo"
+                                    placeholder="Estoque Maximo do Produto" #estoqueMaximo="ngModel"
+                                    disabled="{{acesso === 'leitura'? true: false}}">
+                            </div>
+
+                            <div class="row">
+                                <label for="pontoReposicao" class="form-control-label">Ponto de Reposição:</label>
+                                <input [(ngModel)]="produto.pontoReposicao" type="number" step=".01"
+                                    class="form-control form-control-alternative" id="pontoReposicao" name="pontoReposicao"
+                                    placeholder="Ponto de Reposição do Produto" #pontoReposicao="ngModel"
+                                    disabled="{{acesso === 'leitura'? true: false}}">
+                            </div>
+
                             <div class="row text-right">
                                 <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
                                     [disabled]="!form.valid || form.pending || acesso === 'leitura'">

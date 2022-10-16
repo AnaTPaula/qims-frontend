@@ -173,3 +173,12 @@ p {
     padding: 0.1
     rem 1rem; 
 }
+
+.buttonx {
+    padding-top: 1rem;
+}
+
+.iconecolor {
+    color: white;
+    font-size: 36px;
+}

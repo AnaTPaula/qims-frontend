@@ -27,3 +27,11 @@ element.style {
     box-sizing: border-box;
 }
 
+.align-item {
+    padding-top: 5rem;
+}
+
+
+.align-table{
+    padding-top: 1rem;
+}
