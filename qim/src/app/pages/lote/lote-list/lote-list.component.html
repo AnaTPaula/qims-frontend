@@ -1,40 +1,46 @@
-<div class="container">
-  <div class="card list-category shadow">
-    <h5 class="card-header">Lista de Lotes</h5>
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Lotes</th>
-            <th scope="col">Data Entrada</th>
-            <th scope="col" *ngIf="tipoArmazenagem == 'FEFO'">Data Validade</th>
-            <th scope="col">Quantidade</th>
-            <th scope="col"> </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let entity of lotes | paginate: { itemsPerPage: 10, currentPage: paginaAtual }; let i = index">
-            <td><a routerLink="/empresa/{{entity.empresaId}}/lote/update/{{entity.id}}">{{entity.codigoLote}}</a></td>
-            <td>{{convertDate(entity.dataEntrada)}}</td>
-            <td *ngIf="tipoArmazenagem == 'FEFO'">{{convertDate(entity.dataValidade!)}}</td>
-            <td>{{entity.quantidade}}</td>
-            <td>
-              <button type="button" class="btn btn-danger btn-sm ml-1" *ngIf="acesso === 'total' && !entity.associado"
-                (click)="deleteLote(entity)">
-                <i class="fa fa-trash"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <pagination-controls class="radius-style align-style" (pageChange)="paginaAtual = $event" previousLabel="Anterior"
-        nextLabel="Próximo"></pagination-controls>
-    </div>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
-      <span class="alert-inner--text">Um erro ocorreu</span>
-      <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
+<div class="container-fluid mt--7">
+  <div class="row align-item">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h5 class="mb-0">Lista de lotes</h5>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead>
+              <tr>
+                <th scope="col">Lotes</th>
+                <th scope="col">Data Entrada</th>
+                <th scope="col" *ngIf="tipoArmazenagem == 'FEFO'">Data Validade</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let entity of lotes | paginate: { itemsPerPage: 7, currentPage: paginaAtual }; let i = index">
+                <td>{{entity.codigoLote}}</td>
+                <td>{{convertDate(entity.dataEntrada)}}</td>
+                <td *ngIf="tipoArmazenagem == 'FEFO'">{{convertDate(entity.dataValidade!)}}</td>
+                <td>{{entity.quantidade}}</td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm ml-1"
+                    *ngIf="acesso === 'total' && !entity.associado" (click)="deleteLote(entity)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls class="radius-style align-style" (pageChange)="paginaAtual = $event"
+            previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+        </div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+          <span class="alert-inner--text">Um erro ocorreu</span>
+          <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

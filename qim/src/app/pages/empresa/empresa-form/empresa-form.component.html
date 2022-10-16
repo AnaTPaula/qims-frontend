@@ -1,11 +1,4 @@
-<div class="pt-5 pt-lg-8 d-flex align-items-center">
-
-<!--style="min-height: 100px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">     -->
-    
-    <!-- Mask -->
-   <!-- <span class="mask bg-gradient-danger opacity-8"></span>-->
-    <!-- Header container -->
-
+<div class="pt-5 pt-lg-6 d-flex align-items-center">
     <div *ngIf="!isLogado()">
         <div class="ctext-right">
             <button class="btn btn-icon btn-3 btn-warning" type="button" routerLink="/">
@@ -16,7 +9,7 @@
     </div>
 
 </div>
-<div class="container-fluid mt--7">
+<div class="container-fluid mt--7 align-card">
     <div class="row justify-content-center align-items-center">
 
         <div class="col-xl-8 order-xl-1">
@@ -131,12 +124,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" >
-                            <div class="col text-left" *ngIf="isEmpresa()">
-                                <button type="button" class="btn btn-primary my-4" (click)="cancelarConta()">Cancelar conta</button>
+                        <div class="row">
+                            <div class="col-2 text-left">
+                                <a class="btn btn-warning my-4 text-left"
+                                    routerLink='/admin/empresas'>Voltar</a>
                             </div>
 
-                            <div class="col text-right" >
+                            <div  class="col-4"  *ngIf="isEmpresa()">
+                                <button type="button" class="btn btn-primary my-4" (click)="cancelarConta()">Cancelar
+                                    conta</button>
+                            </div>
+
+                            <div class="col text-right">
                                 <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
                                     [disabled]="!form.valid || form.pending">
                             </div>

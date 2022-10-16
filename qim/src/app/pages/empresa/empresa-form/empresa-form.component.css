@@ -1,3 +1,7 @@
 .mousepoint{
     cursor: pointer;
 }
+
+.align-card{
+    padding-top: 2rem;
+}

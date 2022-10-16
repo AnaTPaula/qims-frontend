@@ -35,6 +35,7 @@ import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { OperacaoFormComponent } from './pages/operacao/operacao-form/operacao-form.component';
 import { EstatisticaListComponent } from './pages/estatistica/estatistica-list/estatistica-list.component';
+import { TransferenciaFormComponent } from './pages/operacao/transferencia-form/transferencia-form.component';
 
 
 registerLocaleData(ptBr);
@@ -51,6 +52,7 @@ registerLocaleData(ptBr);
     ProdutoListComponent,
     ProdutoFormComponent,
     OperacaoFormComponent,
+    TransferenciaFormComponent,
     HistoricoListComponent,
     EstatisticaListComponent,
     LoteListComponent,
