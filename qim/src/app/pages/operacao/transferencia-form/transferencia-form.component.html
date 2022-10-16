@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-1">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0">Entrada / Saida</h3>
+                    </div>
+                    <div class="card-body">
+                        <form #form="ngForm">
+                            <div class="row">
+                                <label for="produto" class="form-control-label">Selecione o produto:
+                                    <span class="text-danger"> * </span></label>
+                                <select [(ngModel)]="transferencia.produtoId" class="form-control" name="produto">
+                                    <option value="">-</option>
+                                    <option *ngFor="let produto of produtos" value="{{produto.id}}">
+                                        {{produto.nome}}
+                                    </option>
+                                </select>
+                            </div>
+
+
+                            <div class="row">
+                                <label for="estoqueOrigem" class="form-control-label">Selecione o estoque de origem: 
+                                    <span class="text-danger"> * </span></label>
+                                <select [(ngModel)]="transferencia.estoqueOrigemId" class="form-control" name="estoqueOrigem" disabled="{{acesso === 'leitura'? true:false}}">
+                                    <option value="">-</option>
+                                    <option *ngFor="let estoque of estoquesOrigem" value="{{estoque.id}}">
+                                        {{estoque.nome}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="row">
+                                <label for="estoqueDestino" class="form-control-label">Selecione o estoque de destino: 
+                                    <span class="text-danger"> * </span></label>
+                                <select [(ngModel)]="transferencia.estoqueDestinoId" class="form-control" name="estoqueDestino" disabled="{{acesso === 'leitura'? true:false}}">
+                                    <option value="">-</option>
+                                    <option *ngFor="let estoque of estoquesDestino" value="{{estoque.id}}">
+                                        {{estoque.nome}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="row">
+                                <label for="quantidade" class="form-control-label"> Quantidade: 
+                                    <span class="text-danger"> * </span></label>
+                                <input [(ngModel)]="transferencia.quantidade" type="number"
+                                    class="form-control form-control-alternative" id="quantidade" name="quantidade"
+                                    placeholder="Quantidade" #quantidade="ngModel"
+                                    disabled="{{acesso === 'leitura'? true:false}}" required [maxlength]="50">
+                                <div *ngIf="quantidade.invalid && (quantidade.dirty || quantidade.touched)"
+                                    class="text-danger">
+                                    <div class="alert alert-warning" role="alert"
+                                        *ngIf="quantidade.errors?.['required']">Quantidade é obrigatória.</div>
+                                </div>
+                            </div>
+
+                            <div class="row text">
+                                <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
+                                    [disabled]="!form.valid || form.pending || acesso === 'leitura'">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+                <span class="alert-inner--text">Um erro ocorreu</span>
+                <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="requestSuccess">
+                Operação efetuada com sucesso!
+            </div>
+        </div>
+    </div>
+</div>

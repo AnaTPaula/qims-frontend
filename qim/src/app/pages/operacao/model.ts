@@ -10,3 +10,12 @@ export interface Operacao {
     dataValidade?: Date;
     localizacao?: number;
 }
+
+export interface Transferencia {
+    tipoOperacao: string;
+    empresaId: number;
+    produtoId: any;
+    estoqueOrigemId: any;
+    estoqueDestinoId: any;
+    quantidade: number;
+}
