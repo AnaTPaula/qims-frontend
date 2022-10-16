@@ -6,6 +6,9 @@ export interface Produto {
     unidade: string;
     empresaId: number;
     quantidade?: number;
+    estoqueMaximo?: number;
+    estoqueMinimo?: number;
+    pontoReposicao?: number;
 }
 
 export interface ProdutoEstoque {

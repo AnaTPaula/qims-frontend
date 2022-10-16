@@ -74,14 +74,14 @@
           </li>
         </ul>
 
-        <h6 class="navbar-heading text-muted" *ngIf="getTipo() === 'empresa'">Gestão</h6>
+        <h6 class="navbar-heading text-muted" *ngIf="getTipo() === 'empresa' || getTipo() === 'operador'">Gestão</h6>
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
 
-            <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/estatistica/" class="nav-link" *ngIf="getTipo() === 'empresa'">
+            <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/estatistica/" class="nav-link" *ngIf="getTipo() === 'empresa' || getTipo() === 'operador'">
               <i class="ni ni-sound-wave text-danger "></i>Vizualizar Estatisticas</a>
 
-            <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'empresa'">
+            <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'empresa' || getTipo() === 'operador'">
               <i class="ni ni-chart-bar-32 text-danger "></i>Analisar curva ABC</a>
           </li>
         </ul>
