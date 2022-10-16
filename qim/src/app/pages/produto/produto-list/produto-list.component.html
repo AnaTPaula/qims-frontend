@@ -27,7 +27,7 @@
                 <td>{{entity.unidade}}</td>
                 <td><a routerLink="/empresa/{{entity.empresaId}}/produtos"
                     (click)="mostrarProdutoPorEstoque(entity)">{{entity.quantidade}}</a></td>
-                <td><button class="btn btn-danger btn-sm"
+                <td><button class="btn btn-warning btn-sm"
                     routerLink="/empresa/{{entity.empresaId}}/produto/{{entity.id}}/historico"><i
                       class="material-symbols-outlined">manage_search</i></button></td>
                 <td>

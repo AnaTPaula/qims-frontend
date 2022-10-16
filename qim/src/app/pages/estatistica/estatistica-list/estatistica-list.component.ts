@@ -29,6 +29,8 @@ export class EstatisticaListComponent implements OnInit {
       this.empresaId = params['empresaId'];
       this.produtoId = params['produtoId'];
 
+    },(error: any) => {
+      this.requestFailed = true;
     });
     this.getEstatistica();
   }
@@ -39,6 +41,8 @@ export class EstatisticaListComponent implements OnInit {
         this.estatistica = estatistica;
         this.chartEntrada();
         this.chartSaida();
+      },(error: any) => {
+        this.requestFailed = true;
       });
     }
   }
@@ -62,13 +66,7 @@ export class EstatisticaListComponent implements OnInit {
       labels.push(entrada.nome);
       values.push(entrada.quantidade);
     }
-    var chartEntrada: any = document.getElementById('chart-entrada');
-    /*var ordersChart = new Chart(chartEntrada, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
-    });*/
-   
+    var chartEntrada: any = document.getElementById('chart-entrada');   
     var barColors = ["red", "green", "blue", "orange", "brown"];
     new Chart(chartEntrada, {
       type: 'bar',
@@ -78,7 +76,7 @@ export class EstatisticaListComponent implements OnInit {
           {
             data: values,
             maxBarThickness: 10,
-            backgroundColor: 'rgba(255, 0, 0, 0.1)',
+            backgroundColor: 'rgba(255, 99, 71, 0.9)'
             
           }
         ]
@@ -105,7 +103,7 @@ export class EstatisticaListComponent implements OnInit {
           {
             data: values,
             maxBarThickness: 10,
-            backgroundColor: 'rgba(255, 0, 0, 0.1)'
+            backgroundColor: 'rgba(255, 99, 71, 0.9)'
           }
         ]
       },

@@ -1,5 +1,5 @@
 .radius-style ::ng-deep .ngx-pagination .current {
-    background-color: #f5365c;
+    background-color:  #63605f;
     border-radius: 8px;
 }
 
@@ -11,7 +11,7 @@
 
 .chart {
     position: relative;
-    height: 350px;
+    height: 200px;
 }
 
 element.style {

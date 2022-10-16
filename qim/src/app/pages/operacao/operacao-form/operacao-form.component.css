@@ -1,0 +1,5 @@
+.mat-radio-button {
+    display:inline;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+}

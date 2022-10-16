@@ -36,7 +36,8 @@ import { registerLocaleData } from '@angular/common';
 import { OperacaoFormComponent } from './pages/operacao/operacao-form/operacao-form.component';
 import { EstatisticaListComponent } from './pages/estatistica/estatistica-list/estatistica-list.component';
 import { TransferenciaFormComponent } from './pages/operacao/transferencia-form/transferencia-form.component';
-
+import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -74,15 +75,18 @@ registerLocaleData(ptBr);
     HttpClientModule,
     ComponentsModule,
     NgbModule,
+    MatRadioModule,
     NgxPaginationModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     LoginComponent, 
     CookieService,
     AuthGuardService,
     { provide: LOCALE_ID, useValue: 'pt' },
-    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
+    { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'accent' }}
   ],
   bootstrap: [AppComponent]
 })

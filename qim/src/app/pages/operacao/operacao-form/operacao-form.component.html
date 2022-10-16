@@ -9,12 +9,18 @@
                     <div class="card-body">
                         <form #form="ngForm">
                             <div class="row">
-                                <label for="tipoOperacao" class="form-control-label">Selecione o Tipo de Operação:
+                                <label for="tipoOperacao" class="form-control-label ">Selecione o Tipo de Operação:
                                     <span class="text-danger"> * </span></label>
-                                <select [(ngModel)]="operacao.tipoOperacao" class="form-control" name="tipoOperacao">
-                                    <option value="ENTRADA">Entrada de Produtos</option>
-                                    <option value="SAIDA">Saída de Produtos</option>
-                                </select>
+                            </div>
+                            <div class="row">
+                                <!--RADIO BUTTON-->
+                                <mat-radio-group color="warn" class="mat-radio-button-danger"
+                                    [(ngModel)]="operacao.tipoOperacao" name="tipoOperacao"
+                                    aria-label="Selecione o Tipo de Operação">
+                                    <mat-radio-button value="ENTRADA">Entrada de Produtos</mat-radio-button>
+                                    <mat-radio-button value="SAIDA">Saída de Produtos</mat-radio-button>
+                                </mat-radio-group>
+                                <!--RADIO BUTTON-->
                             </div>
                             <div class="row">
                                 <label for="produto" class="form-control-label">Selecione o produto:
@@ -28,7 +34,7 @@
                             </div>
 
                             <div class="row" *ngIf="operacao.tipoOperacao == 'ENTRADA'">
-                                <label for="codigoLote" class="form-control-label">Codigo do Lote: 
+                                <label for="codigoLote" class="form-control-label">Codigo do Lote:
                                     <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="operacao.codigoLote" type="text"
                                     class="form-control form-control-alternative" id="codigoLote" name="codigoLote"
@@ -45,7 +51,7 @@
                             </div>
 
                             <div class="row">
-                                <label for="estoque" class="form-control-label">Selecione o estoque: 
+                                <label for="estoque" class="form-control-label">Selecione o estoque:
                                     <span class="text-danger"> * </span></label>
                                 <select [(ngModel)]="operacao.estoqueId" class="form-control" name="estoque">
                                     <option value="">-</option>
@@ -57,7 +63,7 @@
 
 
                             <div class="row" *ngIf="operacao.tipoOperacao == 'ENTRADA'">
-                                <label for="dataEntrada" class="form-control-label">Data de Entrada: 
+                                <label for="dataEntrada" class="form-control-label">Data de Entrada:
                                     <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="operacao.dataEntrada" type="date"
                                     class="form-control form-control-alternative" id="dataEntrada" name="dataEntrada"
@@ -85,7 +91,7 @@
                             </div>
 
                             <div class="row">
-                                <label for="quantidade" class="form-control-label"> Quantidade: 
+                                <label for="quantidade" class="form-control-label"> Quantidade:
                                     <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="operacao.quantidade" type="number"
                                     class="form-control form-control-alternative" id="quantidade" name="quantidade"
@@ -100,12 +106,13 @@
 
                             <div class="row">
                                 <div class="col text-left">
-                                    <a class="btn btn-warning my-4 text-left" routerLink='/empresa/:empresaId/estoques'>Voltar</a>
+                                    <a class="btn btn-warning my-4 text-left"
+                                        routerLink='/empresa/:empresaId/estoques'>Voltar</a>
                                 </div>
 
                                 <div class="col text-right">
-                                    <input type="submit" value="Salvar" class="btn btn-primary my-4"
-                                        (click)="save()" [disabled]="!form.valid || form.pending || acesso === 'leitura'">
+                                    <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
+                                        [disabled]="!form.valid || form.pending || acesso === 'leitura'">
                                 </div>
                             </div>
                         </form>

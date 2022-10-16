@@ -3,12 +3,12 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <h5 class="mb-0">Estatisticas</h5>
+          <h5 class="mb-0">Estatísticas</h5>
         </div>
       </div>
       <div class="card-body">
         <div class="row">
-          <div style="width: 18rem;" class="col-xl-3 col-lg-6">
+          <div style="width: 18r em;" class="col-xl-4 col-lg-6">
             <div class="card card-stats mb-4 mb-lg-0">
               <div class="card-body">
                 <div class="row">
@@ -28,7 +28,7 @@
 
           <!--CARD-->
 
-          <div style="width: 18r  em;" class="col-xl-3 col-lg-6">
+          <div style="width: 18r  em;" class="col-xl-4 col-lg-6">
             <div class="card card-stats mb-4 mb-lg-0">
               <div class="card-body">
                 <div class="row">
@@ -48,7 +48,7 @@
 
           <!--CARD -->
 
-          <div style="width: 18r  em;" class="col-xl-3 col-lg-6">
+          <div style="width: 18r  em;" class="col-xl-4 col-lg-6">
             <div class="card card-stats mb-4 mb-lg-0">
               <div class="card-body">
                 <div class="row">
@@ -68,214 +68,207 @@
         </div>
         <!--ROW - CARD -->
 
-          <!-- TABLE - ENTRADA DE MATERIAIS-->
-          <div class="row align-table">
-            <div class="col-xl-5">
-              <div class="card shadow">
-                <div class="card-header bg-transparent">
-                  <div class="row align-items-center">
-                    <div class="col">
-                      <h6 class="text-uppercase text-muted ls-1 mb-1">Top</h6>
-                      <h2 class="mb-0">Entrada de materiais</h2>
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-body">
-                    <div class="chart">
-                      <canvas id="chart-entrada"></canvas>
-                    </div>
+        <!-- TABLE - ENTRADA DE MATERIAIS-->
+        <div class="row align-table">
+          <div class="col-xl-6">
+            <div class="card shadow">
+              <div class="card-header bg-transparent">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h6 class="text-uppercase text-muted ls-1 mb-1">Produtos</h6>
+                    <h2 class="mb-0">Entrada</h2>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- FINISH TABLE-->
-                     
-            <!-- TABLE - SAIDA DE MATERIAIS-->
-
-            <div class="col-xl-5">
-              <div class="card shadow">
-                <div class="card-header bg-transparent">
-                  <div class="row align-items-center">
-                    <div class="col">
-                      <h6 class="text-uppercase text-muted ls-1 mb-1">Top</h6>
-                      <h2 class="mb-0">Saida de materiais</h2>
-                    </div>
-                  </div>
-                </div>
+              <div class="card">
                 <div class="card-body">
                   <div class="chart">
-                    <canvas id="chart-saida" class="chart-canvas"></canvas>
+                    <canvas id="chart-entrada"></canvas>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- FINISH TABLE-->
           </div>
+          <!-- FINISH TABLE-->
 
+          <!-- TABLE - SAIDA DE MATERIAIS-->
 
+          <div class="col-xl-6">
+            <div class="card shadow">
+              <div class="card-header bg-transparent">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h6 class="text-uppercase text-muted ls-1 mb-1">Produtos</h6>
+                    <h2 class="mb-0">Saída</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="chart-saida" class="chart-canvas"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- FINISH TABLE-->
+        </div>
 
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-<!--<div class="container">
-  <div class="card list-category shadow">
-    <h5 class="card-header">Dashboard</h5>
-    <div class="card-body">
-      <div class="row">
-
-      </div>
-
-
-      
-
-      <div class="row">
-        <div class="row mt-5">
+        <!--OPERAÇÕES REALIZADAS-->
+        <div class="row align-table">
           <div class="col-xl-12 mb-12 mb-xl-0">
+            <div class="card shadow">
+              <div class="card-header bg-transparent">
+                <div class="row align-items-center">
+                  <div class="card-header border-0">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <h3 class="mb-0">Últimas operações realizadas</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">Data e Hora</th>
+                          <th scope="col">Operação</th>
+                          <th scope="col">Produto</th>
+                          <th scope="col">Quantidade</th>
+                          <th scope="col">Estoque Origem</th>
+                          <th scope="col">Estoque Destino</th>
+                          <th scope="col">Operador</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let entity of estatistica.historico | paginate: 
+                          { itemsPerPage: 7, currentPage: paginaAtual }; let i = index">
+                          <td>{{convertDate(entity.timestamp)}}</td>
+                          <td>{{entity.operacao}}</td>
+                          <td>{{entity.produto}}</td>
+                          <td>{{entity.quantidade}}</td>
+                          <td>{{entity.origem}}</td>
+                          <td>{{entity.destino? entity.destino: '-'}}</td>
+                          <td>{{entity.operador}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <pagination-controls class="radius-style align-style" (pageChange)="paginaAtual = $event"
+                      previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ULTIMAS OPERAÇÕES REALIZADAS-->
+
+        <div class="row align-table">
+          <!--1º CARD -->
+          <div class="col-xl-6">
             <div class="card shadow">
               <div class="card-header border-0">
                 <div class="row align-items-center">
                   <div class="col">
-                    <h3 class="mb-0">Ultimas operações realizadas</h3>
+                    <h3 class="mb-0">Estoque mínimo</h3>
                   </div>
                 </div>
               </div>
               <div class="table-responsive">
                 <table class="table align-items-center table-flush">
-                   <thead class="thead-light">
+                  <thead class="thead-light">
                     <tr>
-                      <th scope="col">Data e Hora</th>
-                      <th scope="col">Operação</th>
                       <th scope="col">Produto</th>
                       <th scope="col">Quantidade</th>
-                      <th scope="col">Estoque Origem</th>
-                      <th scope="col">Estoque Destino</th>
-                      <th scope="col">Operador</th>
+                      <th scope="col">Mínino</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let entity of estatistica.historico">
-                      <td>{{convertDate(entity.timestamp)}}</td>
-                      <td>{{entity.operacao}}</td>
+                    <tr *ngFor="let entity of estatistica.estoqueMinimo">
                       <td>{{entity.produto}}</td>
-                      <td>{{entity.quantidade}}</td>
-                      <td>{{entity.origem}}</td>
-                      <td>{{entity.destino? entity.destino: '-'}}</td>
-                      <td>{{entity.operador}}</td>
+                      <td class="text-danger">{{entity.quantidade}}</td>
+                      <td>{{entity.minimo}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+          <!--1º CARD -->
 
-      
-      <div class="row">
-        <div class="col-xl-4">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">Produtos com estoque mínimo</h3>
+          <!--2º CARD-->
+          <div class="col-xl-6">
+            <div class="card shadow">
+              <div class="card-header border-0">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h3 class="mb-0">Ponto de reposição</h3>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Produto</th>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Mínino</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let entity of estatistica.estoqueMinimo">
-                    <td>{{entity.produto}}</td>
-                    <td class="text-danger">{{entity.quantidade}}</td>
-                    <td>{{entity.minimo}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-xl-4">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">Produtos no ponto de reposição</h3>
-                </div>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Produto</th>
+                      <th scope="col">Quantidade</th>
+                      <th scope="col">Reposição</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let entity of estatistica.pontoReposicao">
+                      <td>{{entity.produto}}</td>
+                      <td class="text-info">{{entity.quantidade}}</td>
+                      <td>{{entity.reposicao}}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-            <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Produto</th>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Reposição</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let entity of estatistica.pontoReposicao">
-                    <td>{{entity.produto}}</td>
-                    <td class="text-info">{{entity.quantidade}}</td>
-                    <td>{{entity.reposicao}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
+          <!--2º CARD-->
         </div>
 
-        <div class="col-xl-4">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">Produtos com estoque máximo</h3>
+        <div class="row align-table">
+          <!--3º CARD-->
+          <div class="col-xl-6">
+            <div class="card shadow">
+              <div class="card-header border-0">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h3 class="mb-0">Estoque máximo</h3>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Produto</th>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Máximo</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let entity of estatistica.estoqueMaximo">
-                    <td>{{entity.produto}}</td>
-                    <td class="text-warning">{{entity.quantidade}}</td>
-                    <td>{{entity.maximo}}</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Produto</th>
+                      <th scope="col">Quantidade</th>
+                      <th scope="col">Máximo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let entity of estatistica.estoqueMaximo">
+                      <td>{{entity.produto}}</td>
+                      <td class="text-warning">{{entity.quantidade}}</td>
+                      <td>{{entity.maximo}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
+          <!--3º CARD-->
         </div>
       </div>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+        <span class="alert-inner--text">Um erro ocorreu</span>
+        <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
     </div>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
-      <span class="alert-inner--text">Um erro ocorreu</span>
-      <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
-    </div>
+
   </div>
 </div>
--->
