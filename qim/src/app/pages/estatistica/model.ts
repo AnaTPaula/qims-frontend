@@ -42,3 +42,12 @@ export interface Estatistica {
     entradaProduto: OperacaoProduto[];
     saidaProduto: OperacaoProduto[];
 }
+
+export interface CurvaAbc {
+    id: number;
+    empresaId: number;
+    nomeProduto: string;
+    acumulado: number;
+    valorPorcentagem: number;
+    categoria: string;
+}

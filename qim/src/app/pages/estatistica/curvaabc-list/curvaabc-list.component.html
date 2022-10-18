@@ -1,0 +1,42 @@
+<div class="container-fluid mt--7">
+  <div class="row align-item">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h5 class="mb-0">Curva ABC</h5>
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- TABLE - CURVA ABC-->
+        <div class="row align-table">
+          <div class="col-xl-6">
+            <div class="card shadow">
+              <div class="card-header bg-transparent">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h6 class="text-uppercase text-muted ls-1 mb-1">Produtos</h6>
+                    <h2 class="mb-0">Classificação (%)</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <div class="chart">
+                    <canvas id="chart-curvaabc"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+        <span class="alert-inner--text">Um erro ocorreu</span>
+        <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
