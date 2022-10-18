@@ -29,7 +29,7 @@ export class EstatisticaListComponent implements OnInit {
       this.empresaId = params['empresaId'];
       this.produtoId = params['produtoId'];
 
-    },(error: any) => {
+    }, (error: any) => {
       this.requestFailed = true;
     });
     this.getEstatistica();
@@ -41,7 +41,7 @@ export class EstatisticaListComponent implements OnInit {
         this.estatistica = estatistica;
         this.chartEntrada();
         this.chartSaida();
-      },(error: any) => {
+      }, (error: any) => {
         this.requestFailed = true;
       });
     }
@@ -66,8 +66,7 @@ export class EstatisticaListComponent implements OnInit {
       labels.push(entrada.nome);
       values.push(entrada.quantidade);
     }
-    var chartEntrada: any = document.getElementById('chart-entrada');   
-    var barColors = ["red", "green", "blue", "orange", "brown"];
+    var chartEntrada: any = document.getElementById('chart-entrada');
     new Chart(chartEntrada, {
       type: 'bar',
       data: {
@@ -75,14 +74,21 @@ export class EstatisticaListComponent implements OnInit {
         datasets: [
           {
             data: values,
-            maxBarThickness: 10,
+            maxBarThickness: 20,
             backgroundColor: 'rgba(255, 99, 71, 0.9)'
-            
           }
         ]
       },
       options: {
-        legend: { display: false }
+        legend: { display: false },
+        scales: {
+          yAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
       }
     })
   }
@@ -102,13 +108,21 @@ export class EstatisticaListComponent implements OnInit {
         datasets: [
           {
             data: values,
-            maxBarThickness: 10,
+            maxBarThickness: 20,
             backgroundColor: 'rgba(255, 99, 71, 0.9)'
           }
         ]
       },
       options: {
         legend: { display: false },
+        scales: {
+          yAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
       }
     })
   }

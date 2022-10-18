@@ -5,3 +5,11 @@
 .align-card{
     padding-top: 2rem;
 }
+
+.link-term {
+    position: relative;
+    top: 2px;
+    left: 2px;
+    color: #5e72e4;
+    cursor: pointer;
+}

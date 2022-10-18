@@ -6,6 +6,7 @@ import { EmpresaFormService } from './empresa-form.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { switchMap, take, EMPTY } from 'rxjs';
 import { ConfirmModalComponent } from 'src/app/shared/confirm-modal/confirm-modal.component';
+import { TextModalComponent } from 'src/app/shared/text-modal/text-modal.component';
 
 @Component({
   selector: 'app-empresa-form',
@@ -128,6 +129,19 @@ export class EmpresaFormComponent implements OnInit {
     bsModalRef.content.confirm = confirm;
     bsModalRef.content.buttomClass = buttomClass;
     return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
+  }
+
+  mostrarTermos() {
+    this.showTermos(
+      'Termos de uso',
+      'blablabla');
+  }
+
+  showTermos(title: string, text: string) {
+    const bsModalRef: BsModalRef = this.modalService.show(TextModalComponent);
+    bsModalRef.content.title = title;
+    bsModalRef.content.text = text;
+    return (<TextModalComponent>bsModalRef.content);
   }
 
   

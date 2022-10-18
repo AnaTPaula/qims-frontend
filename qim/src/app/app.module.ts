@@ -27,6 +27,7 @@ import { AdmFormComponent } from './pages/administrador/adm-form/adm-form.compon
 import { LoginComponent } from './pages/login/login.component';
 import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
 import { ListModalComponent } from './shared/list-modal/list-modal.component';
+import { TextModalComponent } from './shared/text-modal/text-modal.component';
 import { HomeComponent } from './pages/home/home/home.component';
 import { ComponentsModule } from './components/components.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -38,6 +39,7 @@ import { EstatisticaListComponent } from './pages/estatistica/estatistica-list/e
 import { TransferenciaFormComponent } from './pages/operacao/transferencia-form/transferencia-form.component';
 import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { CurvaAbcListComponent } from './pages/estatistica/curvaabc-list/curvaabc-list.component';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -56,11 +58,13 @@ registerLocaleData(ptBr);
     TransferenciaFormComponent,
     HistoricoListComponent,
     EstatisticaListComponent,
+    CurvaAbcListComponent,
     LoteListComponent,
     LoteFormComponent,
     LoginComponent,
     ConfirmModalComponent,
     ListModalComponent,
+    TextModalComponent,
     UniqueEstoqueDirective,
     UniqueOperadorDirective,
     UniqueEmpresaDirective,

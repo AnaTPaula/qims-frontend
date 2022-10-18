@@ -70,7 +70,7 @@
               *ngIf="getTipo() === 'empresa'">
               <i class="ni ni-sound-wave text-danger "></i>Visualizar Estatísticas</a>
 
-            <a routerLinkActive="active" routerLink="#" class="nav-link" *ngIf="getTipo() === 'empresa'">
+            <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/curvaabc/" class="nav-link" *ngIf="getTipo() === 'empresa'">
               <i class="ni ni-chart-bar-32 text-danger "></i>Analisar curva ABC</a>
           </li>
         </ul>

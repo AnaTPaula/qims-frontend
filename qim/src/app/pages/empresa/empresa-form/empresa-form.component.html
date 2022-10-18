@@ -112,7 +112,10 @@
                                         name="aceiteTermosUso" #aceiteTermosUso="ngModel" required
                                         class="custom-control-input" id="customCheckRegister" type="checkbox">
                                     <label class="custom-control-label" for="customCheckRegister">
-                                        <span class="text-muted">Eu aceito os <a href="#!">Termos de uso</a></span>
+                                        <span class="text-muted">Eu aceito os </span>
+                                    </label>
+                                    <label class="link-term">
+                                        <span (click)="mostrarTermos()">Termos de uso</span>
                                     </label>
 
                                     <div *ngIf="aceiteTermosUso.invalid && (aceiteTermosUso.dirty || aceiteTermosUso.touched)"
