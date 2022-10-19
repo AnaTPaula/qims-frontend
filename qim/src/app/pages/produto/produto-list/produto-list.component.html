@@ -43,7 +43,7 @@
             previousLabel="Anterior" nextLabel="Próximo" id="produtos"></pagination-controls>
         </div>
         <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
-          <span class="alert-inner--text">Um erro ocorreu</span>
+          <span class="alert-inner--text">{{errorMsg? errorMsg: 'Um erro ocorreu'}}</span>
           <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>

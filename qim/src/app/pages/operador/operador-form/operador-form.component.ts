@@ -17,6 +17,7 @@ export class OperadorFormComponent implements OnInit {
   requestFailed: boolean = false;
   requestSuccess: boolean = false;
   tipoUsuario: string = '';
+  errorMsg: string | undefined;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -31,6 +32,7 @@ export class OperadorFormComponent implements OnInit {
       this.operadorId = params['id'];
     } ,(error: any) => {
       this.requestFailed = true;
+      this.errorMsg = error;
     });
     this.tipoUsuario = this.cookieService.get('tipo')
     if( this.empresaId && this.operadorId && this.tipoUsuario !== 'operador') {
@@ -38,6 +40,7 @@ export class OperadorFormComponent implements OnInit {
         this.operador = operador;
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
     });
     } else {
       this.operador.tipoAcesso = 'total'
@@ -62,6 +65,7 @@ export class OperadorFormComponent implements OnInit {
             2000);
         }, (error: any) => {
           this.requestFailed = true;
+          this.errorMsg = error;
         })
       } else {
         const operadorForCreate = {
@@ -78,6 +82,7 @@ export class OperadorFormComponent implements OnInit {
             2000);
         }, (error: any) => {
           this.requestFailed = true;
+          this.errorMsg = error;
       })
       }
     } else{
@@ -94,6 +99,7 @@ export class OperadorFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
     })
       
     }
@@ -105,6 +111,7 @@ export class OperadorFormComponent implements OnInit {
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 
 

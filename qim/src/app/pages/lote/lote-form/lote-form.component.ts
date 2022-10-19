@@ -16,6 +16,7 @@ export class LoteFormComponent implements OnInit {
   acesso = '';
   requestFailed: boolean = false;
   requestSuccess: boolean = false;
+  errorMsg: string | undefined;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,6 +31,7 @@ export class LoteFormComponent implements OnInit {
       this.loteId = params['id'];
     }, (error: any) => {
       this.requestFailed = true;
+      this.errorMsg = error;
     });
   }
 
@@ -51,6 +53,7 @@ export class LoteFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       })
     } else {
       const loteForCreate = {
@@ -68,11 +71,13 @@ export class LoteFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       })
     }
   }
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 }

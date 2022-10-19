@@ -16,6 +16,7 @@ export class ProdutoFormComponent implements OnInit {
   acesso = '';
   requestFailed: boolean = false;
   requestSuccess: boolean = false;
+  errorMsg: string | undefined;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,12 +31,14 @@ export class ProdutoFormComponent implements OnInit {
       this.empresaId = params['empresaId'];
     }, (error: any) => {
       this.requestFailed = true;
+      this.errorMsg = error;
     });
     if (this.produtoId && this.empresaId) {
       this.produtoService.getProduto(this.produtoId, this.empresaId).subscribe((produto: Produto) => {
         this.produto = produto;
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
     });
     }
     this.acesso = this.cookieService.get('acesso');
@@ -62,6 +65,7 @@ export class ProdutoFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       })
     } else {
       const produtoForCreate = {
@@ -82,6 +86,7 @@ export class ProdutoFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
 
       })
     }
@@ -99,6 +104,7 @@ export class ProdutoFormComponent implements OnInit {
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 
 }

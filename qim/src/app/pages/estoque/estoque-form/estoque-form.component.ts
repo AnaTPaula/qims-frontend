@@ -16,6 +16,7 @@ export class EstoqueFormComponent implements OnInit {
   acesso: string | undefined;
   requestFailed: boolean = false;
   requestSuccess: boolean = false;
+  errorMsg: string | undefined;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,6 +35,7 @@ export class EstoqueFormComponent implements OnInit {
         this.Estoque = Estoque;
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
     }
     this.acesso = this.cookieService.get('acesso');
@@ -55,6 +57,7 @@ export class EstoqueFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       })
     } else {
       const EstoqueForCreate = {
@@ -70,11 +73,13 @@ export class EstoqueFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       })
     }
   }
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 }

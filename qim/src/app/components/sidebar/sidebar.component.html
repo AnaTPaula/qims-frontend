@@ -47,6 +47,9 @@
         </ul>
       </div>
       <!--EMPRESA-->
+      <div *ngIf="getTipo() === 'empresa' && situacao === 'EM_ANALISE'">
+        <h6 class="navbar-heading text-warning">Conta em análise</h6>
+      </div>
       <div *ngIf="getTipo() === 'empresa'">
         <h6 class="navbar-heading text-muted">Operador</h6>
         <ul class="navbar-nav mb-md-3">

@@ -24,6 +24,7 @@ export class TransferenciaFormComponent implements OnInit {
   acesso = '';
   requestFailed: boolean = false;
   requestSuccess: boolean = false;
+  errorMsg: string | undefined;
 
 
   constructor(
@@ -40,6 +41,7 @@ export class TransferenciaFormComponent implements OnInit {
       this.empresaId = params['empresaId'];
     } ,(error: any) => {
       this.requestFailed = true;
+      this.errorMsg = error;
     });
     this.getProdutos();
     this.getEstoques();
@@ -52,6 +54,7 @@ export class TransferenciaFormComponent implements OnInit {
         this.produtos = produtos;
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
         
       });
     }
@@ -64,6 +67,7 @@ export class TransferenciaFormComponent implements OnInit {
         this.estoquesDestino = estoques;
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
         
       })
     }
@@ -86,12 +90,14 @@ export class TransferenciaFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
         
       });
   }
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 }
 

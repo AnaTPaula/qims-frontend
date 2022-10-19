@@ -19,6 +19,7 @@ export class ProdutoListComponent implements OnInit {
   acesso: string | undefined;
   paginaAtual = 1;
   requestFailed: boolean = false;
+  errorMsg: string | undefined;
 
   constructor(
     private produtoService: ProdutoListService,
@@ -38,6 +39,7 @@ export class ProdutoListComponent implements OnInit {
         this.produtos = produtos;
       },(error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
     }
   }
@@ -56,6 +58,7 @@ export class ProdutoListComponent implements OnInit {
         this.getProdutos();
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
     });
   }
 
@@ -74,6 +77,7 @@ export class ProdutoListComponent implements OnInit {
         items);
     },(error: any) => {
       this.requestFailed = true;
+      this.errorMsg = error;
     });
   }
 
@@ -97,5 +101,6 @@ export class ProdutoListComponent implements OnInit {
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 }

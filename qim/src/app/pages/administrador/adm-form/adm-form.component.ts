@@ -14,6 +14,7 @@ export class AdmFormComponent implements OnInit {
   viewPassword: boolean = false;
   requestFailed: boolean = false;
   requestSuccess: boolean = false;
+  errorMsg: string | undefined;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -28,6 +29,7 @@ export class AdmFormComponent implements OnInit {
         this.adm = adm;
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
     }
   }
@@ -47,6 +49,7 @@ export class AdmFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       })
     } else {
       const admForCreate = {
@@ -61,6 +64,7 @@ export class AdmFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       })
     }
   }
@@ -71,5 +75,6 @@ export class AdmFormComponent implements OnInit {
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 }

@@ -17,6 +17,7 @@ export class EstatisticaListComponent implements OnInit {
   estatistica: Estatistica = {} as Estatistica;
   paginaAtual = 1;
   requestFailed: boolean = false;
+  errorMsg: string | undefined;
 
   constructor(
     private estatisticaService: EstatisticaListService,
@@ -31,6 +32,7 @@ export class EstatisticaListComponent implements OnInit {
 
     }, (error: any) => {
       this.requestFailed = true;
+      this.errorMsg = error;
     });
     this.getEstatistica();
   }
@@ -43,6 +45,7 @@ export class EstatisticaListComponent implements OnInit {
         this.chartSaida();
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
     }
   }
@@ -57,6 +60,7 @@ export class EstatisticaListComponent implements OnInit {
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 
   chartEntrada() {

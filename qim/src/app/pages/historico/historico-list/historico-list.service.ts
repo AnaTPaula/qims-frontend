@@ -37,9 +37,13 @@ export class HistoricoListService {
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
+      errorMessage = '';
     } else {
-      errorMessage = `Código do erro: ${error.status}, mensagem: ${error.message}`;
+      if (error.error.msg != undefined){
+        errorMessage = `${error.error.msg}`;
+      } else {
+        errorMessage = '';
+      }
     }
     console.log(errorMessage);
     return throwError(() => errorMessage);

@@ -19,6 +19,7 @@ export class OperadorListComponent implements OnInit {
   situacao: string | undefined;
   paginaAtual = 1;
   requestFailed: boolean = false;
+  errorMsg: string | undefined;
 
   constructor(
     private operadorService: OperadorListService,
@@ -38,6 +39,7 @@ export class OperadorListComponent implements OnInit {
         this.operadores= operadores;
       },(error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
     }
   }
@@ -76,6 +78,7 @@ export class OperadorListComponent implements OnInit {
         this.getOperadores();
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
     });
   }
 
@@ -91,6 +94,7 @@ export class OperadorListComponent implements OnInit {
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 
 }
