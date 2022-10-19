@@ -45,7 +45,7 @@
                                         Senha é obrigatório.</div>
                                 </div>
                             </div>
-                            <div class="row" *nfIf="tipoUsuario !== 'operador'">
+                            <div class="row" *ngIf="tipoUsuario !== 'operador'">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="tipoAcesso" class="form-control-label">Escolha o tipo de acesso:

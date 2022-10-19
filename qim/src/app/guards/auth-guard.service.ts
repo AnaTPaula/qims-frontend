@@ -33,12 +33,15 @@ export class AuthGuardService implements CanActivate {
           return false
         }
       } else if (tipo === 'operador') {
+        const acesso = this.cookieService.get('acesso');
         if (state.url.includes('estoque') 
         || state.url.includes('historico') 
         || state.url.includes('produto') 
         || state.url.includes('lote')
         || state.url.includes('operacao')
         || state.url.includes('transferencia')
+        || (state.url.includes('estatistica') && acesso === 'total')
+        || (state.url.includes('curvaabc') && acesso === 'total')
         || state.url.includes('operador/update')){
           return true;
         } else {

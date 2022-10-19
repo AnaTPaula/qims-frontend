@@ -37,6 +37,10 @@ export class SidebarComponent implements OnInit {
     }
   }
 
+  isOperadorAcessoTotal() {
+    return this.getTipo() == 'operador' && this.cookieService.get('acesso') == 'total';
+  }
+
   getId() {
     return this.cookieService.get('id');
   }
