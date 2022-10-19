@@ -4,7 +4,7 @@
             <div class="card-header bg-white border-1">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h3 class="mb-0">Entrada / Saida</h3>
+                        <h3 class="mb-0">Entrada / Saída</h3>
                     </div>
                     <div class="card-body">
                         <form #form="ngForm">
@@ -120,7 +120,7 @@
                 </div>
             </div>
             <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
-                <span class="alert-inner--text">Um erro ocorreu</span>
+                <span class="alert-inner--text">{{errorMsg? errorMsg: 'Um erro ocorreu'}}</span>
                 <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>

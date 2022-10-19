@@ -16,6 +16,7 @@ export class EmpresaListComponent implements OnInit {
   tipo: string | undefined;
   paginaAtual = 1;
   requestFailed: boolean = false;
+  errorMsg: string | undefined;
 
   constructor(
     private empresaListService: EmpresaListService,
@@ -32,6 +33,7 @@ export class EmpresaListComponent implements OnInit {
       this.empresas = empresas;
     },(error: any) => {
       this.requestFailed = true;
+      this.errorMsg = error;
     }
     );
   }
@@ -59,6 +61,7 @@ export class EmpresaListComponent implements OnInit {
         this.getEmpresas();
       },(error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
   }
 
@@ -83,6 +86,7 @@ export class EmpresaListComponent implements OnInit {
         this.getEmpresas();
       },(error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
   }
 
@@ -107,6 +111,7 @@ export class EmpresaListComponent implements OnInit {
         this.getEmpresas();
       },(error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
   }
 
@@ -122,6 +127,7 @@ export class EmpresaListComponent implements OnInit {
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 
 }

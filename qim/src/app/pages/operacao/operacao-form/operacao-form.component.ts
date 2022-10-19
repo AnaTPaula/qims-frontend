@@ -24,6 +24,7 @@ export class OperacaoFormComponent implements OnInit {
   acesso = '';
   requestFailed: boolean = false;
   requestSuccess: boolean = false;
+  errorMsg: string | undefined;
 
 
   constructor(
@@ -41,6 +42,7 @@ export class OperacaoFormComponent implements OnInit {
       this.empresaId = params['empresaId'];
     } ,(error: any) => {
       this.requestFailed = true;
+      this.errorMsg = error;
     });
     this.getProdutos();
     this.getEstoques();
@@ -54,6 +56,7 @@ export class OperacaoFormComponent implements OnInit {
         this.produtos = produtos;
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
         
       });
     }
@@ -65,6 +68,7 @@ export class OperacaoFormComponent implements OnInit {
         this.estoques = estoques;
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
         
       })
     }
@@ -101,6 +105,7 @@ export class OperacaoFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
         })
       })
 
@@ -120,6 +125,7 @@ export class OperacaoFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
         
       })
     }
@@ -127,6 +133,7 @@ export class OperacaoFormComponent implements OnInit {
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 }
 

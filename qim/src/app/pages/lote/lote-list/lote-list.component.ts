@@ -19,6 +19,7 @@ export class LoteListComponent implements OnInit {
   tipoArmazenagem: string = '';
   paginaAtual = 1;
   requestFailed: boolean = false;
+  errorMsg: string | undefined;
 
   constructor(
     private loteService: LoteListService,
@@ -39,6 +40,7 @@ export class LoteListComponent implements OnInit {
         this.lotes = lotes;
       },(error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
     }
   }
@@ -78,6 +80,7 @@ export class LoteListComponent implements OnInit {
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 
 }

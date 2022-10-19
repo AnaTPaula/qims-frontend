@@ -28,7 +28,7 @@ export class LoginService {
      if(error.error instanceof ErrorEvent){
         errorMessage = error.error.message;
      } else{
-       errorMessage = `Código do erro: ${error.status}, mensagem: ${error.message}`;
+       errorMessage = `${error.error.msg}`;
      }
      console.log(errorMessage);
      return throwError(() => errorMessage);

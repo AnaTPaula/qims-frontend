@@ -18,6 +18,7 @@ export class HistoricoListComponent implements OnInit {
   historico: Historico[] = [];
   paginaAtual = 1;
   requestFailed: boolean = false;
+  errorMsg: string | undefined;
   
   constructor(
     private historicoService: HistoricoListService,
@@ -38,6 +39,9 @@ export class HistoricoListComponent implements OnInit {
     if (this.empresaId && this.produtoId){
       this.historicoService.getHistorico(this.empresaId, this.produtoId).subscribe((historico: Historico[]) => {
         this.historico= historico;
+      },(error: any) => {
+        this.requestFailed = true;
+        this.errorMsg = error;
       });
     }
   }
@@ -52,6 +56,7 @@ export class HistoricoListComponent implements OnInit {
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 
 }

@@ -19,6 +19,7 @@ export class EmpresaFormComponent implements OnInit {
   viewPassword: boolean = false;
   requestFailed: boolean = false;
   requestSuccess: boolean = false;
+  errorMsg: string | undefined;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -35,6 +36,7 @@ export class EmpresaFormComponent implements OnInit {
         this.empresa = empresa;
       },(error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
     } else {
       this.empresa.tipoArmazenagem = 'FIFO';
@@ -61,6 +63,7 @@ export class EmpresaFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       })
     } else {
       const empresaForCreate = {
@@ -78,6 +81,7 @@ export class EmpresaFormComponent implements OnInit {
           2000);
       }, (error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
     })
     }
   }
@@ -100,6 +104,7 @@ export class EmpresaFormComponent implements OnInit {
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 
   cancelarConta() {
@@ -118,6 +123,7 @@ export class EmpresaFormComponent implements OnInit {
         this.router.navigate(['/']);
       },(error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
   }
 

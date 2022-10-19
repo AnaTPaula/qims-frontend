@@ -19,6 +19,7 @@ export class EstoqueListComponent implements OnInit {
   acesso: string | undefined;
   paginaAtual = 1;
   requestFailed: boolean = false;
+  errorMsg: string | undefined;
  
   constructor(
     private estoqueService: EstoqueListService,
@@ -38,6 +39,7 @@ export class EstoqueListComponent implements OnInit {
         this.estoques = estoques;
       },(error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       }
       );
     }
@@ -58,6 +60,7 @@ export class EstoqueListComponent implements OnInit {
         items);
     },(error: any) => {
       this.requestFailed = true;
+      this.errorMsg = error;
     });
   }
 
@@ -75,6 +78,7 @@ export class EstoqueListComponent implements OnInit {
         this.getEstoques();
       },(error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
   }
 
@@ -98,6 +102,7 @@ export class EstoqueListComponent implements OnInit {
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 
 }

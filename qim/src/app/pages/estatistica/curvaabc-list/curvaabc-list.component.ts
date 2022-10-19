@@ -15,6 +15,7 @@ export class CurvaAbcListComponent implements OnInit {
   curvaabc: CurvaAbc [] = [];
   paginaAtual = 1;
   requestFailed: boolean = false;
+  errorMsg: string | undefined;
 
   constructor(
     private curvaabcService: CurvaAbcListService,
@@ -27,6 +28,7 @@ export class CurvaAbcListComponent implements OnInit {
 
     },(error: any) => {
       this.requestFailed = true;
+      this.errorMsg = error;
     });
     this.getCurvaAbc();
   }
@@ -38,22 +40,26 @@ export class CurvaAbcListComponent implements OnInit {
         this.chartCurvaAbc();
       },(error: any) => {
         this.requestFailed = true;
+        this.errorMsg = error;
       });
     }
   }
 
   checkError() {
     this.requestFailed = false;
+    this.errorMsg = undefined;
   }
 
   chartCurvaAbc() {
     let labels = [];
     let valuesPorcento = [];
     let valuesItem = [];
+    let colors = []
     for (let entrada of this.curvaabc) {
       labels.push(entrada.nomeProduto + '(' + entrada.categoria + ')');
       valuesPorcento.push(entrada.acumulado);
       valuesItem.push(entrada.valorPorcentagem);
+      colors.push(this.definirCor(entrada.categoria));
     }
     var chartEntrada: any = document.getElementById('chart-curvaabc');
     new Chart(chartEntrada, {
@@ -63,7 +69,7 @@ export class CurvaAbcListComponent implements OnInit {
         datasets: [
           {
             data: valuesItem,
-            backgroundColor: 'rgba(255, 99, 71, 0.9)',
+            backgroundColor: colors,//'rgba(255, 99, 71, 0.9)',
             borderColor: 'rgba(255, 99, 71, 0.9)',
             order: 1
           },
@@ -71,6 +77,7 @@ export class CurvaAbcListComponent implements OnInit {
             data: valuesPorcento,
             type: 'line',
             borderColor: 'rgba(255, 99, 71, 0.9)',
+            backgroundColor: 'rgba(255, 255, 255, 0)',
             order: 2
           }
         ]
@@ -88,4 +95,15 @@ export class CurvaAbcListComponent implements OnInit {
       }
     })
   }
+
+  definirCor(categoria: string) {
+    if (categoria === 'A') {
+      return 'rgba(255, 99, 71, 0.9)'
+    } else if (categoria === 'B') {
+      return 'rgba(255, 120, 100, 0.9)'
+    } else {
+      return 'rgba(255, 130, 150, 0.9)'
+    }
+  }
+
 }
