@@ -6,7 +6,7 @@
             <div class="card-header bg-white border-1">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h3 class="mb-0">Criar Operador</h3>
+                        <h3 class="mb-0">{{operadorId? 'Alterar Operador': 'Criar Operador'}}</h3>
                     </div>
                     <div class="card-body">
                         <form #form="ngForm">
@@ -45,7 +45,7 @@
                                         Senha é obrigatório.</div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" *nfIf="tipoUsuario !== 'operador'">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="tipoAcesso" class="form-control-label">Escolha o tipo de acesso:

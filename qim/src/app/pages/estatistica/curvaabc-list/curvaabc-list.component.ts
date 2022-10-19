@@ -77,6 +77,7 @@ export class CurvaAbcListComponent implements OnInit {
             data: valuesPorcento,
             type: 'line',
             borderColor: 'rgba(255, 99, 71, 0.9)',
+            backgroundColor: 'rgba(255, 255, 255, 0)',
             order: 2
           }
         ]

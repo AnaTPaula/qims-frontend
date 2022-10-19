@@ -4,7 +4,7 @@
             <div class="card-header bg-white border-1">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h3 class="mb-0">Criar Produto</h3>
+                        <h3 class="mb-0">{{produtoId? 'Alterar Produto': 'Criar Produto'}}</h3>
                     </div>
                     <div class="card-body">
                         <form #form="ngForm">
