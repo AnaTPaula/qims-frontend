@@ -1,4 +1,5 @@
 export interface Historico {
+    historicoId: number;
     operador: string;
     nomeProduto: string ;
     estoque: string;
@@ -7,4 +8,11 @@ export interface Historico {
     empresaId: number;
     operacao: string;
     dataHora: number;
+}
+
+
+export interface Estorno {
+    tipoOperacao: string;
+    historicoId: number;
+    empresaId: number;
 }

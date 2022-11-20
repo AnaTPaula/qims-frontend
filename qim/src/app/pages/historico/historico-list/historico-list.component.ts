@@ -4,7 +4,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CookieService } from 'ngx-cookie-service';
 import { EMPTY, switchMap, take } from 'rxjs';
 import { ConfirmModalComponent } from 'src/app/shared/confirm-modal/confirm-modal.component';
-import { Historico } from '../model';
+import { Historico, Estorno } from '../model';
 import { HistoricoListService } from './historico-list.service';
 
 @Component({
@@ -52,6 +52,56 @@ export class HistoricoListComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  reverseOperacao(entity: Historico) {
+    const estorno = {
+      'historicoId': entity.historicoId,
+      'tipoOperacao': 'ESTORNO',
+      'empresaId': this.empresaId
+    } as Estorno;
+    const result$ = this.showConfirm(
+      'Estornar Operação',
+      'Tem certeza que deseja estornar esta operação?',
+      'Cancelar',
+      'Estornar');
+    result$?.asObservable()
+      .pipe(
+        take(1),
+        switchMap(response => response ? this.historicoService.createEstorno(estorno) : EMPTY)
+      ).subscribe(() => {
+        this.getHistorico();
+      },(error: any) => {
+        this.requestFailed = true;
+        this.errorMsg = error;
+      });
+    
+  }
+
+  getOperacao(tipo: string) {
+    if(tipo === 'TRANSFERENCIA') {
+      return 'Transferência';
+    } else if (tipo === 'SAIDA') {
+      return 'Saída';
+    } else if (tipo === 'ENTRADA') {
+      return 'Entrada';
+    }else if (tipo === 'ESTORNO_ENTRADA') {
+      return 'Estorno de Entrada';
+    } else if (tipo === 'ESTORNO_SAIDA') {
+      return 'Estorno de Saída';
+    } else {
+      return tipo;
+    }
+  }
+
+  showConfirm(title: string, body: string, cancel: string, confirm: string) {
+    const bsModalRef: BsModalRef = this.modalService.show(ConfirmModalComponent);
+    bsModalRef.content.title = title;
+    bsModalRef.content.body = body;
+    bsModalRef.content.cancel = cancel;
+    bsModalRef.content.confirm = confirm;
+    bsModalRef.content.buttomClass = 'btn-danger';
+    return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
   }
 
   checkError() {
