@@ -19,6 +19,7 @@ import { EstatisticaListComponent } from './pages/estatistica/estatistica-list/e
 import { OperacaoFormComponent } from './pages/operacao/operacao-form/operacao-form.component';
 import { TransferenciaFormComponent } from './pages/operacao/transferencia-form/transferencia-form.component';
 import { CurvaAbcListComponent } from './pages/estatistica/curvaabc-list/curvaabc-list.component';
+import { RelatorioListComponent } from './pages/relatorio/relatorio-list/relatorio-list.component';
 
 const routes: Routes = [
   {path: 'admin/empresas', component: EmpresaListComponent, canActivate: [AuthGuardService]},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'empresa/:empresaId/lotes', component: LoteListComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/lote/create', component: LoteFormComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/produto/:produtoId/historico',component: HistoricoListComponent, canActivate: [AuthGuardService]},
+  {path: 'empresa/:empresaId/relatorio',component: RelatorioListComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/estatistica', component: EstatisticaListComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/curvaabc', component: CurvaAbcListComponent, canActivate: [AuthGuardService]},
   {path: 'empresa/:empresaId/operacao', component: OperacaoFormComponent, canActivate:[AuthGuardService]},

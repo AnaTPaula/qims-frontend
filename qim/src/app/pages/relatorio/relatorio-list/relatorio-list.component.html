@@ -1,0 +1,96 @@
+<div class="container-fluid mt--7">
+  <div class="row align-item">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h5 class="mb-0">Relatórios</h5>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Número Relatório</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">CSV</th>
+                <th scope="col">PDF</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Saida de produtos</td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm ml-1" (click)="onDownloadCSV('saida_produto')">
+                    <i class="material-symbols-outlined">download</i>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm ml-1" (click)="onDownloadPDF('saida_produto')">
+                    <i class="material-symbols-outlined">download</i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>2</td>
+                <td>Entrada de produtos</td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm ml-1" (click)="onDownloadCSV('entrada_produto')">
+                    <i class="material-symbols-outlined">download</i>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm ml-1" (click)="onDownloadPDF('entrada_produto')">
+                    <i class="material-symbols-outlined">download</i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>3</td>
+                <td>Quantidade por estoque</td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm ml-1" (click)="onDownloadCSV('estoque_quantidade')">
+                    <i class="material-symbols-outlined">download</i>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm ml-1" (click)="onDownloadPDF('estoque_quantidade')">
+                    <i class="material-symbols-outlined">download</i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>4</td>
+                <td>Quantidade de produtos</td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm ml-1" (click)="onDownloadCSV('produto_quantidade')">
+                    <i class="material-symbols-outlined">download</i>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm ml-1" (click)="onDownloadPDF('produto_quantidade')">
+                    <i class="material-symbols-outlined">download</i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+          <span class="alert-inner--text">{{errorMsg? errorMsg: 'Um erro ocorreu'}}</span>
+          <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

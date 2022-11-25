@@ -3,14 +3,13 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <h5 class="mb-0">Histórico</h5>
+          <h5 class="mb-0">Histórico / {{nomeProduto}}</h5>
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
                 <th scope="col">Operador</th>
-                <th scope="col">Produto</th>
                 <th scope="col">Estoque Origem</th>
                 <th scope="col">Estoque Destino</th>
                 <th scope="col">Quantidade</th>
@@ -22,7 +21,6 @@
             <tbody>
               <tr *ngFor="let entity of historico">
                 <td>{{entity.operador}}</td>
-                <td>{{entity.nomeProduto}}</td>
                 <td>{{entity.estoque}}</td>
                 <td>{{entity.estoqueDestino? entity.estoqueDestino: '-'}}</td>
                 <td>{{entity.quantidade}}</td>

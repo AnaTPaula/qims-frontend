@@ -10,6 +10,7 @@
             <thead>
               <tr>
                 <th scope="col">Lotes</th>
+                <th scope="col">Produto</th>
                 <th scope="col">Data Entrada</th>
                 <th scope="col" *ngIf="tipoArmazenagem == 'FEFO'">Data Validade</th>
                 <th scope="col">Quantidade</th>
@@ -19,6 +20,7 @@
             <tbody>
               <tr *ngFor="let entity of lotes | paginate: { itemsPerPage: 7, currentPage: paginaAtual }; let i = index">
                 <td>{{entity.codigoLote}}</td>
+                <td>{{entity.produtoNome}}</td>
                 <td>{{convertDate(entity.dataEntrada)}}</td>
                 <td *ngIf="tipoArmazenagem == 'FEFO'">{{convertDate(entity.dataValidade!)}}</td>
                 <td>{{entity.quantidade}}</td>

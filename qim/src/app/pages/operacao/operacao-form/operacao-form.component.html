@@ -34,11 +34,11 @@
                             </div>
 
                             <div class="row" *ngIf="operacao.tipoOperacao == 'ENTRADA'">
-                                <label for="codigoLote" class="form-control-label">Codigo do Lote:
+                                <label for="codigoLote" class="form-control-label">Código do Lote:
                                     <span class="text-danger"> * </span></label>
                                 <input [(ngModel)]="operacao.codigoLote" type="text"
                                     class="form-control form-control-alternative" id="codigoLote" name="codigoLote"
-                                    placeholder="Codigo do Lote" #codigoLote="ngModel"
+                                    placeholder="Código do Lote" #codigoLote="ngModel"
                                     disabled="{{acesso === 'leitura'? true: false}}" uniqueLote [empresaId]="empresaId"
                                     required [maxlength]="50">
                                 <div *ngIf="codigoLote.invalid && (codigoLote.dirty || codigoLote.touched)"

@@ -100,9 +100,9 @@ export class CurvaAbcListComponent implements OnInit {
     if (categoria === 'A') {
       return 'rgba(255, 99, 71, 0.9)'
     } else if (categoria === 'B') {
-      return 'rgba(255, 120, 100, 0.9)'
+      return 'rgba(154, 205, 50, 0.9)'
     } else {
-      return 'rgba(255, 130, 150, 0.9)'
+      return 'rgba(64, 224, 208, 0.9)'
     }
   }
 

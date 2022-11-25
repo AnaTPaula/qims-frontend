@@ -4,6 +4,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CookieService } from 'ngx-cookie-service';
 import { EMPTY, switchMap, take } from 'rxjs';
 import { ConfirmModalComponent } from 'src/app/shared/confirm-modal/confirm-modal.component';
+import { ProdutoFormService } from '../../produto/produto-form/produto-form.service';
+import { ProdutoListService } from '../../produto/produto-list/produto-list.service';
 import { Historico, Estorno } from '../model';
 import { HistoricoListService } from './historico-list.service';
 
@@ -19,9 +21,11 @@ export class HistoricoListComponent implements OnInit {
   paginaAtual = 1;
   requestFailed: boolean = false;
   errorMsg: string | undefined;
+  nomeProduto: string | undefined;
   
   constructor(
     private historicoService: HistoricoListService,
+    private produtoService: ProdutoFormService,
     private modalService: BsModalService,
     private cookieService: CookieService,
     private activatedRoute: ActivatedRoute) { }
@@ -30,7 +34,12 @@ export class HistoricoListComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.empresaId = params['empresaId'];
       this.produtoId = params['produtoId'];
-
+    });
+    this.produtoService.getProduto(this.produtoId!, this.empresaId!).subscribe((produto)=>{
+      this.nomeProduto = produto.nome;
+    },(error: any) => {
+      this.requestFailed = true;
+      this.errorMsg = error;
     });
     this.getHistorico();
   }
