@@ -107,7 +107,10 @@ export class OperacaoFormComponent implements OnInit {
         this.requestFailed = true;
         this.errorMsg = error;
         })
-      })
+      }, (error: any) => {
+        this.requestFailed = true;
+        this.errorMsg = error;
+        })
 
     } else {
       const operacaoForCreate = {

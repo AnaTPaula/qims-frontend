@@ -73,8 +73,13 @@
               *ngIf="getTipo() === 'empresa'">
               <i class="ni ni-sound-wave text-danger "></i>Visualizar Estatísticas</a>
 
-            <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/curvaabc/" class="nav-link" *ngIf="getTipo() === 'empresa'">
+            <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/curvaabc/" class="nav-link"
+              *ngIf="getTipo() === 'empresa'">
               <i class="ni ni-chart-bar-32 text-danger "></i>Analisar curva ABC</a>
+
+            <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/relatorio/" class="nav-link"
+              *ngIf="getTipo() === 'empresa'">
+              <i class="material-symbols-outlined text-danger">description</i>Relatórios</a>
           </li>
         </ul>
       </div>
@@ -85,56 +90,62 @@
         <h6 class="navbar-heading text-muted" *ngIf="getTipo() === 'operador'">Estoque</h6>
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-  
+
             <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/operacao" class="nav-link"
               *ngIf="getTipo() === 'operador' && (acesso === 'total' || acesso == 'modificar')">
               <i class="ni ni-fat-add text-danger "></i>Realizar operação</a>
-  
+
             <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/transferencia" class="nav-link"
               *ngIf="getTipo() === 'operador' && (acesso === 'total' || acesso == 'modificar')">
               <i class="ni ni-fat-add text-danger "></i>Realizar transferência</a>
-  
+
             <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/estoque/create" class="nav-link"
               *ngIf="getTipo() === 'operador' && acesso === 'total'">
-              <i class="ni ni-fat-add text-danger "></i>Criar Estoque</a>
-  
+              <i class="material-symbols-outlined text-danger">add_business</i>Criar Estoque</a>
+
             <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/estoques" class="nav-link"
               *ngIf="getTipo() === 'operador'">
               <i class="ni ni-bullet-list-67 text-danger "></i>Listar Estoque</a>
-  
+
             <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/lotes" class="nav-link"
               *ngIf="getTipo() === 'operador'">
-              <i class="ni ni-bullet-list-67 text-danger "></i>Listar lote</a>
-  
+            <i class="material-symbols-outlined text-danger">barcode</i>Listar lote</a>
+              
+
           </li>
         </ul>
-  
+
         <h6 class="navbar-heading text-muted" *ngIf="getTipo() === 'operador'">Produto</h6>
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-  
+
             <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/produto/create" class="nav-link"
               *ngIf="getTipo() === 'operador' && acesso === 'total'">
-              <i class="ni ni-fat-add text-danger "></i>Criar Produto</a>
-  
+              <i class="material-symbols-outlined text-danger">format_list_bulleted_add</i>Criar Produto</a>
+
             <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/produtos" class="nav-link"
               *ngIf="getTipo() === 'operador'">
               <i class="ni ni-bullet-list-67 text-danger "></i>Listar Produtos</a>
           </li>
         </ul>
-  
+
         <h6 class="navbar-heading text-muted" *ngIf="isOperadorAcessoTotal()">Gestão</h6>
-          <ul class="navbar-nav mb-md-3">
-            <li class="nav-item">
-  
-              <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/estatistica/" class="nav-link"
-                *ngIf="isOperadorAcessoTotal()">
-                <i class="ni ni-sound-wave text-danger "></i>Visualizar Estatísticas</a>
-  
-              <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/curvaabc/" class="nav-link" *ngIf="isOperadorAcessoTotal()">
-                <i class="ni ni-chart-bar-32 text-danger "></i>Analisar curva ABC</a>
-            </li>
-          </ul>
+        <ul class="navbar-nav mb-md-3">
+          <li class="nav-item">
+
+            <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/estatistica/" class="nav-link"
+              *ngIf="isOperadorAcessoTotal()">
+              <i class="ni ni-sound-wave text-danger "></i>Visualizar Estatísticas</a>
+
+            <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/curvaabc/" class="nav-link"
+              *ngIf="isOperadorAcessoTotal()">
+              <i class="ni ni-chart-bar-32 text-danger "></i>Analisar curva ABC</a>
+
+            <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/relatorio/" class="nav-link"
+              *ngIf="isOperadorAcessoTotal()">
+              <i class="material-symbols-outlined text-danger">description</i>Relatórios</a>
+          </li>
+        </ul>
       </div>
 
 
@@ -144,17 +155,16 @@
           <!--ADMINISTRADOR-->
           <a routerLinkActive="active" routerLink="/admin/{{getId()}}" class="nav-link"
             *ngIf="getTipo() === 'administrador'">
-            <i class="ni ni-collection text-danger "></i>Informações do Administrador</a>
-
+            <i class="material-symbols-outlined text-danger">info</i>Informações do Administrador</a>
           <!--EMPRESA-->
           <a routerLinkActive="active" routerLink="/empresa/{{getId()}}/infoempresa" class="nav-link"
             *ngIf="getTipo() === 'empresa'">
-            <i class="ni ni-collection text-danger "></i>Informações da Empresa</a>
+            <i class="material-symbols-outlined text-danger">info</i>Informações da Empresa</a>
 
           <!--OPERADOR-->
           <a routerLinkActive="active" routerLink="/empresa/{{getEmpresaId()}}/operador/update/{{getId()}}"
             class="nav-link" *ngIf="getTipo() === 'operador'">
-            <i class="ni ni-collection text-danger "></i>Informações do Operador</a>
+            <i class="material-symbols-outlined text-danger">info</i>Informações do Operador</a>
 
           <!--USUARIOS-->
 

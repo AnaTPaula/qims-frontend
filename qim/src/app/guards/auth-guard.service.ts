@@ -26,7 +26,8 @@ export class AuthGuardService implements CanActivate {
         if (state.url.includes('operador')
         || state.url.includes('infoempresa')
         || state.url.includes('estatistica')
-        || state.url.includes('curvaabc')){
+        || state.url.includes('curvaabc')
+        || state.url.includes('relatorio')){
           return true;
         } else {
           this.router.navigate(['empresa/'+ this.cookieService.get('id') +'/operadores']);
@@ -42,7 +43,8 @@ export class AuthGuardService implements CanActivate {
         || state.url.includes('transferencia')
         || (state.url.includes('estatistica') && acesso === 'total')
         || (state.url.includes('curvaabc') && acesso === 'total')
-        || state.url.includes('operador/update')){
+        || state.url.includes('operador/update')
+        || state.url.includes('relatorio') && acesso === 'total'){
           return true;
         } else {
           this.router.navigate(['empresa/'+ this.cookieService.get('empresa') +'/estoques']);

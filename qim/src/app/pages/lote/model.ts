@@ -6,4 +6,5 @@ export interface Lote {
     dataValidade?: number;
     quantidade: number;
     associado?: boolean;
+    produtoNome?: string;
 }

@@ -3,30 +3,35 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <h5 class="mb-0">Histórico</h5>
+          <h5 class="mb-0">Histórico {{nomeProduto}}</h5>
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
                 <th scope="col">Operador</th>
-                <th scope="col">Produto</th>
                 <th scope="col">Estoque Origem</th>
                 <th scope="col">Estoque Destino</th>
                 <th scope="col">Quantidade</th>
                 <th scope="col">Operação</th>
                 <th scope="col">Data/Hora</th>
+                <th scope="col">Estornar</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let entity of historico">
                 <td>{{entity.operador}}</td>
-                <td>{{entity.nomeProduto}}</td>
                 <td>{{entity.estoque}}</td>
                 <td>{{entity.estoqueDestino? entity.estoqueDestino: '-'}}</td>
                 <td>{{entity.quantidade}}</td>
-                <td>{{entity.operacao}}</td>
+                <td>{{getOperacao(entity.operacao)}}</td>
                 <td>{{convertDate(entity.dataHora)}}</td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm ml-1"
+                    *ngIf="entity.operacao === 'ENTRADA' || entity.operacao === 'SAIDA'" (click)="reverseOperacao(entity)">
+                    <span class="material-symbols-outlined">undo</span>
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>

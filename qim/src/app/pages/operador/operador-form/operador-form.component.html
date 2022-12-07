@@ -1,12 +1,15 @@
 <div class="pt-5 pt-lg-6 d-flex align-items-center ">
-<div class="container-fluid mt--7 align-card">
-    <div class="col-xl-8 order-xl-1 align-items-center">
-     
-        <div class="card bg-secondary shadow">
-            <div class="card-header bg-white border-1">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <h3 class="mb-0">{{operadorId? 'Alterar Operador': 'Criar Operador'}}</h3>
+    <div class="container-fluid mt--7 align-card">
+        <div class="row justify-content-center align-items-center">
+
+            <div class="col-xl-8 order-xl-1">
+                <div class="card bg-secondary shadow">
+                    <div class="card-header bg-white border-0">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">{{operadorId? 'Alterar Operador': 'Criar Operador'}}</h3>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <form #form="ngForm">
@@ -62,28 +65,31 @@
                             </div>
                             <div class="row">
                                 <div class="col text-left">
-                                    <a class="btn btn-warning my-4 text-left" routerLink='/empresa/{{empresaId}}/operadores'>Voltar</a>
+                                    <a class="btn btn-warning my-4 text-left"
+                                        routerLink='/empresa/{{empresaId}}/operadores'>Voltar</a>
                                 </div>
 
                                 <div class="col text-right">
-                                    <input type="submit" value="Salvar" class="btn btn-primary my-4"
-                                        (click)="save()" [disabled]="!form.valid || form.pending">
+                                    <input type="submit" value="Salvar" class="btn btn-primary my-4" (click)="save()"
+                                        [disabled]="!form.valid || form.pending">
                                 </div>
                             </div>
                         </form>
                     </div>
+
+
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
+                        <span class="alert-inner--text">{{errorMsg? errorMsg: 'Um erro ocorreu'}}</span>
+                        <button type="button" class="close" (click)="checkError()" data-dismiss="alert"
+                            aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="alert alert-success" role="alert" *ngIf="requestSuccess">
+                        Operação efetuada com sucesso!
+                    </div>
                 </div>
-            </div>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="requestFailed">
-                <span class="alert-inner--text">{{errorMsg? errorMsg: 'Um erro ocorreu'}}</span>
-                <button type="button" class="close" (click)="checkError()" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="alert alert-success" role="alert" *ngIf="requestSuccess">
-                Operação efetuada com sucesso!
             </div>
         </div>
     </div>
-</div>
 </div>

@@ -40,6 +40,7 @@ import { TransferenciaFormComponent } from './pages/operacao/transferencia-form/
 import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { CurvaAbcListComponent } from './pages/estatistica/curvaabc-list/curvaabc-list.component';
+import { RelatorioListComponent } from './pages/relatorio/relatorio-list/relatorio-list.component';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -57,6 +58,7 @@ registerLocaleData(ptBr);
     OperacaoFormComponent,
     TransferenciaFormComponent,
     HistoricoListComponent,
+    RelatorioListComponent,
     EstatisticaListComponent,
     CurvaAbcListComponent,
     LoteListComponent,
